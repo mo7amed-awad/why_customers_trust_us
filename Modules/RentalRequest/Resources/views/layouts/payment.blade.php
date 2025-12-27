@@ -1,0 +1,1 @@
+{{ $Model->Payment->title() }}

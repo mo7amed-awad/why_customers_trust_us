@@ -1,0 +1,11 @@
+{
+    "name": "BidRequest",
+    "alias": "bid_request",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BidRequest\\Providers\\BidRequestServiceProvider"
+    ],
+    "files": []
+}

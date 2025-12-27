@@ -1,0 +1,23 @@
+{
+    "name": "nwidart/admin",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mostafa Mohamed",
+            "email": "mostafazarea69@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Admin\\": ""
+        }
+    }
+}

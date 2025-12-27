@@ -1,0 +1,26 @@
+
+body{
+    direction: ltr;
+}
+
+.sidebar-nav-wrapper {
+    left: 0;
+}
+.main-wrapper {
+    margin-left: 250px;
+}
+.sidebar-nav-wrapper.active {
+    transform: translateX(-260px);
+}
+@media (max-width: 575.98px) {
+    .main-wrapper {
+        margin-left: 0px;
+    }
+    .sidebar-nav-wrapper.active {
+        transform: translateX(-100%);
+    }
+}
+
+.main-wrapper.active {
+    margin-left: 0;
+}

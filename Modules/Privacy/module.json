@@ -1,0 +1,11 @@
+{
+    "name": "Privacy",
+    "alias": "privacy",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Privacy\\Providers\\PrivacyServiceProvider"
+    ],
+    "files": []
+}

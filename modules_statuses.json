@@ -1,0 +1,23 @@
+{
+    "About": true,
+    "Admin": true,
+    "Bidding": true,
+    "Brand": true,
+    "BidRequest": true,
+    "RentalRequest": true,
+    "City": true,
+    "Contact": true,
+    "Country": true,
+    "FAQ": true,
+    "Model": true,
+    "Payment": true,
+    "Privacy": true,
+    "Region": true,
+    "Rental": true,
+    "Setting": true,
+    "Service": true,
+    "Limousine": true,
+    "Specification": true,
+    "Term": true,
+    "Testimonial": true
+}

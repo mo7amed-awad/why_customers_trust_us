@@ -1,0 +1,180 @@
+@import "variables";
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primaryColor;
+    border-radius: 30px;
+  }
+}
+// change default bootstrap navbar toggler from dark to diffent color
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: "Almarai", sans-serif;
+}
+// Buttons 
+.btn-primary{
+  background-color: $primaryColor;
+  color: white;
+  &:hover{
+    color: $primaryColor !important;
+    background-color: transparent !important;
+    border: 1px solid $primaryColor !important;
+  }
+}
+// Start header
+header {
+  border-bottom: 1px solid $bgColor;
+}
+ nav ul li a {
+  &::after {
+    content: "";
+    height: 2px;
+    width: 0%;
+    background-color: $primaryColor;
+    transition: 0.5s;
+    margin: auto;
+    display: block;
+  }
+  &:hover::after {
+    width: 100%;
+    color: black;
+  }
+}
+// carousel
+.c-item {
+  height: 580px;
+}
+.c-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+.carousel-indicators{
+  color: $primaryColor !important;
+  border-radius: 10px !important;
+  &:focus{
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+.carousel-indicators .active {
+color: $secondaryColor !important;
+background-color: $secondaryColor !important;
+border-radius: 10px !important;
+}
+
+.carousel-indicators:focus{
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.carousel-caption {
+  top: 0;
+  bottom: 0;
+}
+.first-slider-nav {
+  position: relative;
+  top: -15px; 
+  text-align: right;
+  .prev,.next {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 32px;
+    border-radius: 50%;
+    color: #999999 !important;
+    background-color: transparent !important;
+    border: 1px solid #999999 !important;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s linear;
+  }
+}
+.slick-slider {
+  direction: ltr !important;
+}
+// <!-- End Header -->
+// form 
+.form-control:focus{
+  box-shadow: none !important;
+  border: 1px solid $primaryColor !important;
+}
+.background-image {
+  background: url('../images/Shape.png') no-repeat center center;
+  background-size: cover;
+}
+// footer 
+.social-icons{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s all;
+  &:hover{
+    background-color: white !important;
+    color: $primaryColor !important;
+  }
+}
+// back-to-top
+.back-to-top {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  bottom: 20px;
+  right: 10px;
+  background-color: $primaryColor;
+  color: #FFF;
+  border-radius: 50px;
+  font-size: 20px !important;
+  display: none;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(162deg) brightness(101%) contrast(104%);
+}
+}
+
+.btn-phone i {
+  line-height: 1;
+}
+
+// ====whats-app===
+.whats-app {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  bottom: 70px;
+  right: 10px;
+  background-color:$primaryColor;
+  color: #FFF;
+  align-items: center;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:none !important;
+}
+
