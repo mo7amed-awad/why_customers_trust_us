@@ -1,1 +1,0 @@
-<img src="{{ asset($Model->image ?? setting('logo')) }}" style="max-width: 100px;    filter: drop-shadow(1px 1px 5px #0d0d0d);">

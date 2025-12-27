@@ -1,0 +1,1 @@
+<img src="{{ asset($Model->icon ?? setting('logo')) }}" style="max-width: 100px;">

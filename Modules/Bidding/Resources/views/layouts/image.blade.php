@@ -1,1 +1,0 @@
-<img src="{{ asset($Model->Image?->select('image')->value('image') ?? setting('logo')) }}" style="max-width: 100px;">

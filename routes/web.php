@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
@@ -24,3 +24,6 @@ Route::any('switch', [webController::class, 'switch'])->name('switch');
 Route::any('resume/{id?}', [webController::class, 'resume'])->name('resume');
 Route::any('file-upload/upload-large-files', [webController::class, 'uploadLargeFiles'])->name('files.upload.large');
 Route::any('blob-upload', [webController::class, 'uploadBlob'])->name('blob-upload');
+
+
+require __DIR__.'/auth.php';

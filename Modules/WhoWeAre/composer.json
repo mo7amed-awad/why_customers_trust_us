@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/whoweare",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\WhoWeAre\\": "",
+            "Modules\\WhoWeAre\\App\\": "app/",
+            "Modules\\WhoWeAre\\Database\\Factories\\": "database/factories/",
+            "Modules\\WhoWeAre\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\WhoWeAre\\Tests\\": "tests/"
+        }
+    }
+}

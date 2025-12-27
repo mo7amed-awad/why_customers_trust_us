@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/whychooseus",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\WhyChooseUs\\": "",
+            "Modules\\WhyChooseUs\\App\\": "app/",
+            "Modules\\WhyChooseUs\\Database\\Factories\\": "database/factories/",
+            "Modules\\WhyChooseUs\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\WhyChooseUs\\Tests\\": "tests/"
+        }
+    }
+}

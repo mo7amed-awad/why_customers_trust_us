@@ -19,5 +19,8 @@
     "Limousine": true,
     "Specification": true,
     "Term": true,
-    "Testimonial": true
+    "Testimonial": true,
+    "User": true,
+    "WhoWeAre": true,
+    "WhyChooseUs": true
 }

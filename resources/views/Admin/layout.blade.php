@@ -109,24 +109,6 @@
 
 
                 <hr>
-                    @if(hasPermission('show_rental_requests'))
-                        @include('rental_request::layouts.sidebar')
-                    @endif
-
-                    @if(hasPermission('show_bid_requests'))
-                        @include('bid_request::layouts.sidebar')
-                    @endif
-
-
-                <hr>
-                    @if(hasPermission('show_rentals'))
-                        @include('rental::layouts.sidebar')
-                    @endif
-
-                    @if(hasPermission('show_biddings'))
-                        @include('bidding::layouts.sidebar')
-                    @endif
-
 
                     @if(hasPermission('show_brands'))
                         @include('brand::layouts.sidebar')
@@ -136,28 +118,16 @@
                         @include('model::layouts.sidebar')
                     @endif
 
-                    @if(hasPermission('show_specifications'))
-                        @include('specification::layouts.sidebar')
+                    @if(hasPermission('show_whoweare'))
+                        @include('whoweare::layouts.sidebar')
                     @endif
 
-                    @if(hasPermission('show_limousines'))
-                        @include('limousine::layouts.sidebar')
+                    @if(hasPermission('show_whychooseus'))
+                        @include('whychooseus::layouts.sidebar')
                     @endif
-                <hr>
-                    @if(hasPermission('show_countries'))
-                        @include('country::layouts.sidebar')
-                    @endif
-
-                    @if(hasPermission('show_regions'))
-                        @include('region::layouts.sidebar')
-                    @endif
-
-                    @if(hasPermission('show_cities'))
-                        @include('city::layouts.sidebar')
-                    @endif
-
 
                 <hr>
+
                     @if(hasPermission('show_payments'))
                         @include('payment::layouts.sidebar')
                     @endif
@@ -171,10 +141,6 @@
                     @endif
 
                 <hr>
-                    @if(hasPermission('show_services'))
-                        @include('service::layouts.sidebar')
-                    @endif
-
                     @if(hasPermission('show_faqs'))
                         @include('faq::layouts.sidebar')
                     @endif
@@ -201,6 +167,10 @@
                 
                     @if(hasPermission('show_admins'))
                         @include('admin::layouts.sidebar')
+                    @endif
+
+                    @if(hasPermission('show_users'))
+                        @include('user::layouts.sidebar')
                     @endif
 
                 <hr>

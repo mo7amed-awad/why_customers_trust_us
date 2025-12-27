@@ -1,0 +1,11 @@
+{
+    "name": "WhyChooseUs",
+    "alias": "whychooseus",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WhyChooseUs\\App\\Providers\\WhyChooseUsServiceProvider"
+    ],
+    "files": []
+}

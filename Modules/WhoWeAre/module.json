@@ -1,0 +1,11 @@
+{
+    "name": "WhoWeAre",
+    "alias": "whoweare",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WhoWeAre\\App\\Providers\\WhoWeAreServiceProvider"
+    ],
+    "files": []
+}
