@@ -126,6 +126,10 @@
                         @include('whychooseus::layouts.sidebar')
                     @endif
 
+                    @if(hasPermission('show_whycustomerstrustus'))
+                        @include('whycustomerstrustus::layouts.sidebar')
+                    @endif
+
                 <hr>
 
                     @if(hasPermission('show_payments'))

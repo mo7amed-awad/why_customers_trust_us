@@ -1,0 +1,11 @@
+{
+    "name": "WhyCustomersTrustUs",
+    "alias": "whycustomerstrustus",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WhyCustomersTrustUs\\App\\Providers\\WhyCustomersTrustUsServiceProvider"
+    ],
+    "files": []
+}

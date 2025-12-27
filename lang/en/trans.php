@@ -2418,4 +2418,5 @@ return [
     'perfumes' => 'According to Main Notes',
     'whoweare' => 'Who We Are',
     'whychooseus' => 'Why Choose Us',
+    'whycustomerstrustus' => 'Why Customers Trust Us',
 ];

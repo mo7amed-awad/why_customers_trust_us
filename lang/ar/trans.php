@@ -2304,5 +2304,6 @@ return [
     'unisex_perfumes' => 'عطور للجنسين',
     'perfumes' => 'حسب النوتات الرئيسية',
     'whoweare' => 'من نحن',
-    'whychooseus' => 'لماذا تختارنا'
+    'whychooseus' => 'لماذا تختارنا',
+    'whycustomerstrustus' => 'لماذا يثق بنا العملاء',
 ];
