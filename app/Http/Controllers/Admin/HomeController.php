@@ -12,23 +12,13 @@ class HomeController extends BasicController
         $modules = [
             'About' => 'abouts',
             'Admin' => 'admins',
-            'Bidding' => 'biddings',
-            'Limousine' => 'limousines',
             'Brand' => 'brands',
-            'City' => 'cities',
             'Contact' => 'contacts',
-            'Country' => 'countries',
-            'FAQ' => 'faqs',
             'Model' => 'models',
             'Payment' => 'payments',
             'Privacy' => 'privacies',
-            'Region' => 'regions',
-            'Rental' => 'rentals',
             'Setting' => 'settings',
-            'Service' => 'services',
-            'Specification' => 'specifications',
             'Term' => 'terms',
-            'Testimonial' => 'testimonials',
         ];
 
         $Modules = [];

@@ -23,5 +23,7 @@
     "User": true,
     "WhoWeAre": true,
     "WhyChooseUs": true,
-    "WhyCustomersTrustUs": true
+    "WhyCustomersTrustUs": true,
+    "OurMission": true,
+    "OurVision": true
 }

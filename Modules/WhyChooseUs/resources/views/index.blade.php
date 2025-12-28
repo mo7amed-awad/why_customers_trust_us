@@ -19,7 +19,6 @@
                 @if (hasPermission('edit_whychooseus'))
                     <th>@lang('trans.status')</th>
                 @endif
-                <th>@lang('trans.image')</th>
                 <th></th>
             </tr>
         </thead>
@@ -90,19 +89,14 @@
                 {
                     data: 'title_en',
                     name: 'title_en'
-                },
+                }, @append =-09
                 @if (hasPermission('edit_whychooseus'))
                     {
                         data: 'status',
                         orderable: false,
                         searchable: false
                     },
-                @endif {
-                    data: 'image',
-                    name: 'image',
-                    orderable: false,
-                    searchable: false
-                },
+                @endif
                 {
                     data: 'actions',
                     orderable: false,

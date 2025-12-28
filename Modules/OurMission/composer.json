@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/ourmission",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\OurMission\\": "",
+            "Modules\\OurMission\\App\\": "app/",
+            "Modules\\OurMission\\Database\\Factories\\": "database/factories/",
+            "Modules\\OurMission\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\OurMission\\Tests\\": "tests/"
+        }
+    }
+}

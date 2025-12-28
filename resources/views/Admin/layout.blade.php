@@ -130,6 +130,14 @@
                         @include('whycustomerstrustus::layouts.sidebar')
                     @endif
 
+                    @if(hasPermission('show_ourvision'))
+                        @include('ourvision::layouts.sidebar')
+                    @endif
+
+                    @if(hasPermission('show_ourmission'))
+                        @include('ourmission::layouts.sidebar')
+                    @endif
+
                 <hr>
 
                     @if(hasPermission('show_payments'))

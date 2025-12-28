@@ -6,7 +6,6 @@
         @method('PUT')
         <div class="row">
 
-
             <div class="col-md-6 col-sm-12">
                 <label>@lang('trans.desc_ar')</label>
                 <textarea rows="7" name="desc_ar" class="form-control mceNoEditor">{{ $Model->desc_ar }}</textarea>
@@ -21,15 +20,14 @@
             <div class="col-md-6 col-sm-12">
                 <label for="image">@lang('trans.image')</label>
 
-                @if($Model->image)
-                    <div class="my-2">
-                        <img src="{{ asset( $Model->image) }}"
-                             alt="Current Image"
-                             style="max-width: 200px; border-radius: 10px;">
-                    </div>
-                @endif
+                <div class="my-2">
+                    <img id="imagePreview"
+                         src="{{ $Model->image ? asset($Model->image) : '' }}"
+                         alt="Image Preview"
+                         style="max-width: 200px; border-radius: 10px; {{ $Model->image ? '' : 'display: none;' }}">
+                </div>
 
-                <input class="form-control w-100" id="image" type="file" name="image">
+                <input class="form-control w-100" id="image" type="file" name="image" accept="image/*">
             </div>
 
             <div class="col-12 my-4">
@@ -38,4 +36,22 @@
 
         </div>
     </form>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 @endsection

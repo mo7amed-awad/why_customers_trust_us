@@ -2419,4 +2419,6 @@ return [
     'whoweare' => 'Who We Are',
     'whychooseus' => 'Why Choose Us',
     'whycustomerstrustus' => 'Why Customers Trust Us',
+    'ourvision' => 'Our Vision',
+    'ourmission' => 'Our Mission',
 ];

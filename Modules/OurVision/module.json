@@ -1,0 +1,11 @@
+{
+    "name": "OurVision",
+    "alias": "ourvision",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\OurVision\\App\\Providers\\OurVisionServiceProvider"
+    ],
+    "files": []
+}

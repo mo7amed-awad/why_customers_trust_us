@@ -2306,4 +2306,6 @@ return [
     'whoweare' => 'من نحن',
     'whychooseus' => 'لماذا تختارنا',
     'whycustomerstrustus' => 'لماذا يثق بنا العملاء',
+    'ourvision' => 'رؤيتنا',
+    'ourmission' => 'مهمتنا',
 ];
