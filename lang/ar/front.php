@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'name' => 'الاسم',
+    'email' => 'البريد الالكتروني',
+    'enter_name' => 'ادخل اسمك',
+    'enter_email' => 'ادخل بريدك الالكتروني',
+    'phone' => 'رقم الجوال',
+    'enter_phone' => 'رقم الجوال',
+    'password' => 'كلمة المرور',
+    'enter_password' => 'ادخل كلمة المرور',
+    'password_requirements' => 'يجب ألا يقل طول كلمة المرور عن اثني عشر حرفًا. لجعلها أقوى، استخدم أحرفًا كبيرة وصغيرة وأرقامًا ورموزًا مثل ! " ? $ % ^ & ).',
+    'password_confirmation' => 'تأكيد كلمة المرور',
+    'enter_password_confirmation' => 'ادخل تأكيد كلمة المرور',
+    'agree_to' => 'الموافقة على',
+    'terms_and_conditions' => 'الشروط والأحكام',
+    'register_now' => 'سجل الآن',
+    'already_have_account' => 'هل لديك حساب؟',
+    'login' => 'تسجيل الدخول',
+    'create_account_title' => 'أنشئ حسابك',
+    'create_account_description' =>
+        'سجل في بضع خطوات فقط للوصول إلى قوائم السيارات بالتفصيل، ومقارنة المواصفات، والتواصل مع البائعين الموثوقين بسهولة.',
+    'trusted_sellers_alt' => 'شعار تسجيل الدخول',
+    'resend' => 'إعادة الإرسال',
+    'confirm' => 'تأكيد',
+    'create_account' => 'إنشاء حساب',
+
+];

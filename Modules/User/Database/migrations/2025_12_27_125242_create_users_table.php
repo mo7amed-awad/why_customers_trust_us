@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('phone_code')->nullable();
-            $table->timestamp('phone_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('lang')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
