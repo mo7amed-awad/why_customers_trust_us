@@ -3,30 +3,20 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\BasicController;
-use Illuminate\Http\Request;
-use Modules\About\Entities\Model as About;
-use Modules\Bidding\Entities\Model as Bidding;
-use Modules\BidRequest\Entities\Model as BidRequest;
+use Modules\WhoWeAre\Entities\Model as WhoWeAre;
 use Modules\Brand\Entities\Model as Brand;
-use Modules\Contact\Entities\Model as Contact;
-use Modules\FAQ\Entities\Model as FAQ;
-use Modules\Limousine\Entities\Model as Limousine;
-use Modules\Payment\Entities\Model as Payment;
-use Modules\Privacy\Entities\Model as Privacy;
-use Modules\Rental\Entities\Model as Rental;
-use Modules\RentalRequest\Entities\Model as RentalRequest;
-use Modules\Service\Entities\Model as Service;
-use Modules\Term\Entities\Model as Term;
-use Modules\Testimonial\Entities\Model as Testimonial;
-use App\Mail\RentalRequestConfirmationMail;
-use Illuminate\Support\Facades\Mail;
+use Modules\WhyChooseUs\Entities\Model as WhyChooseUs;
+
 
 
 class HomeController extends BasicController
 {
     public function home()
     {
-        return view('Client.index');
+        $whoWeAre = WhoWeAre::first();
+        $brands = Brand::all();
+        $whyChooseUs = WhyChooseUs::all();
+        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs'));
     }
 
 

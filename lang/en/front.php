@@ -35,5 +35,9 @@ return [
         'Enter your registered email and we will send you a link to reset your password to access your account easily.',
     'change_password' => 'Change Password',
     'user_not_found' => 'User not found',
+    'who_we_are' => 'Who We Are',
+    'top_car_brands' => 'Top Car Brands',
+    'why_choose_us' => 'Why Choose Us',
+    'who_we_are_desc' => 'At Alshamla, we redefine how you experience everything related to cars. Whether you’re buying, selling, renting, or servicing your vehicle, we bring it all together in one smart, reliable, and innovative platform.',
 
 ];
