@@ -162,7 +162,7 @@
                         <div class="text-secondary text-center">
                             <span>{{ __('front.already_have_account') }}</span>
                             <span class="px-1">
-                <a class="primary-color text-decoration-underline" href="login.html">
+                <a class="primary-color text-decoration-underline" href="{{route('client.login')}}">
                     {{ __('front.login') }}
                 </a>
             </span>

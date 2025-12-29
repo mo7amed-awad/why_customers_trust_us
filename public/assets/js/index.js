@@ -25,11 +25,14 @@ window.changeLanguage = function () {
 
 const translations = {
     ar: {
-
         language: "En",
+        signup: "إنشاء حساب",
+        login: "تسجيل الدخول"
     },
     en: {
         language: "ع",
+        signup: "Sing Up",
+        login: "Login"
     }
 };
 
@@ -97,10 +100,10 @@ Home
                 </li>
 
                 <li class="nav-item d-lg-none">
-                  <a class="nav-link " aria-current="page" href="login.html"><span class="">تسجيل الدخول
+                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/login"><span class="">${t('login')} 
                     </span></a>
                 </li>
-                <a class="nav-link d-lg-none" aria-current="page" href="register.html"><span class=""> انشاء حساب
+                <a class="nav-link d-lg-none" aria-current="page" href="/${window.currentLang}/register""><span class=""> ${t('signup')}
                   </span></a>
                 </li>
               </ul>
@@ -118,11 +121,11 @@ Home
              <div class="d-lg-flex d-none justify-content-end  gap-2 " style="flex: 1;">
           <a href="/${window.currentLang}/register" style="flex: 1;"
             class=" text-center text-white bg-primary-color w-100 py-lg-2 py-1 rounded-3 fs-14">
-     Sign Up
+            ${t('signup')}
           </a>
-          <a href="login.html" style="flex: 1;"
+          <a href="/${window.currentLang}/login" style="flex: 1;"
             class=" text-center bg-white border-color primary-color w-100 py-lg-2 py-1 rounded-3 fs-14">
-         login
+         ${t('login')}
           </a>
 
         </div>

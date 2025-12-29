@@ -24,4 +24,11 @@ return [
     'resend' => 'Resend',
     'confirm' => 'Confirm',
     'create_account' => 'Create Account',
+    'login_title' => 'Log in to your account',
+    'login_description' =>
+        'Log in to access your account, browse featured cars, compare specifications, and easily connect with trusted sellers.',
+    'forgot_password' => 'Forgot your password?',
+    'login_button' => 'Log in',
+    'dont_have_account' => 'Don’t have an account?',
+
 ];

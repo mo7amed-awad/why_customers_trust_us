@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     iti.setCountry("bh");
 
-    // عند إرسال الفورم، احفظ كود الدولة والرقم الكامل
     form.addEventListener("submit", function(e) {
         document.getElementById("country_code").value = iti.getSelectedCountryData().dialCode;
         document.getElementById("phone_full").value = iti.getNumber();

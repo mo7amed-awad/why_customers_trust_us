@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Functions\WhatsApp;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
