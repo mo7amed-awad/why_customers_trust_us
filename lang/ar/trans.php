@@ -1028,8 +1028,6 @@ return [
     'categories' => 'الفئات',
     'categories' => 'الفئات',
     'categories' => 'الفئات',
-    'category' => 'الفئة',
-    'category' => 'الفئة',
     'category1' => 'الفئة الأولى',
     'category2' => 'الفئة الثانية',
     'category3' => 'الفئة الثالثة',
@@ -2308,4 +2306,5 @@ return [
     'whycustomerstrustus' => 'لماذا يثق بنا العملاء',
     'ourvision' => 'رؤيتنا',
     'ourmission' => 'مهمتنا',
+    'category' => 'أقسام الاعلانات'
 ];

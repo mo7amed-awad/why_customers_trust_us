@@ -403,7 +403,6 @@ return [
     'Cart' => 'Cart',
     'Cash' => 'Cash',
     'Categories' => 'Categories',
-    'Category' => 'Category',
     'Cattering' => 'Catering',
     'Choose' => 'Choose',
     'Civic' => 'Civic',
@@ -1095,8 +1094,6 @@ return [
     'categories' => 'Categories',
     'categories' => 'Categories',
     'SubCategory' => 'Sub Category',
-    'category' => 'Category',
-    'category' => 'Category',
     'category1' => 'Category 1',
     'category2' => 'Category 2',
     'category3' => 'Category 3',
@@ -2421,4 +2418,6 @@ return [
     'whycustomerstrustus' => 'Why Customers Trust Us',
     'ourvision' => 'Our Vision',
     'ourmission' => 'Our Mission',
+    'category' => 'Advertisement Categories'
+
 ];

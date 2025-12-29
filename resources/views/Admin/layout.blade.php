@@ -110,6 +110,10 @@
 
                 <hr>
 
+                    @if(hasPermission('show_category'))
+                        @include('category::layouts.sidebar')
+                    @endif
+
                     @if(hasPermission('show_brands'))
                         @include('brand::layouts.sidebar')
                     @endif

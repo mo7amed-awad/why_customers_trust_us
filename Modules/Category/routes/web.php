@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Category\App\Http\Controllers\CategoryController;
+use App\Http\Middleware\Localization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Modules\Category\App\Http\Controllers\CategoryController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('category', CategoryController::class)->names('category');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['middleware' => [Localization::class, 'auth:admin']], function () {
+        Route::resource('category', CategoryController::class);
+        Route::any('datatable-category', [CategoryController::class, 'datatable'])->name('datatable-category');
+    });
 });
+
