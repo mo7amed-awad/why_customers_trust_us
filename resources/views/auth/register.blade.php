@@ -202,8 +202,19 @@
                 }
             });
         });
-    </script>
 
+        document.querySelectorAll('.TogglePasswordBtns').forEach(function (TogglePasswordBtn) {
+            TogglePasswordBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var passwordInput = this.previousElementSibling;
+                passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+                var eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
+            });
+        });
+
+    </script>
 @endpush
 @endsection
 

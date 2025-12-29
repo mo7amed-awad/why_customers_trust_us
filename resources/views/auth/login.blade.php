@@ -45,6 +45,7 @@
 
                     <div class="col-12 d-flex justify-content-end py-2">
                         <a
+                                href="{{route('client.password.request')}}"
                                 class="primary-color fs-18 text-decoration-underline" style="font-size: 14px;">
                             {{ __('front.forgot_password') }}
                         </a>
@@ -77,5 +78,19 @@
 
 <div class="d-none" id="footer">
 </div>
+@push('scripts')
+    <script>
 
+        document.querySelectorAll('.TogglePasswordBtns').forEach(function (TogglePasswordBtn) {
+            TogglePasswordBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var passwordInput = this.previousElementSibling;
+                passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+                var eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('fa-eye');
+                eyeIcon.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+@endpush
 @endsection

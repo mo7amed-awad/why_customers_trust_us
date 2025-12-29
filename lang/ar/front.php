@@ -30,4 +30,10 @@ return [
     'forgot_password' => 'هل نسيت كلمة المرور؟',
     'login_button' => 'تسجيل الدخول',
     'dont_have_account' => 'ليس لديك حساب؟',
+    'forget_password_title' => 'استعادة كلمة المرور',
+    'forget_password_description' =>
+        'أدخل بريدك الإلكتروني المسجل وسنرسل لك رابط لإعادة تعيين كلمة المرور للوصول إلى حسابك بسهولة.',
+    'change_password' => 'تغيير كلمة المرور',
+    'user_not_found' => 'المستخدم غير موجود',
+
 ];

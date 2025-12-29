@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ForgetPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +19,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
     Route::post('otp', [RegisteredUserController::class, 'otp'])->name('otp');
     Route::post('resend-otp', [RegisteredUserController::class, 'reSendOtp'])->name('resend-otp');
+    Route::get('forgot-password', [ForgetPasswordController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.phone');
+    Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
 });
