@@ -14,6 +14,7 @@
 
 </div>
 
+{{--Search--}}
 <div class="container-fluid  section-top mb-5" id="home">
 
     <div class="row   align-items-center ">
@@ -92,7 +93,6 @@
         </div>
     </div>
 </div>
-
 
 {{--Who We Are--}}
 <div class="container   py-lg-5 py-3 ">
@@ -218,12 +218,12 @@
 <div class="container py-lg-5 py-md-4 py-3 ">
     <div class="row    py-2 align-items-center gy-3 justify-content-between">
         <div class="col-md-8 col-sm-7   overflow-hidden ">
-            <h2 class="fw-semibold">اقسام الاعلانات</h2>
+            <h2 class="fw-semibold">{{ __('front.advertisement_categories') }} </h2>
 
         </div>
         <div class="col-md-3 d-flex justify-content-end">
             <a class="bg-transparent  py-2   rounded-2  text-black d-flex gap-3" href="services.html">
-                <span class="fs-18">جميع اقسام</span>
+                <span class="fs-18">{{ __('front.all_categories') }}</span>
                 <span class="">
             <i class="fa-solid fa-chevron-right arrow fs-12"></i>
           </span>
@@ -232,47 +232,16 @@
     </div>
 
     <div class="row py-5  slider-adv overflow-hidden">
-
+        @foreach($categories as $category)
         <div class="col-lg-4 col-md-4 col-sm-6 ">
             <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
                 <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="{{asset('assets/imgs/home/logo/Logo-1.png')}}">
+                    <img src="{{asset($category->image)}}">
                 </div>
-                <h3 class="text-center py-2 text-white">السيارات</h3>
+                <h3 class="text-center py-2 text-white">{{$category->trans('title')}}</h3>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
-                <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="{{asset('assets/imgs/home/logo/Logo-1.png')}}">
-                </div>
-                <h3 class="text-center py-2 text-white">السيارات</h3>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
-                <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="{{asset('assets/imgs/home/logo/Logo-1.png')}}">
-                </div>
-                <h3 class="text-center py-2 text-white">السيارات</h3>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
-                <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="assets/imgs/home/logo/Logo-1.png">
-                </div>
-                <h3 class="text-center py-2 text-white">السيارات</h3>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
-                <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="assets/imgs/home/logo/Logo-1.png">
-                </div>
-                <h3 class="text-center py-2 text-white">السيارات</h3>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 

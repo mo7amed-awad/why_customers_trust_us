@@ -26,7 +26,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('client.home');
+        return redirect()->route('client.home', ['lang' => $request->lang ?? 'en']);
     }
 
     /**
@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard('user')->logout();
 
         $request->session()->invalidate();
 

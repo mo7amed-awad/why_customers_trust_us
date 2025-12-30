@@ -50,8 +50,7 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        // لو كله تمام، سجل دخول اليوزر
-        Auth::login($user, $this->boolean('remember'));
+        Auth::guard('user')->login($user, $this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
     }

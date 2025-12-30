@@ -12,9 +12,9 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'client' => [
+        'user' => [
             'driver' => 'session',
-            'provider' => 'clients',
+            'provider' => 'users',
         ],
         'brand' => [
             'driver' => 'session',
@@ -30,8 +30,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'clients' => [
-            'provider' => 'clients',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
@@ -57,6 +57,10 @@ return [
         'brands' => [
             'driver' => 'eloquent',
             'model' => \Modules\Brand\Entities\Model::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => \Modules\User\Entities\Model::class,
         ],
 
     ],

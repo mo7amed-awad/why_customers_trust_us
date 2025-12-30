@@ -84,6 +84,10 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.10/build/js/intlTelInput.min.js"></script>
 <script src="{{ asset('assets/js/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('assets/js/phone.js') }}"></script>
+<script>
+    window.csrfToken = "{{ csrf_token() }}";
+    window.isAuthenticated = {{ auth('user')->check() ? 'true' : 'false' }};
+</script>
 <script src="{{ asset('assets/js/index.js') }}"></script>
 
 <script>

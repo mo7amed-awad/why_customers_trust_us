@@ -27,12 +27,20 @@ const translations = {
     ar: {
         language: "En",
         signup: "إنشاء حساب",
-        login: "تسجيل الدخول"
+        login: "تسجيل الدخول",
+        addAd: "اضف اعلانك",
+        logout: "تسجيل الخروج",
+        myAccount: "حسابي",
+        notifications: "الاشعارات"
     },
     en: {
         language: "ع",
-        signup: "Sing Up",
-        login: "Login"
+        signup: "Sign Up",
+        login: "Login",
+        addAd: "Post Ad",
+        logout: "Logout",
+        myAccount: "My Account",
+        notifications: "Notifications"
     }
 };
 
@@ -47,7 +55,6 @@ let navBarcontainer = `
     <div class="row align-items-center justify-content-between px-2 ">
       <div class="col-lg-2 col-4">
         <a class="navbar-brand overflow-hidden  text-center  m-0" href="index.html">
-
           <img class="img-fluid w-auto" src="assets/imgs/home/logo.png" />
         </a>
       </div>
@@ -62,10 +69,8 @@ let navBarcontainer = `
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
                 <a class="navbar-brand   text-center  m-0" href="index.html">
-
                   <img class="m-0" width="img-fluid w-auto" style="max-width: 85px;" src="assets/imgs/home/logo.png" />
                 </a>
-
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
                 <i class="fa-solid fa-xmark text-black"></i>
@@ -73,38 +78,31 @@ let navBarcontainer = `
             </div>
 
             <div class="offcanvas-body header ">
-              <ul
-                class="navbar-nav w-100  mb-2 mb-lg-0  align-items-lg-center text-black gap-lg-4 gap-1">
-
+              <ul class="navbar-nav w-100  mb-2 mb-lg-0  align-items-lg-center text-black gap-lg-4 gap-1">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="index.html">
-                    <span class="">
-Home 
-                    </span>
+                    <span class="">Home</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="aboutUs.html">
-                    <span class="">
-               About Us
-                    </span>
+                    <span class="">About Us</span>
                   </a>
                 </li>
-
                 <li class="nav-item">
                   <a class="nav-link " aria-current="page" href="cars.html"><span class="">Cars</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="contactus.html"><span class="">Contact Us
-                    </span></a>
+                  <a class="nav-link " aria-current="page" href="contactus.html"><span class="">Contact Us</span></a>
                 </li>
-
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/login"><span class="">${t('login')} 
-                    </span></a>
+                <li class="nav-item d-lg-none mobile-add-ad-link">
+                  <a class="nav-link " aria-current="page" href="sellAd.html"><span class="">${t('addAd')}</span></a>
                 </li>
-                <a class="nav-link d-lg-none" aria-current="page" href="/${window.currentLang}/register""><span class=""> ${t('signup')}
-                  </span></a>
+                <li class="nav-item d-lg-none mobile-login-link">
+                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/login"><span class="">${t('login')}</span></a>
+                </li>
+                <li class="nav-item d-lg-none mobile-signup-link">
+                  <a class="nav-link" aria-current="page" href="/${window.currentLang}/register"><span class="">${t('signup')}</span></a>
                 </li>
               </ul>
             </div>
@@ -118,19 +116,13 @@ Home
             <i class="fa-solid fa-earth-americas"></i>
           </span>
         </div>
-             <div class="d-lg-flex d-none justify-content-end  gap-2 " style="flex: 1;">
-          <a href="/${window.currentLang}/register" style="flex: 1;"
-            class=" text-center text-white bg-primary-color w-100 py-lg-2 py-1 rounded-3 fs-14">
-            ${t('signup')}
-          </a>
-          <a href="/${window.currentLang}/login" style="flex: 1;"
-            class=" text-center bg-white border-color primary-color w-100 py-lg-2 py-1 rounded-3 fs-14">
-         ${t('login')}
-          </a>
-
+        
+        <div class="d-lg-flex d-none justify-content-end gap-2" style="flex: 1;" id="desktopButtonsContainer">
+          <!-- Buttons will be inserted here dynamically -->
         </div>
-        <!-- if the user is IsAuthenticated remove d-none from this -->
-        <div class="dropdown-center ">
+
+        <!-- User Dropdown Menu -->
+        <div class="dropdown-center d-none" id="userDropdownNav">
           <a class="dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
             aria-expanded="false" data-bs-auto-close="outside">
             <span>
@@ -140,7 +132,6 @@ Home
                   d="M20.75 11.5C20.75 12.4946 20.3549 13.4484 19.6517 14.1517C18.9484 14.8549 17.9946 15.25 17 15.25C16.0054 15.25 15.0516 14.8549 14.3484 14.1517C13.6451 13.4484 13.25 12.4946 13.25 11.5C13.25 10.5054 13.6451 9.55161 14.3484 8.84835C15.0516 8.14509 16.0054 7.75 17 7.75C17.9946 7.75 18.9484 8.14509 19.6517 8.84835C20.3549 9.55161 20.75 10.5054 20.75 11.5ZM9.50101 25.618C9.53314 23.6504 10.3373 21.7742 11.7402 20.394C13.143 19.0139 15.0321 18.2405 17 18.2405C18.9679 18.2405 20.857 19.0139 22.2598 20.394C23.6627 21.7742 24.4669 23.6504 24.499 25.618C22.1464 26.6968 19.5882 27.2535 17 27.25C14.324 27.25 11.784 26.666 9.50101 25.618Z"
                   stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-
             </span>
             <span class="d-flex icon-svg"><svg width="12" height="6" viewBox="0 0 14 8" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +141,7 @@ Home
               </svg>
             </span>
           </a>
-          <ul class="dropdown-menu    py-lg-3 py-2 px-4 border-0 shadow-sm"
+          <ul class="dropdown-menu py-lg-3 py-2 px-4 border-0 shadow-sm"
             style="background-color: rgba(240, 248, 255, 0.856);">
             <li class=" d-flex align-items-center dropdown-item fw-medium py-2">
               <span class="text-black fs-18"><svg width="20" height="22" viewBox="0 0 20 22" fill="none"
@@ -163,7 +154,7 @@ Home
                     stroke="#2969A8" stroke-width="1.5" />
                 </svg>
               </span>
-              <span class="px-1"><a class="text-black fs-16 text-decoration-none" href="myprofile.html">حسابي</a></span>
+              <span class="px-1"><a class="text-black fs-16 text-decoration-none" href="myprofile.html">${t('myAccount')}</a></span>
             </li>
             <li class=" d-flex align-items-center dropdown-item fw-medium py-2">
               <span class="text-black fs-18"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -174,13 +165,10 @@ Home
                   <path d="M8 19C8.45849 20.7252 10.0755 22 12 22C13.9245 22 15.5415 20.7252 16 19" stroke="#2969A8"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-
-
               </span>
               <span class="px-2"><a class="text-black fs-16 text-decoration-none"
-                  href="Notifications.html">الاشعارات</a></span>
+                  href="Notifications.html">${t('notifications')}</a></span>
             </li>
-
             <li class=" d-flex align-items-center dropdown-item fw-medium py-2">
               <span class=" fs-18"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -190,39 +178,83 @@ Home
                   <path d="M1 10L11 10M1 10C1 9.29977 2.9943 7.99153 3.5 7.5M1 10C1 10.7002 2.9943 12.0085 3.5 12.5"
                     stroke="#2969A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-
               </span>
-              <span class="px-2"><a class="text-black fs-16 text-decoration-none" href="">تسجيل الخروج</a></span>
+              <span class="px-2">
+                <a href="#" class="text-black fs-16 text-decoration-none" id="logoutLink">
+                  ${t('logout')}
+                </a>
+              </span>
             </li>
-
           </ul>
-
         </div>
 
       </div>
     </div>
-
-
-
-
-
-
 
   </nav>
 
 </div>
 <div class="floatwhatsapp ">
   <i class="fa-brands fa-whatsapp "></i>
-
 </div>
 <div class="back-to-top" id="backTop">
   <i class="fa-solid fa-chevron-up"></i>
-
 </div>
 
-`
+<!-- Hidden logout form -->
+<form id="logout-form" action="/${window.currentLang}/logout" method="POST" class="d-none">
+  <input type="hidden" name="_token" value="${window.csrfToken || ''}">
+</form>
+`;
+
 navBar.innerHTML = navBarcontainer;
 
+// Handle authentication state
+if (!window.isAuthenticated) {
+    // Show login/signup buttons for guests
+    document.getElementById('desktopButtonsContainer').innerHTML = `
+        <a href="/${window.currentLang}/register" class="text-center text-white bg-primary-color py-2 px-3 rounded-3 fs-14">
+            ${t('signup')}
+        </a>
+        <a href="/${window.currentLang}/login" class="text-center bg-white border-color primary-color py-2 px-3 rounded-3 fs-14">
+            ${t('login')}
+        </a>
+    `;
+
+    // Hide add ad link in mobile menu for guests
+    let mobileAddAdLink = document.querySelector('.mobile-add-ad-link');
+    if (mobileAddAdLink) mobileAddAdLink.style.display = 'none';
+} else {
+    // Show add ad button for authenticated users
+    document.getElementById('desktopButtonsContainer').innerHTML = `
+        <a href="sellAd.html" class="btn d-lg-flex d-none border-color py-lg-2 px-5 btn primary-color rounded-pill gap-2">
+            <span>${t('addAd')}</span>
+            <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 15H11V11H15V9H11V5H9V9H5V11H9V15ZM10 20C8.61667 20 7.31667 19.7417 6.1 19.225C4.88333 18.6917 3.825 17.975 2.925 17.075C2.025 16.175 1.30833 15.1167 0.775 13.9C0.258333 12.6833 0 11.3833 0 10C0 8.61667 0.258333 7.31667 0.775 6.1C1.30833 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.31667 6.1 0.799999C7.31667 0.266666 8.61667 0 10 0C11.3833 0 12.6833 0.266666 13.9 0.799999C15.1167 1.31667 16.175 2.025 17.075 2.925C17.975 3.825 18.6833 4.88333 19.2 6.1C19.7333 7.31667 20 8.61667 20 10C20 11.3833 19.7333 12.6833 19.2 13.9C18.6833 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6917 13.9 19.225C12.6833 19.7417 11.3833 20 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z" fill="#2983C6"></path>
+            </svg>
+            </span>
+        </a>
+    `;
+
+    // Show user dropdown
+    let dropdown = document.getElementById('userDropdownNav');
+    if (dropdown) dropdown.classList.remove('d-none');
+
+    // Hide login/signup links in mobile menu for authenticated users
+    let mobileLoginLink = document.querySelector('.mobile-login-link');
+    let mobileSignupLink = document.querySelector('.mobile-signup-link');
+    if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+    if (mobileSignupLink) mobileSignupLink.style.display = 'none';
+
+    // Handle logout
+    let logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('logout-form').submit();
+        });
+    }
+}
 // $(document).ready(() => {
 // $(window).scroll(function () {
 // let windowScroll = $(window).scrollTop();

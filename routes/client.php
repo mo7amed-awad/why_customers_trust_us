@@ -22,4 +22,6 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::get('forgot-password', [ForgetPasswordController::class, 'create'])->name('password.request');
     Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.phone');
     Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 });
