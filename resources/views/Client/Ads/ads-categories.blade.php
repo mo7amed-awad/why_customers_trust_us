@@ -36,7 +36,7 @@
                         {{$category->trans('title')}}
                     </h5>
 
-                    <a class=" primary-color d-flex align-items-center gap-2" href="detailsPage.html"><span><i class="fa-solid fa-arrow-right arrow"></i></span></a>
+                    <a class=" primary-color d-flex align-items-center gap-2" href="{{ route('client.category.show', ['lang' => app()->getLocale(), 'slug' => $category->slug]) }}"><span><i class="fa-solid fa-arrow-right arrow"></i></span></a>
                 </div>
             </div>
         </div>

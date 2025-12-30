@@ -23,8 +23,12 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::get('forgot-password', [ForgetPasswordController::class, 'create'])->name('password.request');
     Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.phone');
     Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
     Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
 
+    Route::middleware('auth:user')->group(function () {
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+        Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
+        Route::get('category/{slug}', [AdsController::class, 'showCategory'])->name('category.show');
+    });
 });
