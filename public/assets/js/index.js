@@ -44,6 +44,15 @@ const translations = {
     }
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    const logos = document.querySelectorAll('.logo');
+    logos.forEach(logo => {
+        logo.src = window.logo;
+    });
+});
+
+
+
 function t(key) {
     return translations[window.currentLang][key] || key;
 }
@@ -55,7 +64,8 @@ let navBarcontainer = `
     <div class="row align-items-center justify-content-between px-2 ">
       <div class="col-lg-2 col-4">
         <a class="navbar-brand overflow-hidden  text-center  m-0" href="index.html">
-          <img class="img-fluid w-auto" src="assets/imgs/home/logo.png" />
+<img class="logo img-fluid w-auto" src="" />
+
         </a>
       </div>
       <div class="col-lg-6 col-2 order-lg-0 order-3">
@@ -69,7 +79,7 @@ let navBarcontainer = `
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
                 <a class="navbar-brand   text-center  m-0" href="index.html">
-                  <img class="m-0" width="img-fluid w-auto" style="max-width: 85px;" src="assets/imgs/home/logo.png" />
+<img class="logo m-0 img-fluid w-auto" style="max-width: 85px;" src="" />
                 </a>
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -96,7 +106,7 @@ let navBarcontainer = `
                   <a class="nav-link " aria-current="page" href="contactus.html"><span class="">Contact Us</span></a>
                 </li>
                 <li class="nav-item d-lg-none mobile-add-ad-link">
-                  <a class="nav-link " aria-current="page" href="sellAd.html"><span class="">${t('addAd')}</span></a>
+                  <a class="nav-link " aria-current="page"  href="/${window.currentLang}/ads-categories"><span class="">${t('addAd')}</span></a>
                 </li>
                 <li class="nav-item d-lg-none mobile-login-link">
                   <a class="nav-link " aria-current="page" href="/${window.currentLang}/login"><span class="">${t('login')}</span></a>
@@ -227,7 +237,7 @@ if (!window.isAuthenticated) {
 } else {
     // Show add ad button for authenticated users
     document.getElementById('desktopButtonsContainer').innerHTML = `
-        <a href="sellAd.html" class="btn d-lg-flex d-none border-color py-lg-2 px-5 btn primary-color rounded-pill gap-2">
+        <a href="/${window.currentLang}/ads-categories" class="btn d-lg-flex d-none border-color py-lg-2 px-5 btn primary-color rounded-pill gap-2">
             <span>${t('addAd')}</span>
             <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 15H11V11H15V9H11V5H9V9H5V11H9V15ZM10 20C8.61667 20 7.31667 19.7417 6.1 19.225C4.88333 18.6917 3.825 17.975 2.925 17.075C2.025 16.175 1.30833 15.1167 0.775 13.9C0.258333 12.6833 0 11.3833 0 10C0 8.61667 0.258333 7.31667 0.775 6.1C1.30833 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.31667 6.1 0.799999C7.31667 0.266666 8.61667 0 10 0C11.3833 0 12.6833 0.266666 13.9 0.799999C15.1167 1.31667 16.175 2.025 17.075 2.925C17.975 3.825 18.6833 4.88333 19.2 6.1C19.7333 7.31667 20 8.61667 20 10C20 11.3833 19.7333 12.6833 19.2 13.9C18.6833 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6917 13.9 19.225C12.6833 19.7417 11.3833 20 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z" fill="#2983C6"></path>
@@ -281,7 +291,7 @@ let FooterContainer = `   <footer class=" ">
       <div class="row justify-content-between" data-aos="fade-up">
         <div class="col-lg-3 col-sm-9 col-11 text-white  align-items-start gap-3 pb-md-1 pb-3">
           <a class="navbar-brand1 py-3 text-center  m-0" href="index-ar.html">
-            <img class="w-auto" src="assets/imgs/home/logo.png" />
+            <img class="logo w-auto" src="" />
           </a>
              <p class="py-lg-4 py-2">DRB Arabia – وجهتك الأولى لتجربة تخييم استثنائية تجمع بين الطبيعة والفخامة. نوفر مخيمات وخدمات متكاملة تجعل رحلتك ذكرى لا تُنسى.</p>
 

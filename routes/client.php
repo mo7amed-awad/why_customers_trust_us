@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Client\AdsController;
+use App\Http\Controllers\Client\CategoryController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.phone');
     Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
+    Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
 
 });

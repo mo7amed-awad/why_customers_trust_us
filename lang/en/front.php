@@ -41,5 +41,7 @@ return [
     'who_we_are_desc' => 'At Alshamla, we redefine how you experience everything related to cars. Whether you’re buying, selling, renting, or servicing your vehicle, we bring it all together in one smart, reliable, and innovative platform.',
     'advertisement_categories' => 'Advertisement Categories',
     'all_categories' => 'All Categories',
+    'publish_your_ad' => 'Publish Your Ad',
+    'choose_category' => 'Choose Category',
 
 ];

@@ -1,5 +1,13 @@
 @extends('Client.layouts.layout')
+@push('css')
+    <style>
+        .col-5ths {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
 
+    </style>
+@endpush
 @section('content')
 
 <div
@@ -7,10 +15,7 @@
     <img class="" src="{{asset('assets/imgs/home/loading.gif')}}">
 </div>
 
-
-
 <div class="" id="navBar">
-
 
 </div>
 
@@ -222,7 +227,7 @@
 
         </div>
         <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent  py-2   rounded-2  text-black d-flex gap-3" href="services.html">
+            <a class="bg-transparent  py-2   rounded-2  text-black d-flex gap-3" href="{{route('client.all-categories')}}">
                 <span class="fs-18">{{ __('front.all_categories') }}</span>
                 <span class="">
             <i class="fa-solid fa-chevron-right arrow fs-12"></i>
@@ -233,14 +238,14 @@
 
     <div class="row py-5  slider-adv overflow-hidden">
         @foreach($categories as $category)
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            <div class=" rounded-3 overflow-hidden bg-linear-gradient ">
-                <div class=" d-flex align-items-center justify-content-center img-card overflow-hidden">
-                    <img src="{{asset($category->image)}}">
+            <div class="col-5ths">
+                <div class="rounded-3 overflow-hidden bg-linear-gradient">
+                    <div class="d-flex align-items-center justify-content-center img-card overflow-hidden">
+                        <img src="{{asset($category->image)}}">
+                    </div>
+                    <h3 class="text-center py-2 text-white">{{$category->trans('title')}}</h3>
                 </div>
-                <h3 class="text-center py-2 text-white">{{$category->trans('title')}}</h3>
             </div>
-        </div>
         @endforeach
     </div>
 </div>

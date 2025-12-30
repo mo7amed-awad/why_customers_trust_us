@@ -86,6 +86,7 @@
 <script src="{{ asset('assets/js/phone.js') }}"></script>
 <script>
     window.csrfToken = "{{ csrf_token() }}";
+    window.logo = "{{ asset(setting('logo'))}}";
     window.isAuthenticated = {{ auth('user')->check() ? 'true' : 'false' }};
 </script>
 <script src="{{ asset('assets/js/index.js') }}"></script>
