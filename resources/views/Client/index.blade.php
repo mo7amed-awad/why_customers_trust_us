@@ -1,13 +1,5 @@
 @extends('Client.layouts.layout')
-@push('css')
-    <style>
-        .col-5ths {
-            flex: 0 0 20%;
-            max-width: 20%;
-        }
 
-    </style>
-@endpush
 @section('content')
 
 <div

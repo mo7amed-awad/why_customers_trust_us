@@ -64,12 +64,14 @@
             <div class="col-lg-8">
                 <div class="subcategories-list">
                     @foreach($category->subcategories as $subcategory)
-                        <div class="row">
-                            <div class="col-12 border-top py-2">
-                                <h3 class="fs-24 primary-color fw-bold">{{ $subcategory->trans('title') }}</h3>
-                                <p class="text-black-50">{{ $subcategory->trans('desc') }}</p>
+                        <a href="{{ route('client.ads.create', ['lang' => app()->getLocale(), 'subcategorySlug' => $subcategory->slug]) }}" class="text-decoration-none">
+                            <div class="row">
+                                <div class="col-12 border-top py-2">
+                                    <h3 class="fs-24 primary-color fw-bold">{{ $subcategory->trans('title') }}</h3>
+                                    <p class="text-black-50">{{ $subcategory->trans('desc') }}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

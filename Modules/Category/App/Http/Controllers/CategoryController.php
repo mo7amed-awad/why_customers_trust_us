@@ -63,7 +63,7 @@ class CategoryController extends BasicController
         }
 
         if ($request->hasFile('icon')) {
-            $category->icon = Upload::UploadFile($request->image, 'Categories');
+            $category->icon = Upload::UploadFile($request->icon, 'Categories');
         }
 
         $category->save();
@@ -132,6 +132,7 @@ class CategoryController extends BasicController
 
         if($request->new_subcategories) {
             foreach($request->new_subcategories as $data) {
+                $data['slug'] = Str::slug($data['title_en']);
                 $category->subcategories()->create($data);
             }
         }
@@ -143,7 +144,7 @@ class CategoryController extends BasicController
 
     public function destroy($id)
     {
-        $Model = Model::with('images')->findOrFail($id);
+        $Model = Model::with('subcategories')->findOrFail($id);
 
         if ($Model->image) {
             Upload::deleteImage($Model->image);
@@ -152,6 +153,8 @@ class CategoryController extends BasicController
         if ($Model->icon) {
             Upload::deleteImage($Model->icon);
         }
+
+        $Model->subcategories()->delete();
 
         $Model->delete();
     }

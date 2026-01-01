@@ -20,24 +20,24 @@
 //             $(elemRef.video).after(
 //                 "<input type='file' style='display:none;' id='vidupload" + j + "' name='video[" + j + "]'/>"
 //             );
-        
+
 //             $('#vidupload' + j).trigger('click');
-        
+
 //             $(document).on('change', '#vidupload' + j, function () {
 //                 var file = $(this).get(0);
 //                 var preview = window.URL.createObjectURL(file.files[0]);
-        
+
 //                 $('.gallery').append(
 //                     "<div class='apnd-img' >" +
 //                         "<iframe width='120' data-fancybox='gallary-imgs' src='" + preview + "'  data-src='" + preview + " ' id='vid" + j + "' frameborder='0' allowfullscreen></iframe>" +
 //                         "<i class='fa-solid fa-circle-xmark delfile1'></i>" +
 //                     "</div>"
 //                 );
-        
+
 //                 j++;
 //             });
 //         });
-        
+
 //         $(document).on('click', '.delfile', function () {
 //             var elem = $(this).prev().attr('id').substr(3, 4);
 //             $(this).parent().remove();

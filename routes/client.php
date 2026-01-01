@@ -30,5 +30,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
         Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
         Route::get('category/{slug}', [AdsController::class, 'showCategory'])->name('category.show');
+        Route::get('ads/create/{subcategorySlug}', [AdsController::class, 'create'])->name('ads.create');
+        Route::post('ads/store/{subcategorySlug}', [AdsController::class, 'store'])->name('ads.store');
     });
 });

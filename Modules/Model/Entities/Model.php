@@ -3,12 +3,13 @@
 namespace Modules\Model\Entities;
 
 use App\Models\BaseModel;
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Brand\Entities\Model as Brand;
 
 class Model extends BaseModel
 {
-    use SoftDeletes;
+    use Translatable, SoftDeletes;
 
     protected $guarded = [];
 

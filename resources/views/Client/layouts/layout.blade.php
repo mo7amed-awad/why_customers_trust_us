@@ -84,6 +84,8 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.10/build/js/intlTelInput.min.js"></script>
 <script src="{{ asset('assets/js/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('assets/js/phone.js') }}"></script>
+<script src="{{asset('assets/js/multiple-image-video(MIV).js')}}"></script>
+
 <script>
     window.csrfToken = "{{ csrf_token() }}";
     window.logo = "{{ asset(setting('logo'))}}";
