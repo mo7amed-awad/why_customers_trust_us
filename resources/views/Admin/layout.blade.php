@@ -146,6 +146,7 @@
                     @if(hasPermission('show_ads'))
                         @include('ads::layouts.sidebar')
                         @include('ads::spare-part-types.layouts.sidebar')
+                        @include('ads::car-features.layouts.sidebar')
                     @endif
                 <hr>
                     @if(hasPermission('show_contact_us'))

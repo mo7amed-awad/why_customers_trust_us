@@ -12,22 +12,22 @@
             </div>
 
             <div class="form-group col-md-6">
-                <label>الاسم بالعربي</label>
+                <label>@lang('trans.title_ar')</label>
                 <input type="text" name="title_ar" class="form-control" required>
             </div>
             <div class="form-group col-md-6">
-                <label>الاسم بالانجليزي</label>
+                <label>@lang('trans.title_en')</label>
                 <input type="text" name="title_en" class="form-control" required>
             </div>
 
             <div class="form-group col-md-6">
-                <label>الصورة الرئيسية</label>
+                <label>@lang('trans.image')</label>
                 <input type="file" name="image" class="form-control" accept="image/*" id="main-image">
                 <div id="main-image-preview" class="mt-2"></div>
             </div>
 
             <div class="form-group col-md-6">
-                <label>الأيقونة (اختياري)</label>
+                <label>@lang('trans.icon')</label>
                 <input type="file" name="icon" class="form-control" accept="image/*" id="main-icon">
                 <div id="main-icon-preview" class="mt-2"></div>
             </div>

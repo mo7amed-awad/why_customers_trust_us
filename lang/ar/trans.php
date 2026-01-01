@@ -2315,5 +2315,9 @@ return [
     'active' => 'مفعل',
     'inactive' => 'غير مفعل',
     'spare-part-types' => 'أنواع قطع الغيار',
+    'car-features' => 'خصائص السيارات',
+    'text' => 'نص',
+    'number' => 'رقم',
+    'checkbox' => 'اختيار',
 
 ];

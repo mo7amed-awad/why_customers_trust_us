@@ -2425,4 +2425,8 @@ return [
     'is_new' => 'Is New',
     'is_active' => 'Is Active',
     'spare-part-types' => 'Spare Parts Types',
+    'car-features' => 'Car Features',
+    'text' => 'نص',
+    'number' => 'رقم',
+    'checkbox' => 'اختيار',
 ];

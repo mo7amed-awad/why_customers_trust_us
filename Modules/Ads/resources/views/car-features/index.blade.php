@@ -1,17 +1,17 @@
 @extends(ucfirst(activeGuard()) . '.layout')
 
-@section('pagetitle', __('trans.spare-part-types'))
+@section('pagetitle', __('trans.about'))
 @section('content')
 
     <div class="row">
         @if (hasPermission('add_ads'))
             <div class="my-2 col-6 text-sm-start">
-                <a href="{{ route(activeGuard() . '.spare-part-types.create') }}" class="main-btn">@lang('trans.add_new')</a>
+                <a href="{{ route(activeGuard() . '.car-features.create') }}" class="main-btn">@lang('trans.add_new')</a>
             </div>
         @endif
         @if (hasPermission('delete_ads'))
             <div class="my-2 col-6 text-sm-end">
-                <button type="button" id="DeleteSelected" onclick="DeleteSelected('spare-part-types')" class="btn btn-danger"
+                <button type="button" id="DeleteSelected" onclick="DeleteSelected('car-features')" class="btn btn-danger"
                         disabled>@lang('trans.Delete_Selected')</button>
             </div>
         @endif
@@ -23,6 +23,8 @@
             <th>#</th>
             <th>@lang('trans.title_ar')</th>
             <th>@lang('trans.title_en')</th>
+            <th>@lang('trans.type')</th>
+            <th>@lang('trans.icon')</th>
             <th></th>
         </tr>
         </thead>
@@ -35,14 +37,22 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $Model->title_ar }}</td>
                 <td>{{ $Model->title_en }}</td>
+                <td>{{ __("trans.".$Model->type) }}</td>
+                <td>
+                    @if($Model->icon)
+                        <img src="{{ asset($Model->icon) }}" alt="icon" width="40" height="40" style="object-fit: contain;">
+                    @else
+                        <span class="text-muted">-</span>
+                    @endif
+                </td>
                 <td>
                     @if (hasPermission('edit_ads'))
-                        <a href="{{ route(activeGuard() . '.spare-part-types.edit', $Model) }}"><i
+                        <a href="{{ route(activeGuard() . '.car-features.edit', $Model) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                     @endif
                     @if (hasPermission('delete_ads'))
                         <form class="formDelete" method="POST"
-                              action="{{ route(activeGuard() . '.spare-part-types.destroy', $Model) }}">
+                              action="{{ route(activeGuard() . '.car-features.destroy', $Model) }}">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip"
@@ -70,7 +80,7 @@
                 if(!confirm("هل أنت متأكد من حذف العناصر المحددة؟")) return;
 
                 $.ajax({
-                    url: "{{ route('admin.spare-part-types.deleteSelected') }}",
+                    url: "{{ route('admin.car-features.deleteSelected') }}",
                     type: 'POST',
                     data: {
                         _token: "{{ csrf_token() }}",
