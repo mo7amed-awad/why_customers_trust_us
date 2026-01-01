@@ -2314,5 +2314,6 @@ return [
     'is_active' => 'مفعل',
     'active' => 'مفعل',
     'inactive' => 'غير مفعل',
+    'spare-part-types' => 'أنواع قطع الغيار',
 
 ];

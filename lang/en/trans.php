@@ -2424,4 +2424,5 @@ return [
     'subcategory_name' => 'SubCategory Name',
     'is_new' => 'Is New',
     'is_active' => 'Is Active',
+    'spare-part-types' => 'Spare Parts Types',
 ];
