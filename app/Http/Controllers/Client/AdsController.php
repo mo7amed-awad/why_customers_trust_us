@@ -8,6 +8,7 @@ use App\Http\Requests\Client\StoreAdRequest;
 use App\Http\Requests\Client\StoreCarRequest;
 use App\Http\Requests\Client\StoreSparePartRequest;
 use Illuminate\Support\Facades\Auth;
+use Modules\Ads\Entities\Accessory;
 use Modules\Ads\Entities\Car;
 use Modules\Ads\Entities\Feature as Feature;
 use Modules\Ads\Entities\Model as Ad;
@@ -67,6 +68,15 @@ class AdsController extends Controller
         $ad->phone_code = $request->country_code;
         $ad->save();
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = Upload::UploadFile($image, 'Ads');
+                $ad->images()->create([
+                    'image' => $path
+                ]);
+            }
+        }
+
         if($category->slug == 'spare-parts'){
             $spareRequest = app(StoreSparePartRequest::class);
             $sparePart = new SparePart($spareRequest->validated());
@@ -104,16 +114,18 @@ class AdsController extends Controller
             ]);
         }
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = Upload::UploadFile($image, 'Ads');
-                $ad->images()->create([
-                    'image' => $path
-                ]);
-            }
+        if($category->slug == 'accessories'){
+            $accessories = new Accessory();
+            $accessories->ad_id = $ad->id;
+            $accessories->save();
+
+            $ad->update([
+                'type' => 'accessories'
+            ]);
         }
-        return redirect()->route('client.home', app()->getLocale())
-            ->with('success', 'تم إضافة الإعلان بنجاح!');
+
+
+        return redirect()->route('client.home')->with('success', 'تم إضافة الإعلان بنجاح!');
     }
 
 
