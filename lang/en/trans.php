@@ -2418,6 +2418,10 @@ return [
     'whycustomerstrustus' => 'Why Customers Trust Us',
     'ourvision' => 'Our Vision',
     'ourmission' => 'Our Mission',
-    'category' => 'Advertisement Categories'
-
+    'category' => 'Advertisement Categories',
+    'ads' => 'Advertisements',
+    'category_name' => 'Category Name',
+    'subcategory_name' => 'SubCategory Name',
+    'is_new' => 'Is New',
+    'is_active' => 'Is Active',
 ];

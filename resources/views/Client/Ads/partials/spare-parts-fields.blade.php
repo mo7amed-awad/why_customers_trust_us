@@ -72,7 +72,7 @@
         </div>
 
         <div class="col-lg-9">
-            <select name="spare_part_type_id"
+            <select name="type_id"
                     class="form-select form-control bg-transparent py-2 rounded-3 text-secondary"
                     required>
 

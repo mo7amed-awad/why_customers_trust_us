@@ -10,7 +10,7 @@ class SparePart extends  BaseModel
 {
     protected $guarded = [];
 
-    protected $table = 'spare_part';
+    protected $table = 'spare_parts';
 
     public function ad()
     {

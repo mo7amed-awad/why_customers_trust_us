@@ -12,7 +12,7 @@
                     <h3 for="name" class="form-label fs-18 fw-bold primary-color">{{ __('front.upload_images') }}</h3>
                 </div>
                 <div class="col-2">
-                    <input type="file" id="imageUpload" name="images[]" multiple accept="image/*" style="display: none;">
+                    <input type="file" id="imageUpload" multiple accept="image/*" name="images[]" style="display: none;">
                     <a class="cam fs-2 add-img d-flex align-items-center justify-content-center rounded-3"
                        href="javascript:void(0)">
                         <span><i class="fa-solid fa-plus"></i></span>

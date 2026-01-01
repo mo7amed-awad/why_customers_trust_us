@@ -15,7 +15,6 @@ class HomeController extends BasicController
             'Brand' => 'brands',
             'Contact' => 'contacts',
             'Model' => 'models',
-            'Payment' => 'payments',
             'Privacy' => 'privacies',
             'Setting' => 'settings',
             'Term' => 'terms',

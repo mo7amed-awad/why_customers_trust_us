@@ -18,7 +18,7 @@ class StoreSparePartRequest extends FormRequest
         return [
             'brand_id' => 'required|exists:brands,id',
             'model_id' => 'required|exists:models,id',
-            'spare_part_type_id' => 'required|exists:spare_part_types,id',
+            'type_id' => 'required|exists:spare_part_types,id',
         ];
     }
 }

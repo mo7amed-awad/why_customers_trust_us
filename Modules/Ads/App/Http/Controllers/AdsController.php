@@ -2,66 +2,70 @@
 
 namespace Modules\Ads\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\BasicController;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Modules\Ads\Entities\Model;
 
-class AdsController extends Controller
+class AdsController  extends BasicController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('ads::index');
+        $Models = Model::get();
+
+        return view('ads::index', compact('Models'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function toggleActive(Request $request)
+    {
+        $ad = Model::findOrFail($request->id);
+        $ad->is_active = !$ad->is_active;
+        $ad->save();
+
+        return response()->json([
+            'status' => 'success',
+            'is_active' => $ad->is_active,
+        ]);
+    }
+
+
     public function create()
     {
         return view('ads::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $Model = Model::create($request->all());
+        alert()->success(__('trans.addedSuccessfully'));
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the specified resource.
-     */
     public function show($id)
     {
-        return view('ads::show');
+        $Model = Model::where('id', $id)->firstorfail();
+
+        return view('ads::show', compact('Model'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        return view('ads::edit');
+        $Model = Model::where('id', $id)->firstorfail();
+
+        return view('ads::edit', compact('Model'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
-        //
+        $Model = Model::where('id', $id)->firstorfail();
+        $Model->update($request->all());
+        alert()->success(__('trans.updatedSuccessfully'));
+
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        //
+        $Model = Model::where('id', $id)->delete();
     }
 }

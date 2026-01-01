@@ -143,11 +143,10 @@
                     @endif
 
                 <hr>
-
-                    @if(hasPermission('show_payments'))
-                        @include('payment::layouts.sidebar')
+                    @if(hasPermission('show_ads'))
+                        @include('ads::layouts.sidebar')
                     @endif
-
+                <hr>
                     @if(hasPermission('show_contact_us'))
                         @include('contact::layouts.sidebar')
                     @endif
@@ -156,17 +155,8 @@
                         @include('setting::layouts.sidebar')
                     @endif
 
-                <hr>
-                    @if(hasPermission('show_faqs'))
-                        @include('faq::layouts.sidebar')
-                    @endif
-                    
-                    @if(hasPermission('show_testimonials'))
-                        @include('testimonial::layouts.sidebar')
-                    @endif
 
                 <hr>
-                    
                     @if(hasPermission('show_about'))
                         @include('about::layouts.sidebar')
                     @endif

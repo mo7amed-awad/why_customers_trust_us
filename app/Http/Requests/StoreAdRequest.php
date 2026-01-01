@@ -25,7 +25,7 @@ class StoreAdRequest extends FormRequest
             'owner_phone' => 'required|string|max:20',
             'country_code' => 'nullable|string|max:10',
             'is_new' => 'nullable|boolean',
-            'images' => 'required|array|max:7',
+            'images' => 'nullable|array|min:1|max:7',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif'
         ];
     }

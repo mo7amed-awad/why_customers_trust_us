@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Ads\App\Http\Controllers\AdsController;
+use App\Http\Middleware\Localization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Modules\Ads\App\Http\Controllers\AdsController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('ads', AdsController::class)->names('ads');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['middleware' => [Localization::class, 'auth:admin']], function () {
+        Route::resources(['ads' => AdsController::class]);
+        Route::post('ads/toggle-active', [AdsController::class, 'toggleActive'])->name('ads.toggleActive');
+
+    });
 });

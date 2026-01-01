@@ -1,35 +1,117 @@
+{{-- BRAND --}}
 <div class="col-md-11 border-bottom py-lg-4 py-2">
     <div class="row justify-content-between gap-lg-0 gap-3">
-        <div class="col-lg-2"> <label for="name" class="form-label fw-bold primary-color">{{ __('front.brand') }}</label>
+        <div class="col-lg-2">
+            <label for="brandSelect" class="form-label fw-bold primary-color">{{ __('front.brand') }}</label>
             <p class="text-black-50">{{ __('front.brands_examples') }}</p>
-
         </div>
-        <div class="col-lg-9">
-            <select class="form-select form-control bg-transparent bg-transparent    py-2  rounded-3 text-secondary"
-                    aria-label="Default select example">
-                <option selected>Fuel Type</option>
-                <option data-value="" value="">Sort By Price: Low To High</option>
-                <option value="2">Sort By Price: High To Low</option>
 
+        <div class="col-lg-9">
+            <select name="brand_id"
+                    id="brandSelect"
+                    class="form-select form-control bg-transparent py-2 rounded-3 text-secondary"
+                    required>
+
+                <option value="">{{ __('front.choose_brand') }}</option>
+
+                @foreach($brands as $brand)
+                    <option value="{{ $brand->id }}"
+                            @selected(old('brand_id') == $brand->id)>
+                        {{ $brand->trans('title') }}
+                    </option>
+                @endforeach
             </select>
+
+            @error('brand_id')
+            <small class="text-danger d-block mt-1">{{ $message }}</small>
+            @enderror
         </div>
     </div>
 </div>
 
+
+{{-- MODEL --}}
 <div class="col-md-11 border-bottom py-lg-4 py-2">
     <div class="row justify-content-between gap-lg-0 gap-3">
-        <div class="col-lg-2"> <label for="name" class="form-label fw-bold primary-color">{{ __('front.model') }}</label>
+        <div class="col-lg-2">
+            <label for="modelSelect" class="form-label fw-bold primary-color">{{ __('front.model') }}</label>
             <p class="text-black-50">{{ __('front.models_examples') }}</p>
-
         </div>
-        <div class="col-lg-9">
-            <select class="form-select form-control bg-transparent bg-transparent py-2  rounded-3 text-secondary"
-                    aria-label="Default select example">
-                <option selected>Fuel Type</option>
-                <option data-value="" value="">Sort By Price: Low To High</option>
-                <option value="2">Sort By Price: High To Low</option>
 
+        <div class="col-lg-9">
+            <select name="model_id"
+                    id="modelSelect"
+                    class="form-select form-control bg-transparent py-2 rounded-3 text-secondary"
+                    required>
+
+                <option value="">{{ __('front.choose_model') }}</option>
+
+                @foreach($models as $model)
+                    <option value="{{ $model->id }}"
+                            data-brand="{{ $model->brand_id }}"
+                            @selected(old('model_id') == $model->id)>
+                        {{ $model->trans('title') }}
+                    </option>
+                @endforeach
             </select>
+
+            @error('model_id')
+            <small class="text-danger d-block mt-1">{{ $message }}</small>
+            @enderror
         </div>
     </div>
 </div>
+
+@foreach($features as $feature)
+    <div class="col-md-11 border-bottom py-lg-4 py-2">
+        <div class="row justify-content-between gap-lg-0 gap-3">
+
+            {{-- Label --}}
+            <div class="col-lg-2">
+                @if($feature->icon)
+                    <img src="{{ $feature->icon }}" alt="{{ $feature->trans('title') }}" class="me-2" style="width:24px; height:24px;">
+                @endif
+                <label for="feature_{{ $feature->id }}" class="form-label fw-bold primary-color">
+                    {{ $feature->trans('title') }}
+                </label>
+            </div>
+
+            {{-- Input --}}
+            <div class="col-lg-9">
+                @if($feature->type === 'text')
+                    <input type="text"
+                           id="feature_{{ $feature->id }}"
+                           name="features[{{ $feature->id }}]"
+                           class="form-control bg-transparent py-2 rounded-3 text-secondary"
+                           value="{{ old('features.'.$feature->id) }}"
+                    />
+                @elseif($feature->type === 'number')
+                    <input type="number"
+                           id="feature_{{ $feature->id }}"
+                           name="features[{{ $feature->id }}]"
+                           class="form-control bg-transparent py-2 rounded-3 text-secondary"
+                           value="{{ old('features.'.$feature->id) }}"
+                    />
+                @elseif($feature->type === 'checkbox')
+                    <div class="form-check">
+                        <input type="hidden" name="features[{{ $feature->id }}]" value="0"/>
+                        <input type="checkbox"
+                               id="feature_{{ $feature->id }}"
+                               name="features[{{ $feature->id }}]"
+                               value="1"
+                               class="form-check-input"
+                                @checked(old('features.'.$feature->id))
+                        />
+                        <label class="form-check-label" for="feature_{{ $feature->id }}">
+                            {{ $feature->trans('title') }}
+                        </label>
+                    </div>
+                @endif
+
+                @error('features.'.$feature->id)
+                <small class="text-danger d-block mt-1">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
+    </div>
+@endforeach

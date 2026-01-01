@@ -2306,5 +2306,13 @@ return [
     'whycustomerstrustus' => 'لماذا يثق بنا العملاء',
     'ourvision' => 'رؤيتنا',
     'ourmission' => 'مهمتنا',
-    'category' => 'أقسام الاعلانات'
+    'category' => 'أقسام الاعلانات',
+    'ads' => 'الاعلانات',
+    'category_name' => 'اسم القسم',
+    'subcategory_name' => 'اسم القسم الفرعي',
+    'is_new' => 'جديد',
+    'is_active' => 'مفعل',
+    'active' => 'مفعل',
+    'inactive' => 'غير مفعل',
+
 ];

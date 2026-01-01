@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title_ar');
             $table->string('title_en');
             $table->string('icon')->nullable();
+            $table->string('type');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

@@ -17,14 +17,14 @@ class Model extends  BaseModel
         return $this->belongsTo(Category::class);
     }
 
-    public function subcategory()
+    public function subCategory()
     {
-        return $this->belongsTo(Subcategory::class);
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
     }
 
     public function images()
     {
-        return $this->hasMany(AdImage::class);
+        return $this->hasMany(AdImage::class, 'ad_id');
     }
 
     public function car()
