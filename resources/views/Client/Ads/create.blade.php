@@ -59,6 +59,8 @@
             @include('client.ads.partials.car-fields')
         @elseif($category->slug == 'spare-parts')
             @include('client.ads.partials.spare-parts-fields')
+        @elseif($category->slug == 'license-plates')
+            @include('client.ads.partials.license-plates-fields')
         @endif
 
 

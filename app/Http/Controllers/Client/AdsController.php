@@ -6,12 +6,14 @@ use App\Functions\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreAdRequest;
 use App\Http\Requests\Client\StoreCarRequest;
+use App\Http\Requests\Client\StoreLicensePlatesRequest;
 use App\Http\Requests\Client\StoreSparePartRequest;
 use Illuminate\Support\Facades\Auth;
 use Modules\Ads\Entities\Accessory;
 use Modules\Ads\Entities\Car;
 use Modules\Ads\Entities\Feature as Feature;
 use Modules\Ads\Entities\Model as Ad;
+use Modules\Ads\Entities\Plate;
 use Modules\Ads\Entities\SparePart as SparePart;
 use Modules\Ads\Entities\SparePartType;
 use Modules\Brand\Entities\Model as Brand;
@@ -121,6 +123,16 @@ class AdsController extends Controller
 
             $ad->update([
                 'type' => 'accessories'
+            ]);
+        }
+
+        if($category->slug == 'license-plates'){
+            $spareRequest = app(StoreLicensePlatesRequest::class);
+            $sparePart = new Plate($spareRequest->validated());
+            $sparePart->ad_id = $ad->id;
+            $sparePart->save();
+            $ad->update([
+                'type' => 'license-plates'
             ]);
         }
 
