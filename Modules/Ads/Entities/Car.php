@@ -30,7 +30,9 @@ class Car extends  BaseModel
 
     public function features()
     {
-        return $this->belongsToMany(Feature::class, 'car_features');
+        return $this->belongsToMany(Feature::class, 'car_features')
+            ->withPivot('value')
+            ->withTimestamps();
     }
 
 }

@@ -62,56 +62,29 @@
     </div>
 </div>
 
-@foreach($features as $feature)
-    <div class="col-md-11 border-bottom py-lg-4 py-2">
-        <div class="row justify-content-between gap-lg-0 gap-3">
+<div class="row g-3">
+    @foreach($features as $feature)
+        <div class="col-md-4">
+            <div class="card p-2 h-100">
+                <div class="d-flex align-items-center mb-2">
+                    @if($feature->icon)
+                        <img src="{{ $feature->icon }}" alt="{{ $feature->trans('title') }}" class="me-2" style="width:24px; height:24px;">
+                    @endif
+                    <span class="fw-bold">{{ $feature->trans('title') }}</span>
+                </div>
 
-            {{-- Label --}}
-            <div class="col-lg-2">
-                @if($feature->icon)
-                    <img src="{{ $feature->icon }}" alt="{{ $feature->trans('title') }}" class="me-2" style="width:24px; height:24px;">
-                @endif
-                <label for="feature_{{ $feature->id }}" class="form-label fw-bold primary-color">
-                    {{ $feature->trans('title') }}
-                </label>
-            </div>
-
-            {{-- Input --}}
-            <div class="col-lg-9">
                 @if($feature->type === 'text')
-                    <input type="text"
-                           id="feature_{{ $feature->id }}"
-                           name="features[{{ $feature->id }}]"
-                           class="form-control bg-transparent py-2 rounded-3 text-secondary"
-                           value="{{ old('features.'.$feature->id) }}"
-                    />
+                    <input type="text" name="features[{{ $feature->id }}]" class="form-control" value="{{ old('features.'.$feature->id) }}">
                 @elseif($feature->type === 'number')
-                    <input type="number"
-                           id="feature_{{ $feature->id }}"
-                           name="features[{{ $feature->id }}]"
-                           class="form-control bg-transparent py-2 rounded-3 text-secondary"
-                           value="{{ old('features.'.$feature->id) }}"
-                    />
+                    <input type="number" name="features[{{ $feature->id }}]" class="form-control" value="{{ old('features.'.$feature->id) }}">
                 @elseif($feature->type === 'checkbox')
                     <div class="form-check">
                         <input type="hidden" name="features[{{ $feature->id }}]" value="0"/>
-                        <input type="checkbox"
-                               id="feature_{{ $feature->id }}"
-                               name="features[{{ $feature->id }}]"
-                               value="1"
-                               class="form-check-input"
-                                @checked(old('features.'.$feature->id))
-                        />
-                        <label class="form-check-label" for="feature_{{ $feature->id }}">
-                            {{ $feature->trans('title') }}
-                        </label>
+                        <input type="checkbox" id="feature_{{ $feature->id }}" name="features[{{ $feature->id }}]" value="1" class="form-check-input" @checked(old('features.'.$feature->id))>
+                        <label class="form-check-label" for="feature_{{ $feature->id }}">{{ $feature->trans('title') }}</label>
                     </div>
                 @endif
-
-                @error('features.'.$feature->id)
-                <small class="text-danger d-block mt-1">{{ $message }}</small>
-                @enderror
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
+</div>

@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Client;
 
 use App\Functions\Upload;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAdRequest;
-use App\Http\Requests\StoreSparePartRequest;
+use App\Http\Requests\Client\StoreAdRequest;
+use App\Http\Requests\Client\StoreCarRequest;
+use App\Http\Requests\Client\StoreSparePartRequest;
 use Illuminate\Support\Facades\Auth;
-use Modules\Ads\Entities\SparePartType;
-use Modules\Category\Entities\Model as Category;
-use Modules\Brand\Entities\Model as Brand;
-use Modules\Model\Entities\Model as Model;
+use Modules\Ads\Entities\Car;
+use Modules\Ads\Entities\Feature as Feature;
 use Modules\Ads\Entities\Model as Ad;
 use Modules\Ads\Entities\SparePart as SparePart;
-use Modules\Ads\Entities\Feature as Feature;
+use Modules\Ads\Entities\SparePartType;
+use Modules\Brand\Entities\Model as Brand;
+use Modules\Category\Entities\Model as Category;
 use Modules\Category\Entities\Subcategory as Subcategory;
+use Modules\Model\Entities\Model as Model;
 
 class AdsController extends Controller
 {
@@ -72,6 +74,33 @@ class AdsController extends Controller
             $sparePart->save();
             $ad->update([
                'type' => 'spare-parts'
+            ]);
+        }
+
+        if($category->slug == 'cars'){
+            $spareRequest = app(StoreCarRequest::class);
+            $validated = $spareRequest->validated();
+
+            $car = new Car();
+            $car->ad_id = $ad->id;
+            $car->brand_id = $validated['brand_id'];
+            $car->model_id = $validated['model_id'];
+            $car->save();
+
+            if (!empty($validated['features'])) {
+                foreach ($validated['features'] as $featureId => $value) {
+                    \DB::table('car_features')->insert([
+                        'car_id' => $car->id,
+                        'feature_id' => $featureId,
+                        'value' => $value ?? 0,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+
+            $ad->update([
+               'type' => 'cars'
             ]);
         }
 
