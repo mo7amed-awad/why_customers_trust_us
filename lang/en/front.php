@@ -114,4 +114,9 @@ return [
     'all_spare_parts' => 'All Spare Parts',
     'New' => 'جديد',
     'Used' => 'مستعمل',
+    'trust_title' => 'Why Customers Trust Us',
+    'trust_description' => 'Experience unmatched convenience, affordability, and reliability with our trusted car rental service & car accessories',
+    'our_commitment' => 'Our Commitment',
+    'our_commitment_description' => 'At Key Link Business Support, we are driven by our commitment to integrity and customer satisfaction. We strive to create lasting relationships with our clients, understanding their unique needs and challenges. Our approach is built on trust, transparency, and a results-oriented mindset.',
+
 ];

@@ -493,95 +493,35 @@
 {{--Why Customers Trust Us--}}
 <div class="container-fluid py-lg-5 py-3 overflow-hidden">
     <div class="row py-4  justify-content-center">
-      <div class="col-lg-10 overflow-hidden ">
-        <h3 class="fw-semibold  text-center fs-32" data-aos="zoom-in-up" data-aos-duration="1500">
-          Why Customers Trust Us
-        </h3>
-        <p class="lh-base text-secondary py-lg-4 py-2 text-center" data-aos="fade-up" data-aos-duration="1500">
-          Experience unmatched convenience, affordability, and reliability with our trusted car rental service & car
-          accessories
-        </p>
-      </div>
+        <div class="col-lg-10 overflow-hidden">
+            <h3 class="fw-semibold text-center fs-32" data-aos="zoom-in-up" data-aos-duration="1500">
+                {{ __('front.trust_title') }}
+            </h3>
+            <p class="lh-base text-secondary py-lg-4 py-2 text-center" data-aos="fade-up" data-aos-duration="1500">
+                {{ __('front.trust_description') }}
+            </p>
+        </div>
       <div class="col-12  position-relative  bg-primary-color ">
         <div class="position-absolute layer top-0 bottom-0 start-0 end-0" style="z-index: unset;"></div>
         <div class="row justify-content-center py-5 ">
           <div class="col-11 overflow-hidden">
             <div class="row    slider-scoop   py-5">
-              <div class=" col-md-4 col-sm-6 ">
-                <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
-                  <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
-                    <img src="assets/imgs/home/about-cover.jpg" class="rounded-1 w-100 h-100 object-fit-cover">
-                  </div>
-                  <div
-                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
-                    <div class="">
-                      <h3 class="fw-bold  fs-18 mb-0 text-white ">Verified & Trusted Listings</h3>
-                      <p class="py-2">We work with trusted dealers and private sellers to ensure you see only real,
-                        accurate listings.</p>
+                @foreach($WhyCustomersTrustUs as $item)
+                    <div class=" col-md-4 col-sm-6 ">
+                        <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
+                            <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
+                                <img src="{{$item->image}}" class="rounded-1 w-100 h-100 object-fit-cover">
+                            </div>
+                            <div
+                                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
+                                <div class="">
+                                    <h3 class="fw-bold  fs-18 mb-0 text-white ">{{$item->trans('title')}}</h3>
+                                    <p class="py-2">{{$item->trans('desc')}}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class=" col-md-4 col-sm-6 ">
-                <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
-                  <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
-                    <img src="assets/imgs/home/about-cover.jpg" class="rounded-1 w-100 h-100 object-fit-cover">
-                  </div>
-                  <div
-                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
-                    <div class="">
-                      <h3 class="fw-bold  fs-18 mb-0 text-white ">Verified & Trusted Listings</h3>
-                      <p class="py-2">We work with trusted dealers and private sellers to ensure you see only real,
-                        accurate listings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class=" col-md-4 col-sm-6 ">
-                <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
-                  <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
-                    <img src="assets/imgs/home/about-cover.jpg" class="rounded-1 w-100 h-100 object-fit-cover">
-                  </div>
-                  <div
-                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
-                    <div class="">
-                      <h3 class="fw-bold  fs-18 mb-0 text-white ">Verified & Trusted Listings</h3>
-                      <p class="py-2">We work with trusted dealers and private sellers to ensure you see only real,
-                        accurate listings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class=" col-md-4 col-sm-6 ">
-                <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
-                  <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
-                    <img src="assets/imgs/home/about-cover.jpg" class="rounded-1 w-100 h-100 object-fit-cover">
-                  </div>
-                  <div
-                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
-                    <div class="">
-                      <h3 class="fw-bold  fs-18 mb-0 text-white ">Verified & Trusted Listings</h3>
-                      <p class="py-2">We work with trusted dealers and private sellers to ensure you see only real,
-                        accurate listings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class=" col-md-4 col-sm-6 ">
-                <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
-                  <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
-                    <img src="assets/imgs/home/about-cover.jpg" class="rounded-1 w-100 h-100 object-fit-cover">
-                  </div>
-                  <div
-                    class="card-body position-absolute start-0 end-0 bottom-0 w-100  text-white layer top-0 d-flex align-items-end">
-                    <div class="">
-                      <h3 class="fw-bold  fs-18 mb-0 text-white ">Verified & Trusted Listings</h3>
-                      <p class="py-2">We work with trusted dealers and private sellers to ensure you see only real,
-                        accurate listings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                @endforeach
             </div>
           </div>
         </div>
@@ -593,23 +533,22 @@
 
 
   </div>
+
 <div class="container-fluid  footer-banner overflow-hidden">
     <div class="row   align-items-center  ">
       <div
         class="col-12 d-flex  header-div services px-0 justify-content-center overflow-hidden align-items-center position-relative">
-        <img class=" w-100 h-100 object-fit-cover" src="assets/imgs/home/about-cover.jpg" alt="Contact Banner"
+        <img class=" w-100 h-100 object-fit-cover" src="{{asset('assets/imgs/home/about-cover.jpg')}}" alt="Contact Banner"
           width="1920" height="600" loading="lazy">
         <div class=" position-absolute layer  top-0 bottom-0 end-0 start-0 px-lg-5 px-2 d-flex align-items-center ">
           <div class="row  gap-lg-4 gap-2">
             <div class="col-lg-8">
-              <h3 class="text-white fw-semibold py-lg-3 py-2" data-aos="fade-up" data-aos-duration="1500">Our Commitment
-              </h3>
-              <p class="text-white" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
-                At Key link business support , we are driven by our commitment to integrity and customer satisfaction.
-                We strive to create lasting relationships with our clients, understanding their unique needs and
-                challenges. Our approach is built on trust, transparency, and a results-oriented mindset.
-
-              </p>
+                <h3 class="text-white fw-semibold py-lg-3 py-2" data-aos="fade-up" data-aos-duration="1500">
+                    {{ __('front.our_commitment') }}
+                </h3>
+                <p class="text-white" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
+                    {{ __('front.our_commitment_description') }}
+                </p>
             </div>
 
           </div>
@@ -623,6 +562,7 @@
     </div>
 
   </div>
+
 <div id="footer">
 </div>
 

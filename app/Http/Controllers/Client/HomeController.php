@@ -9,6 +9,7 @@ use Modules\WhoWeAre\Entities\Model as WhoWeAre;
 use Modules\Brand\Entities\Model as Brand;
 use Modules\Service\Entities\Model as Service;
 use Modules\WhyChooseUs\Entities\Model as WhyChooseUs;
+use Modules\WhyCustomersTrustUs\Entities\Model as WhyCustomersTrustUs;
 use Modules\Category\Entities\Model as Category;
 
 
@@ -46,7 +47,8 @@ class HomeController extends BasicController
             ->limit(7)
             ->get();
 
-        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts'));
+        $WhyCustomersTrustUs = WhyCustomersTrustUs::all();
+        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs'));
     }
 
 
