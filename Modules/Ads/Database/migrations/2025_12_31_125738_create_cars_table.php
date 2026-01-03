@@ -16,6 +16,11 @@ return new class extends Migration
             $table->foreignId('ad_id')->constrained('ads')->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->foreignId('model_id')->constrained('models')->cascadeOnDelete();
+            $table->string('fuel_type');
+            $table->string('transmission');
+            $table->string('mileage');
+            $table->string('engine');
+
             $table->timestamps();
         });
     }

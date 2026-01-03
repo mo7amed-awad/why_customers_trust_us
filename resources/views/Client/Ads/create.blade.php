@@ -99,88 +99,86 @@
         </script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const addImgBtn = document.querySelector('.add-img');
                 const imageUpload = document.getElementById('imageUpload');
                 const gallery = document.querySelector('.gallery');
                 const MAX_IMAGES = 7;
 
+                // ده المخزن اللي هيشيل كل الصور
+                let filesStore = new DataTransfer();
+
                 addImgBtn.addEventListener('click', () => {
-                    if(imageUpload.files.length >= MAX_IMAGES) {
-                        alert('الحد الأقصى هو ' + MAX_IMAGES + ' صور فقط');
-                        return;
-                    }
                     imageUpload.click();
                 });
 
                 imageUpload.addEventListener('change', () => {
+                    Array.from(imageUpload.files).forEach(file => {
+                        if (filesStore.files.length < MAX_IMAGES) {
+                            filesStore.items.add(file);
+                        }
+                    });
+
+                    imageUpload.files = filesStore.files;
                     renderGallery();
                 });
 
                 function renderGallery() {
                     gallery.innerHTML = '';
 
-                    Array.from(imageUpload.files).forEach((file, index) => {
+                    Array.from(filesStore.files).forEach((file, index) => {
                         const col = document.createElement('div');
                         col.className = 'col-md-2 col-4';
 
                         const reader = new FileReader();
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             col.innerHTML = `
                     <div class="img-picture border rounded-3 position-relative">
-                        <img src="${e.target.result}" class="w-100 h-100 rounded-3" style="object-fit: cover;">
-                        <button type="button" class="btn btn-danger btn-sm position-absolute remove-img" style="top: 5px; right: 5px; padding: 2px 8px;">
+                        <img src="${e.target.result}" class="w-100 h-100 rounded-3">
+                        <button type="button"
+                                class="btn btn-danger btn-sm position-absolute remove-img"
+                                style="top:5px;right:5px;">
                             <i class="fa-solid fa-times"></i>
                         </button>
-                        <span class="position-absolute badge bg-primary" style="bottom: 5px; left: 5px;">${index + 1}</span>
+                        <span class="badge bg-primary position-absolute"
+                              style="bottom:5px;left:5px;">${index + 1}</span>
                     </div>
                 `;
                             gallery.appendChild(col);
                         };
                         reader.readAsDataURL(file);
 
-                        // حذف الصورة عند الضغط على زر الحذف
-                        col.addEventListener('click', function(e) {
-                            if(e.target.closest('.remove-img')) {
-                                removeFile(index);
+                        col.addEventListener('click', e => {
+                            if (e.target.closest('.remove-img')) {
+                                removeImage(index);
                             }
                         });
                     });
 
-                    updateImageCounter();
+                    updateCounter();
                 }
 
-                function removeFile(indexToRemove) {
-                    const dt = new DataTransfer();
-                    Array.from(imageUpload.files)
-                        .forEach((file, index) => {
-                            if(index !== indexToRemove) dt.items.add(file);
-                        });
-                    imageUpload.files = dt.files;
+                function removeImage(index) {
+                    const newStore = new DataTransfer();
+
+                    Array.from(filesStore.files).forEach((file, i) => {
+                        if (i !== index) newStore.items.add(file);
+                    });
+
+                    filesStore = newStore;
+                    imageUpload.files = filesStore.files;
                     renderGallery();
                 }
 
-                function updateImageCounter() {
-                    let counterElement = document.querySelector('.image-counter');
-                    if(!counterElement) {
-                        counterElement = document.createElement('small');
-                        counterElement.className = 'image-counter text-muted d-block mt-2';
-                        addImgBtn.parentElement.appendChild(counterElement);
+                function updateCounter() {
+                    let counter = document.querySelector('.image-counter');
+                    if (!counter) {
+                        counter = document.createElement('small');
+                        counter.className = 'image-counter text-muted d-block mt-2';
+                        addImgBtn.parentElement.appendChild(counter);
                     }
-
-                    const count = imageUpload.files.length;
-                    counterElement.textContent = `${count} / ${MAX_IMAGES} صور`;
-
-                    if(count >= MAX_IMAGES) {
-                        counterElement.classList.add('text-danger');
-                        counterElement.classList.remove('text-muted');
-                    } else {
-                        counterElement.classList.add('text-muted');
-                        counterElement.classList.remove('text-danger');
-                    }
+                    counter.textContent = `${filesStore.files.length} / ${MAX_IMAGES} صور`;
                 }
-
-                updateImageCounter();
             });
         </script>
     @endpush
