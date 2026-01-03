@@ -46,9 +46,9 @@ class Model extends  BaseModel
         return $this->hasOne(Plate::class);
     }
 
-    public function accessory()
+    public function accessoryDetails()
     {
-        return $this->hasOne(Accessory::class);
+        return $this->hasOne(Accessory::class, 'ad_id','id');
     }
 
 }

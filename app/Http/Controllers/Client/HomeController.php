@@ -48,7 +48,14 @@ class HomeController extends BasicController
             ->get();
 
         $WhyCustomersTrustUs = WhyCustomersTrustUs::all();
-        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs'));
+
+        $accessories = Ad::where('is_active', 1)
+            ->where('type', AdTypesEnum::ACCESSORY)
+            ->with(['accessoryDetails', 'images' => fn($q) => $q->orderBy('id')->limit(1)])
+            ->limit(7)
+            ->get();
+
+        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs','accessories'));
     }
 
 
