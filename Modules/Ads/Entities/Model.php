@@ -41,9 +41,9 @@ class Model extends  BaseModel
         return $this->hasOne(SparePart::class, 'ad_id','id');
     }
 
-    public function plate()
+    public function plateDetails()
     {
-        return $this->hasOne(Plate::class);
+        return $this->hasOne(Plate::class, 'ad_id','id');
     }
 
     public function accessoryDetails()

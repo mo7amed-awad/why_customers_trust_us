@@ -4,11 +4,11 @@
             <div class=" d-flex gap-2 align-items-center justify-content-between">
                 @if($sparePart->is_new)
                 <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0 bg-primary-color">
-                    {{ __('New') }}
+                    {{ __('front.new') }}
                 </h6>
                 @else
                 <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0" style="background-color: #6c757d;">
-                    {{ __('Used') }}
+                    {{ __('front.used') }}
                 </h6>
                 @endif
                 <a href="washList.html" tabindex="-1">

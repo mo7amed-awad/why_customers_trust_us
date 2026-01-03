@@ -25,7 +25,7 @@
             <div class=" d-flex gap-2 align-items-center justify-content-between">
                 <div class="">
                     <h6 class="text-white py-1 lh-base  mb-0 "> {{ __('front.starting_from') }}</h6>
-                    <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($accessory->price, 2) }}</h3>
+                    <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($plate->price, 2) }}</h3>
                 </div>
 
                 <div class="text-black fw-semibold d-flex align-items-center gap-1 ">
@@ -41,14 +41,30 @@
             </div>
         </div>
 
-        <img src="{{ asset($accessory->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
+        <img src="{{ asset($plate->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
     </div>
     <div class="card-body row gap-2">
         <div class="col-12">
-            <h5 class="card-title">{{$accessory->title}}</h5>
+            <h5 class="card-title">{{$plate->title}}</h5>
         </div>
         <div class=" col-12 d-flex gap-2 flex-wrap justify-content-between">
-            <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">{{ $accessory->subCategory->trans('title') ?? 'N/A' }}</span>
+            @php
+                $digitTranslations = [
+                    1 => 'front.one_digit',
+                    2 => 'front.two_digits',
+                    3 => 'front.three_digits',
+                    4 => 'front.four_digits',
+                    5 => 'front.five_digits',
+                    6 => 'front.six_digits',
+                ];
+            @endphp
+
+            <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">
+                {{ __($digitTranslations[$plate->plateDetails->digit_count] ?? '') }}
+            </span>
+            <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">
+                {{ __('front.' . $plate->plateDetails->usage_type) }}
+            </span>
         </div>
 
         <div class="d-flex justify-content-end align-items-center mb-2 col-12">

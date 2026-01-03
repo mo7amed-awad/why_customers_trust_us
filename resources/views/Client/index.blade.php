@@ -460,6 +460,36 @@
     </div>
   </div>
 
+{{--Plates--}}
+<div class="container py-lg-5 py-md-4 py-3 ">
+    <div class="row py-2 align-items-center gy-3 justify-content-between">
+        <div class="col-md-8 col-sm-7 overflow-hidden">
+            <h2 class="fw-semibold">
+                {{ __('front.car_plates') }}
+            </h2>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-end">
+            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="services.html">
+            <span class="fs-18">
+                {{ __('front.all_car_plates') }}
+            </span>
+                <span>
+                <i class="fa-solid fa-chevron-right arrow fs-12"></i>
+            </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row py-5  slider-main overflow-hidden">
+        <div class="col-lg-4 col-md-4 col-sm-6 ">
+            @foreach($plates as $plate)
+                @include('Client.partials.plate-card', ['plate' => $plate])
+            @endforeach
+        </div>
+    </div>
+  </div>
+
 {{--Why Customers Trust Us--}}
 <div class="container-fluid py-lg-5 py-3 overflow-hidden">
     <div class="row py-4  justify-content-center">
