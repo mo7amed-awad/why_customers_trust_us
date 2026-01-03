@@ -3,7 +3,7 @@
 namespace Modules\Ads\Entities;
 
 use App\Models\BaseModel;
-use Modules\Brand\Entities\Model as Brand;
+use Modules\Brand\Entities\Model as BrandModel;
 use Modules\Model\Entities\Model as CarModel;
 use Modules\Ads\Entities\Model as Ad;
 class SparePart extends  BaseModel
@@ -19,7 +19,7 @@ class SparePart extends  BaseModel
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(BrandModel::class, 'brand_id', 'id');
     }
 
     public function carModel()

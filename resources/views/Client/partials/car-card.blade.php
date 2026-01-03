@@ -4,9 +4,14 @@
             <div class="sevices-fade p-2 top-0 bottom-0 start-0 end-0 position-absolute d-flex flex-column justify-content-between" style="z-index: 1;">
                 <div class=" d-flex gap-2 align-items-center justify-content-between">
                     @if($car->is_new)
-                        <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0 bg-primary-color">New</h6>
+                        <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0 bg-primary-color">
+                            {{ __('New') }}
+                        </h6>
+                    @else
+                        <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0" style="background-color: #6c757d;">
+                            {{ __('Used') }}
+                        </h6>
                     @endif
-
                     <a href="washList.html" tabindex="-1">
                         <div
                                 class="fs-14 text-white p-lg-2 px-2 bg-white bg-opacity-75 rounded-circle fw-bold d-flex align-items-center justify-content-center addtosave"

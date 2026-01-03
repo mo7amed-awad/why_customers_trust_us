@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\AdTypesEnum;
 use App\Functions\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreAdRequest;
@@ -85,7 +86,7 @@ class AdsController extends Controller
             $sparePart->ad_id = $ad->id;
             $sparePart->save();
             $ad->update([
-               'type' => 'spare-parts'
+               'type' => AdTypesEnum::SPARE_PART
             ]);
         }
 
@@ -98,7 +99,7 @@ class AdsController extends Controller
             $car->save();
 
             $ad->update([
-                'type' => 'cars'
+                'type' => AdTypesEnum::CAR
             ]);
 
             if (!empty($validated['features'])) {
@@ -121,7 +122,7 @@ class AdsController extends Controller
             $accessories->save();
 
             $ad->update([
-                'type' => 'accessories'
+                'type' => AdTypesEnum::ACCESSORY
             ]);
         }
 
@@ -131,7 +132,7 @@ class AdsController extends Controller
             $sparePart->ad_id = $ad->id;
             $sparePart->save();
             $ad->update([
-                'type' => 'license-plates'
+                'type' => AdTypesEnum::LICENSE_PLATE
             ]);
         }
 

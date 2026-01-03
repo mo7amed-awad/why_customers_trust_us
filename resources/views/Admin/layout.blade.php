@@ -130,6 +130,10 @@
                         @include('whychooseus::layouts.sidebar')
                     @endif
 
+                    @if(hasPermission('show_services'))
+                        @include('service::layouts.sidebar')
+                    @endif
+
                     @if(hasPermission('show_whycustomerstrustus'))
                         @include('whycustomerstrustus::layouts.sidebar')
                     @endif

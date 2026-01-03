@@ -2,6 +2,7 @@
 
 namespace Modules\Ads\Entities;
 
+use App\Enums\AdTypesEnum;
 use App\Models\BaseModel;
 use Modules\Category\Entities\Subcategory;
 use Modules\Category\Entities\Model as Category;
@@ -12,6 +13,9 @@ class Model extends  BaseModel
 
     protected $table = 'ads';
 
+    protected $casts = [
+        'type' => AdTypesEnum::class,
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -32,9 +36,9 @@ class Model extends  BaseModel
         return $this->hasOne(Car::class, 'ad_id','id');
     }
 
-    public function sparePart()
+    public function sparePartDetails()
     {
-        return $this->hasOne(SparePart::class);
+        return $this->hasOne(SparePart::class, 'ad_id','id');
     }
 
     public function plate()

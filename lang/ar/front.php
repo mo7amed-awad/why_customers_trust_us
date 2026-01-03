@@ -107,4 +107,9 @@ return [
     'starting_from' => 'يبدأ من',
     'manufacture_year' => 'سنة الصنع',
     'manufacture_year_placeholder' => 'مثال: 2020',
+    'services' => 'الخدمات',
+    'services_description' => 'اكتشف مجموعتنا المختارة من أكثر السيارات شهرة وموثوقية، تم اختيارها لتناسب أسلوبك وميزانيتك واحتياجات القيادة الخاصة بك.',
+    'all_services' => 'جميع الخدمات',
+    'spare_parts' => 'قطع غيار',
+    'all_spare_parts' => 'جميع قطع الغيار',
 ];

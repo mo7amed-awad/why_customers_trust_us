@@ -107,4 +107,11 @@ return [
     'starting_from' => 'Starting From',
     'manufacture_year' => 'Manufacture Year',
     'manufacture_year_placeholder' => 'Example: 2020',
+    'services' => 'Services',
+    'services_description' => 'Explore our curated selection of the most popular and trusted cars, chosen to match your style, budget, and driving needs.',
+    'all_services' => 'All Services',
+    'spare_parts' => 'Spare Parts',
+    'all_spare_parts' => 'All Spare Parts',
+    'New' => 'جديد',
+    'Used' => 'مستعمل',
 ];
