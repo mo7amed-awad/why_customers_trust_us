@@ -93,11 +93,13 @@ class AdsController extends Controller
             $spareRequest = app(StoreCarRequest::class);
             $validated = $spareRequest->validated();
 
-            $car = new Car();
+            $car = new Car($validated);
             $car->ad_id = $ad->id;
-            $car->brand_id = $validated['brand_id'];
-            $car->model_id = $validated['model_id'];
             $car->save();
+
+            $ad->update([
+                'type' => 'cars'
+            ]);
 
             if (!empty($validated['features'])) {
                 foreach ($validated['features'] as $featureId => $value) {
@@ -111,9 +113,6 @@ class AdsController extends Controller
                 }
             }
 
-            $ad->update([
-               'type' => 'cars'
-            ]);
         }
 
         if($category->slug == 'accessories'){

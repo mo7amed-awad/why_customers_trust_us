@@ -102,5 +102,9 @@ return [
     'fuel_type_examples' => 'Gasoline, Diesel, Electric, Hybrid',
     'transmission_examples' => 'Manual or Automatic',
     'engine_placeholder' => 'e.g. 2.5L 4-cylinder',
-
+    'cars' => 'Cars',
+    'all_cars' => 'All Cars',
+    'starting_from' => 'Starting From',
+    'manufacture_year' => 'Manufacture Year',
+    'manufacture_year_placeholder' => 'Example: 2020',
 ];

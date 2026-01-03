@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('transmission');
             $table->string('mileage');
             $table->string('engine');
-
+            $table->string('manufacture_year');
             $table->timestamps();
         });
     }

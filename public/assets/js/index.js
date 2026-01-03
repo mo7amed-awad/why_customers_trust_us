@@ -63,7 +63,7 @@ let navBarcontainer = `
 
     <div class="row align-items-center justify-content-between px-2 ">
       <div class="col-lg-2 col-4">
-        <a class="navbar-brand overflow-hidden  text-center  m-0" href="index.html">
+        <a class="navbar-brand overflow-hidden  text-center  m-0" href="/${window.currentLang}">
 <img class="logo img-fluid w-auto" src="" />
 
         </a>
@@ -90,7 +90,7 @@ let navBarcontainer = `
             <div class="offcanvas-body header ">
               <ul class="navbar-nav w-100  mb-2 mb-lg-0  align-items-lg-center text-black gap-lg-4 gap-1">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html">
+                  <a class="nav-link active" aria-current="page" href="/${window.currentLang}">
                     <span class="">Home</span>
                   </a>
                 </li>
@@ -317,7 +317,7 @@ let FooterContainer = `   <footer class=" ">
           </h4>
                     <ul class="p-0 fs-6 mb-0">
             <li class="py-1 col-6">
-              <a href="index.html">
+              <a href="/${window.currentLang}">
                 Home
               </a>
             </li>

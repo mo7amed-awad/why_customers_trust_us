@@ -27,9 +27,9 @@ class Model extends  BaseModel
         return $this->hasMany(AdImage::class, 'ad_id');
     }
 
-    public function car()
+    public function carDetails()
     {
-        return $this->hasOne(Car::class);
+        return $this->hasOne(Car::class, 'ad_id','id');
     }
 
     public function sparePart()

@@ -102,5 +102,9 @@ return [
     'fuel_type_examples' => 'بنزين، ديزل، كهرباء، هايبرد',
     'transmission_examples' => 'يدوي أو أوتوماتيك',
     'engine_placeholder' => 'مثال: 2.5L 4-cylinder',
-
+    'cars' => 'السيارات',
+    'all_cars' => 'جميع السيارات',
+    'starting_from' => 'يبدأ من',
+    'manufacture_year' => 'سنة الصنع',
+    'manufacture_year_placeholder' => 'مثال: 2020',
 ];

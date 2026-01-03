@@ -23,6 +23,7 @@ class StoreCarRequest extends FormRequest
             'transmission'  => 'required|in:manual,automatic,cvt,semi_automatic',
             'mileage'       => 'required|integer|min:0',
             'engine'        => 'required|string|max:50',
+            'manufacture_year' => 'required|integer|min:1900|max:' . date('Y'),
         ];
 
         // Features

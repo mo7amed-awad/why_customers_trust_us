@@ -29,7 +29,6 @@
     </div>
 </div>
 
-
 {{-- MODEL --}}
 <div class="col-md-11 border-bottom py-lg-4 py-2">
     <div class="row justify-content-between gap-lg-0 gap-3">
@@ -119,6 +118,7 @@
     </div>
 </div>
 
+{{-- MILEAGE And ENGINE--}}
 <div class="col-md-11 border-bottom py-lg-4 py-2">
     <div class="row g-3 align-items-center">
 
@@ -153,8 +153,26 @@
             @enderror
         </div>
 
+        {{-- MANUFCTURE YEAR --}}
+        <div class="col-lg-6">
+            <label class="form-label fw-bold primary-color">{{ __('front.manufacture_year') }}</label>
+            <input type="number"
+                   name="manufacture_year"
+                   class="form-control bg-transparent py-2 rounded-3"
+                   placeholder="{{ __('front.manufacture_year_placeholder') }}"
+                   value="{{ old('manufacture_year') }}"
+                   min="1900"
+                   max="{{ date('Y') }}"
+                   required>
+
+            @error('manufacture_year')
+            <small class="text-danger d-block mt-1">{{ $message }}</small>
+            @enderror
+        </div>
+
     </div>
 </div>
+
 
 
 <div class="row g-3">

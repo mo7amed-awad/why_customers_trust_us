@@ -56,11 +56,11 @@
         <x-ads-shared-fields :category="$category" :subcategory="$subcategory" />
 
         @if($category->slug == 'cars')
-            @include('client.ads.partials.car-fields')
+            @include('Client.ads.partials.car-fields')
         @elseif($category->slug == 'spare-parts')
-            @include('client.ads.partials.spare-parts-fields')
+            @include('Client.ads.partials.spare-parts-fields')
         @elseif($category->slug == 'license-plates')
-            @include('client.ads.partials.license-plates-fields')
+            @include('Client.ads.partials.license-plates-fields')
         @endif
 
 
