@@ -1,5 +1,3 @@
-{{-- Cars Filters Partial --}}
-
 <!-- Price Filter -->
 <div class="py-3 border-bottom">
     <h5 class="py-2 fw-bold mb-3">{{ __('front.price') }}</h5>

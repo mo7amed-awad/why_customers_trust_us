@@ -33,19 +33,19 @@ class AdsController extends Controller
 
         switch ($slug) {
             case 'cars':
-                return $this->handleAds($request, AdTypesEnum::CAR, 'carDetails', 'Client.partials.car-card');
+                return $this->handleAds($request, AdTypesEnum::CAR, 'carDetails', 'Client.partials.car-card',$slug);
             case 'spare-parts':
-                return $this->handleAds($request, AdTypesEnum::SPARE_PART, 'sparePartDetails', 'Client.partials.spare-part-card');
+                return $this->handleAds($request, AdTypesEnum::SPARE_PART, 'sparePartDetails', 'Client.partials.spare-part-card', $slug);
             case 'accessories':
-                return $this->handleAds($request, AdTypesEnum::ACCESSORY, 'accessoryDetails', 'Client.partials.accessory-card');
+                return $this->handleAds($request, AdTypesEnum::ACCESSORY, 'accessoryDetails', 'Client.partials.accessory-card', $slug);
             case 'plates':
-                return $this->handleAds($request, AdTypesEnum::LICENSE_PLATE, 'plateDetails', 'Client.partials.plate-card');
+                return $this->handleAds($request, AdTypesEnum::LICENSE_PLATE, 'plateDetails', 'Client.partials.plate-card', $slug);
             default:
                 abort(404);
         }
     }
 
-    private function handleAds(Request $request, $type, $relation, $cardView)
+    private function handleAds(Request $request, $type, $relation, $cardView, $slug)
     {
         $query = Ad::where('is_active', 1)
             ->where('type', $type)
@@ -65,8 +65,7 @@ class AdsController extends Controller
         $brands = Brand::with('models')->get();
         $models = Model::all();
 
-        $slug = $type;
-        return view('Client.ads', compact('items', 'cardView', 'slug', 'brands', 'models'));
+        return view('Client.ads', compact('items', 'cardView', 'slug', 'brands', 'models','type'));
     }
 
     private function applyPriceFilter($query, Request $request)

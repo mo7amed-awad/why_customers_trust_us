@@ -129,5 +129,12 @@ return [
     'latest' => 'Latest',
     'oldest' => 'Oldest',
     'price_low_high' => 'Price: Low to High',
-    'price_high_low' => 'Price: High to Low'
+    'price_high_low' => 'Price: High to Low',
+    'home_platform_title' => 'Comprehensive Car Platform',
+    'home_platform_description' => 'All car services in one place',
+    'find_a_car' => 'Find A Car',
+    'new_cars' => 'New Cars',
+    'used_cars' => 'Used Cars',
+    'advanced_search' => 'Advanced Search',
+
 ];

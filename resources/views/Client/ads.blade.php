@@ -31,12 +31,28 @@
                                     <ul class="navbar-nav flex-column flex-grow-1 gap-2 m-auto  mb-2 mb-lg-0 my-3 ">
                                         <div class="offcanvas-body header">
                                             <ul class="navbar-nav flex-column flex-grow-1 m-auto  mb-2 mb-lg-0 my-3 ">
-                                                @include('filters.cars-filters')
-                                                <!-- Action Buttons -->
+                                                @switch($slug)
+                                                    @case('cars')
+                                                        @include('filters.cars-filters')
+                                                        @break
+
+                                                    @case('spare-parts')
+                                                        @include('filters.cars-filters')
+                                                        @break
+
+                                                    @case('accessories')
+                                                        @include('filters.accessories-filters')
+                                                        @break
+
+                                                    @case('plates')
+                                                        @include('filters.accessories-filters')
+                                                        @break
+                                                @endswitch
+                                                    <!-- Action Buttons -->
                                                 <div class="mb-3 w-100 d-flex justify-content-center flex-column gap-2 mt-3">
                                                     <button type="submit"
                                                             class="btn bg-primary bg-opacity-25 primary-color text-white w-100 btn rounded-3 fw-semibold py-2">
-                                                        <span>بحث متقدم</span>
+                                                        <span>{{ __('front.advanced_search') }}</span>
                                                     </button>
                                                 </div>
                                             </ul>
@@ -51,7 +67,7 @@
 
         </div>
 
-
+        {{--Result--}}
         <div class="col-lg-9">
             <!-- Results Header with Sort and Active Filters -->
             <div class="mb-4">
@@ -96,7 +112,9 @@
 
             <div class="row gy-3 slider2 slider-title regular">
                 @foreach($itemsFirstHalf as $item)
-                    @include($cardView, ['item' => $item])
+                    <div class="col-lg-4 col-md-4 col-sm-6 ">
+                        @include($cardView, ['item' => $item])
+                    </div>
                 @endforeach
             </div>
 
@@ -144,7 +162,9 @@
 
             <div class="row gy-3 slider2 slider-title regular">
                 @foreach($itemsSecondHalf as $item)
-                    @include($cardView, ['item' => $item])
+                    <div class="col-lg-4 col-md-4 col-sm-6 ">
+                        @include($cardView, ['item' => $item])
+                    </div>
                 @endforeach
             </div>
 

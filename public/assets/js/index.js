@@ -100,7 +100,7 @@ let navBarcontainer = `
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="cars.html"><span class="">Cars</span></a>
+                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/ads/cars"><span class="">Cars</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link " aria-current="page" href="contactus.html"><span class="">Contact Us</span></a>
@@ -327,7 +327,7 @@ let FooterContainer = `   <footer class=" ">
               </a>
             </li>
             <li class="py-1">
-              <a href="cars.html">
+              <a  href="/${window.currentLang}/ads/cars">
               Cars
               </a>
             </li>

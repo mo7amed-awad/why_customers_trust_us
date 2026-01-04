@@ -168,7 +168,7 @@
 
         </div>
         <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent  py-2   rounded-2  text-black d-flex gap-3" href="services.html">
+            <a class="bg-transparent  py-2   rounded-2  text-black d-flex gap-3" href="{{ route('client.ads', ['slug' => 'cars']) }}">
                 <span class="fs-18">{{ __('front.all_cars') }}</span>
                 <span class="">
             <i class="fa-solid fa-chevron-right arrow fs-12"></i>
@@ -180,13 +180,13 @@
         <div class="col-12">
             <ul class="nav nav-pills products gap-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active rounded-pill" data-bs-toggle="pill" data-bs-target="#all-cars">All Cars</button>
+                    <button class="nav-link active rounded-pill" data-bs-toggle="pill" data-bs-target="#all-cars">{{ __('front.all_cars') }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#new-cars">New Cars</button>
+                    <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#new-cars">{{ __('front.new_cars') }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#used-cars">Used Cars</button>
+                    <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#used-cars">{{ __('front.used_cars') }}</button>
                 </li>
             </ul>
 
@@ -196,7 +196,9 @@
             <div class="tab-pane fade show active" id="all-cars">
                 <div class="row gy-4">
                     @foreach($cars as $car)
-                        @include('Client.partials.car-card', ['item' => $car])
+                        <div class="col-lg-4 col-md-4 col-sm-6 ">
+                            @include('Client.partials.car-card', ['item' => $car])
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -205,7 +207,9 @@
             <div class="tab-pane fade" id="new-cars">
                 <div class="row gy-4">
                     @foreach($cars->where('is_new', 1) as $car)
-                        @include('Client.partials.car-card', ['item' => $car])
+                        <div class="col-lg-4 col-md-4 col-sm-6 ">
+                            @include('Client.partials.car-card', ['item' => $car])
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -214,7 +218,9 @@
             <div class="tab-pane fade" id="used-cars">
                 <div class="row gy-4">
                     @foreach($cars->where('is_new', 0) as $car)
-                        @include('Client.partials.car-card', ['item' => $car])
+                        <div class="col-lg-4 col-md-4 col-sm-6 ">
+                            @include('Client.partials.car-card', ['item' => $car])
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -288,15 +294,6 @@
             </p>
         </div>
 
-        <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="services.html">
-                <span class="fs-18">{{ __('front.all_services') }}</span>
-                <span>
-            <i class="fa-solid fa-chevron-right arrow fs-12"></i>
-        </span>
-            </a>
-        </div>
-
     </div>
 
     <div class="row py-5 slider-services overflow-hidden">
@@ -329,7 +326,7 @@
         </div>
 
         <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="services.html">
+            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="{{ route('client.ads', ['slug' => 'spare-parts']) }}">
                 <span class="fs-18">{{ __('front.all_spare_parts') }}</span>
                 <span>
                 <i class="fa-solid fa-chevron-right arrow fs-12"></i>
@@ -339,11 +336,11 @@
     </div>
 
     <div class="row py-5  slider-main overflow-hidden">
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            @foreach($spareParts as $sparePart)
+        @foreach($spareParts as $sparePart)
+            <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.spare-part-card', ['item' => $sparePart])
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
   </div>
 
@@ -357,7 +354,7 @@
         </div>
 
         <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="services.html">
+            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="{{ route('client.ads', ['slug' => 'accessories']) }}">
             <span class="fs-18">
                 {{ __('front.all_accessories') }}
             </span>
@@ -370,11 +367,11 @@
 
 
     <div class="row py-5  slider-main overflow-hidden">
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            @foreach($accessories as $accessory)
+        @foreach($accessories as $accessory)
+            <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.accessory-card', ['item' => $accessory])
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
   </div>
 
@@ -388,7 +385,7 @@
         </div>
 
         <div class="col-md-3 d-flex justify-content-end">
-            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="services.html">
+            <a class="bg-transparent py-2 rounded-2 text-black d-flex gap-3" href="{{ route('client.ads', ['slug' => 'plates']) }}">
             <span class="fs-18">
                 {{ __('front.all_car_plates') }}
             </span>
@@ -400,11 +397,11 @@
     </div>
 
     <div class="row py-5  slider-main overflow-hidden">
-        <div class="col-lg-4 col-md-4 col-sm-6 ">
-            @foreach($plates as $plate)
+        @foreach($plates as $plate)
+            <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.plate-card', ['item' => $plate])
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
   </div>
 

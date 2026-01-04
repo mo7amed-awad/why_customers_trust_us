@@ -130,4 +130,11 @@ return [
     'oldest' => 'الأقدم',
     'price_low_high' => 'السعر: من الأقل للأعلى',
     'price_high_low' => 'السعر: من الأعلى للأقل',
+    'home_platform_title' => 'المنصة الشاملة للسيارات',
+    'home_platform_description' => 'كل خدمات السيارت في مكان واحد',
+    'find_a_car' => 'ابحث عن سيارة',
+    'new_cars' => 'السيارات الجديدة',
+    'used_cars' => 'السيارات المستعملة',
+    'advanced_search' => 'بحث متقدم',
+
 ];
