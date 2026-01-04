@@ -64,5 +64,4 @@ class HomeController extends BasicController
         return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs','accessories', 'plates'));
     }
 
-
 }

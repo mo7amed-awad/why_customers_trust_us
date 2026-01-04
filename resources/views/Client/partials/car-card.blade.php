@@ -3,7 +3,7 @@
         <div class="img-card sevices-fade d-flex align-items-center justify-content-center rounded-0 overflow-hidden position-relative">
             <div class="sevices-fade p-2 top-0 bottom-0 start-0 end-0 position-absolute d-flex flex-column justify-content-between" style="z-index: 1;">
                 <div class=" d-flex gap-2 align-items-center justify-content-between">
-                    @if($car->is_new)
+                    @if($item->is_new)
                         <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0 bg-primary-color">
                             {{ __('front.new') }}
                         </h6>
@@ -29,7 +29,7 @@
                 <div class=" d-flex gap-2 align-items-center justify-content-between">
                     <div class="">
                         <h6 class="text-white py-1 lh-base  mb-0 ">{{ __('front.starting_from') }}</h6>
-                        <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($car->price, 2) }}</h3>
+                        <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($item->price, 2) }}</h3>
                     </div>
 
                     <div class="text-black fw-semibold d-flex align-items-center gap-1 ">
@@ -45,11 +45,11 @@
                 </div>
             </div>
 
-            <img src="{{ asset($car->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
+            <img src="{{ asset($item->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
         </div>
         <div class="card-body row gy-3">
             <div class="col-12">
-                <h5 class="card-title">{{$car->title}}</h5>
+                <h5 class="card-title">{{$item->title}}</h5>
             </div>
             <div class=" col-6 text-center">
                 <h2 class="d-flex align-items-center gap-2"><svg width="16" height="16" viewBox="0 0 16 16"
@@ -64,7 +64,7 @@
                         <path d="M2 6.66699H14" stroke="#AFAD9C" stroke-width="1.33333" stroke-linecap="round"
                               stroke-linejoin="round" />
                     </svg>
-                    <span class="text-black-50  lh-base fs-14"> {{ $car->carDetails->manufacture_year ?? 'N/A' }}</span>
+                    <span class="text-black-50  lh-base fs-14"> {{ $item->carDetails->manufacture_year ?? 'N/A' }}</span>
 
                 </h2>
 
@@ -78,8 +78,8 @@
                     </svg>
 
                     <span class="text-black-50 lh-base fs-14">
-                        {{ $car->carDetails->fuel_type
-                            ? __('front.fuel_' . $car->carDetails->fuel_type)
+                        {{ $item->carDetails->fuel_type
+                            ? __('front.fuel_' . $item->carDetails->fuel_type)
                             : 'N/A'
                         }}
                     </span>
@@ -94,7 +94,7 @@
                                 fill="#AFAD9C" />
                     </svg>
 
-                    <span class="text-black-50  lh-base fs-14"> {{ $car->carDetails->mileage ?? 'N/A' }}</span>
+                    <span class="text-black-50  lh-base fs-14"> {{ $item->carDetails->mileage ?? 'N/A' }}</span>
 
                 </h2>
 
@@ -107,8 +107,8 @@
                                 fill="#AFAD9C" />
                     </svg>
                     <span class="text-black-50 lh-base fs-14">
-                        {{ $car->carDetails->transmission
-                            ? __('front.' . $car->carDetails->transmission)
+                        {{ $item->carDetails->transmission
+                            ? __('front.' . $item->carDetails->transmission)
                             : 'N/A'
                         }}
                     </span>
@@ -117,7 +117,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2 col-12">
                 <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">
-                  {{ $car->carDetails->engine ?? 'N/A' }}
+                  {{ $item->carDetails->engine ?? 'N/A' }}
                 </span>
                 <a class="btn primary-color d-flex align-items-center gap-2"
                    href="detailsPage.html"><span>التفاصيل</span><span><i

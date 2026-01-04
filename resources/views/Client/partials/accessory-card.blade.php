@@ -2,7 +2,7 @@
     <div class="img-card sevices-fade d-flex align-items-center justify-content-center rounded-0 overflow-hidden position-relative">
         <div class="sevices-fade p-2 top-0 bottom-0 start-0 end-0 position-absolute d-flex flex-column justify-content-between" style="z-index: 1;">
             <div class=" d-flex gap-2 align-items-center justify-content-between">
-                @if($car->is_new)
+                @if($item->is_new)
                     <h6 class="fs-14 text-white py-1 lh-base px-3 rounded-pill mb-0 bg-primary-color">
                         {{ __('front.new') }}
                     </h6>
@@ -25,7 +25,7 @@
             <div class=" d-flex gap-2 align-items-center justify-content-between">
                 <div class="">
                     <h6 class="text-white py-1 lh-base  mb-0 "> {{ __('front.starting_from') }}</h6>
-                    <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($accessory->price, 2) }}</h3>
+                    <h3 class="fs-24 fw-bold text-white">BHD {{ number_format($item->price, 2) }}</h3>
                 </div>
 
                 <div class="text-black fw-semibold d-flex align-items-center gap-1 ">
@@ -41,14 +41,14 @@
             </div>
         </div>
 
-        <img src="{{ asset($accessory->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
+        <img src="{{ asset($item->images->first()->image ?? 'assets/imgs/services/1.jpg') }}" class="w-100 h-100 object-fit-cover">
     </div>
     <div class="card-body row gap-2">
         <div class="col-12">
-            <h5 class="card-title">{{$accessory->title}}</h5>
+            <h5 class="card-title">{{$item->title}}</h5>
         </div>
         <div class=" col-12 d-flex gap-2 flex-wrap justify-content-between">
-            <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">{{ $accessory->subCategory->trans('title') ?? 'N/A' }}</span>
+            <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">{{ $item->subCategory->trans('title') ?? 'N/A' }}</span>
         </div>
 
         <div class="d-flex justify-content-end align-items-center mb-2 col-12">

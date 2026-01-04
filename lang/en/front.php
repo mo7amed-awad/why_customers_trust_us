@@ -120,4 +120,14 @@ return [
     'all_accessories' => 'All Accessories',
     'car_plates' => 'Car Plates',
     'all_car_plates' => 'All Plates',
+    'platform_title' => 'The All-in-One Car Platform',
+    'platform_subtitle' => 'Better When You’re a Member',
+    'platform_description' => 'See more relevant listings, find what you are looking for faster, and much more!',
+    'become_member' => 'Become a Member',
+    'million' => 'Million',
+    'sort_by' => 'Sort By',
+    'latest' => 'Latest',
+    'oldest' => 'Oldest',
+    'price_low_high' => 'Price: Low to High',
+    'price_high_low' => 'Price: High to Low'
 ];

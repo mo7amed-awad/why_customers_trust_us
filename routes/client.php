@@ -14,6 +14,7 @@ Route::any('/', function () {
 
 Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'client.'], function () {
     Route::any('/', [HomeController::class, 'home'])->name('home');
+    Route::any('/ads/{slug}', [AdsController::class, 'index'])->name('ads');
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
