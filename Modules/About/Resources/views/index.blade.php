@@ -3,19 +3,6 @@
 @section('pagetitle', __('trans.about'))
 @section('content')
 
-    <div class="row">
-        @if (hasPermission('add_about'))
-            <div class="my-2 col-6 text-sm-start">
-                <a href="{{ route(activeGuard() . '.about.create') }}" class="main-btn">@lang('trans.add_new')</a>
-            </div>
-        @endif
-        @if (hasPermission('delete_about'))
-            <div class="my-2 col-6 text-sm-end">
-                <button type="button" id="DeleteSelected" onclick="DeleteSelected('about')" class="btn btn-danger"
-                    disabled>@lang('trans.Delete_Selected')</button>
-            </div>
-        @endif
-    </div>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -23,6 +10,7 @@
                 <th>#</th>
                 <th>@lang('trans.title_ar')</th>
                 <th>@lang('trans.title_en')</th>
+                <th>@lang('trans.image')</th>
                 <th></th>
             </tr>
         </thead>
@@ -36,21 +24,26 @@
                     <td>{{ $Model->title_ar }}</td>
                     <td>{{ $Model->title_en }}</td>
                     <td>
+                        @if($Model->image)
+                            <img src="{{ asset( $Model->image) }}"
+                                 width="80" height="80" style="object-fit: cover; border-radius: 8px;">
+                        @else
+                            <span class="text-muted">No Image</span>
+                        @endif
+                    </td>
+
+                    <td>
+                        @if (hasPermission('show_about'))
+                            <a href="{{ route(activeGuard() . '.about.show', $Model) }}">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        @endif
+
                         @if (hasPermission('edit_about'))
                             <a href="{{ route(activeGuard() . '.about.edit', $Model) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                         @endif
-                        @if (hasPermission('delete_about'))
-                            <form class="formDelete" method="POST"
-                                action="{{ route(activeGuard() . '.about.destroy', $Model) }}">
-                                @csrf
-                                <input name="_method" type="hidden" value="DELETE">
-                                <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip"
-                                    title="Delete">
-                                    <i class="fa-solid fa-eraser"></i>
-                                </button>
-                            </form>
-                        @endif
+
                     </td>
                 </tr>
             @endforeach

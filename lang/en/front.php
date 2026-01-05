@@ -160,5 +160,8 @@ return [
     'delete_account' => 'Delete Account',
     'my_account' => 'My Account',
     'edit' => 'Edit',
+    'top_car_brands_desc' => 'Explore a variety of trusted car brands to find the one that fits your style and needs.',
+    'our_mission' => 'Our Mission',
+    'our_vision' => 'Our Vision',
 
 ];

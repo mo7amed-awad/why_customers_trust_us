@@ -138,6 +138,10 @@
                         @include('whycustomerstrustus::layouts.sidebar')
                     @endif
 
+                    @if(hasPermission('show_about'))
+                        @include('about::layouts.sidebar')
+                    @endif
+
                     @if(hasPermission('show_ourvision'))
                         @include('ourvision::layouts.sidebar')
                     @endif
@@ -163,9 +167,6 @@
 
 
                 <hr>
-                    @if(hasPermission('show_about'))
-                        @include('about::layouts.sidebar')
-                    @endif
 
                     @if(hasPermission('show_terms'))
                         @include('term::layouts.sidebar')

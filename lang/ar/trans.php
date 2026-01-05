@@ -809,7 +809,6 @@ return [
     'ZeroGravity' => 'Zero Gravity',
     'about' => 'عن الموقع',
     'about' => 'عن الموقع',
-    'about' => 'من نحن',
     'about_ar' => 'عن الموقع بالعربية',
     'about_en' => 'عن الموقع بالإنجليزية',
     'about_image' => 'صورة (عن الموقع)',

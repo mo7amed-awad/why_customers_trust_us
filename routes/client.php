@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
     Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
     Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
+    Route::get('about', [AboutController::class, 'index'])->name('about');
 
     Route::middleware('auth:user')->group(function () {
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

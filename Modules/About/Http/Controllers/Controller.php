@@ -2,6 +2,7 @@
 
 namespace Modules\About\Http\Controllers;
 
+use App\Functions\Upload;
 use App\Http\Controllers\BasicController;
 use Illuminate\Http\Request;
 use Modules\About\Entities\Model;
@@ -22,11 +23,22 @@ class Controller extends BasicController
 
     public function store(Request $request)
     {
-        $Model = Model::create($request->all());
+
+        $Model = Model::create($request->only(['title_ar', 'title_en', 'desc_ar', 'desc_en', 'status']));
+
+        if ($request->hasFile('image')) {
+            $Model->image = Upload::UploadFile($request->image, 'About');
+        }
+
+        $Model->save();
         alert()->success(__('trans.addedSuccessfully'));
 
+        alert()->success(__('trans.addedSuccessfully'));
         return redirect()->back();
     }
+
+
+
 
     public function show($id)
     {
@@ -45,14 +57,27 @@ class Controller extends BasicController
     public function update(Request $request, $id)
     {
         $Model = Model::where('id', $id)->firstorfail();
-        $Model->update($request->all());
+        $Model->update($request->only(['title_ar', 'title_en', 'desc_ar', 'desc_en', 'status']));
+        if ($request->hasFile('image')) {
+            Upload::deleteImage($Model->image);
+            $Model->image = Upload::UploadFile($request->image, 'About');
+        }
+
+        $Model->save();
         alert()->success(__('trans.updatedSuccessfully'));
 
         return redirect()->back();
     }
 
+
     public function destroy($id)
     {
-        $Model = Model::where('id', $id)->delete();
+        $Model = Model::findOrFail($id);
+
+        if ($Model->image) {
+            Upload::deleteImage($Model->image);
+        }
+
+        $Model->delete();
     }
 }

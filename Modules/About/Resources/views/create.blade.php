@@ -9,12 +9,12 @@
             <div class="col-md-6">
                 <label for="title_ar">@lang('trans.title_ar')</label>
                 <input id="title_ar" type="text" name="title_ar" required placeholder="@lang('trans.title_ar')"
-                    class="form-control">
+                       class="form-control">
             </div>
             <div class="col-md-6">
                 <label for="title_en">@lang('trans.title_en')</label>
                 <input id="title_en" type="text" name="title_en" required placeholder="@lang('trans.title_en')"
-                    class="form-control">
+                       class="form-control">
             </div>
 
             {{-- Description (AR -> EN/UR) --}}
@@ -25,6 +25,16 @@
             <div class="col-md-6 col-sm-12">
                 <label>@lang('trans.desc_en')</label>
                 <textarea rows="7" name="desc_en" placeholder="@lang('trans.desc_en')" class="form-control mceNoEditor"></textarea>
+            </div>
+
+            {{-- Image Upload --}}
+            <div class="col-md-6 col-sm-12">
+                <label for="image">@lang('trans.image')</label>
+                <input class="form-control w-100" id="image" type="file" name="image"
+                       onchange="document.getElementById('file').src = window.URL.createObjectURL(this.files[0])">
+                @error('image')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="row">

@@ -17,6 +17,8 @@ class CreateAboutsTable extends Migration
             $table->text('desc_ar')->nullable();
             $table->text('desc_en')->nullable();
 
+            $table->string('image')->nullable();
+
             $table->boolean('status')->default(1);
 
             $table->softDeletes();
