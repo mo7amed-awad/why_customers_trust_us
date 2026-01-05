@@ -443,7 +443,7 @@
             </div>
 
             {{--Comment--}}
-            <form class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
+            <form id="commentForm" class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
                 <h3 class="fs-24 fw-semibold">
                     {{ __('front.leave_review') }}
                 </h3>
@@ -452,8 +452,8 @@
                         {{ __('front.review') }}
                     </label>
                     <div class="input-group mb-3">
-        <textarea style="resize: none;" class="form-control rounded-4 bg-white border p-3" id="Notes"
-                  rows="5" placeholder="{{ __('front.your_review') }}"></textarea>
+            <textarea style="resize: none;" class="form-control rounded-4 bg-white border p-3" id="Notes"
+                      rows="5" placeholder="{{ __('front.your_review') }}"></textarea>
                     </div>
                 </div>
                 <div class="col-12 d-flex align-items-center">
@@ -461,51 +461,36 @@
                         {{ __('front.send_review') }}
                     </button>
                 </div>
-
-
-
             </form>
 
             {{--Comments--}}
-            <div class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
-                <h3 class="fw-semibold">
-                    Reviews (200 reviews)
+            <div id="commentsContainer" class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
+                <h3 class="fw-semibold" id="commentsCount">
+                    {{ __('front.reviews', ['count' => $item->comments->count()]) }}
                 </h3>
-                <div class="col-lg-12 align-items-center  d-flex justify-content-between py-2 border-bottom item">
-                    <div class=" py-2 w-100">
-                        <div class="d-flex gap-3 position-relative">
-                            <div
-                                    class="bg-white img rounded-circle primary-color img-card overflow-hidden d-flex justify-content-center align-items-center"
-                                    style="width:40px;height:40px ">
-                            </div>
-                            <div class="fw-medium d-flex flex-column gap-2" style="flex: 1;">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h1 class=" fs-18 fw-medium mb-2">Dianne Russell</h1>
-                                        <h6 class="mb-0 ">Bahrain منذ 2 شهور</h6>
+
+                <div class="comments-list">
+                    @foreach($item->comments as $comment)
+                        <div class="col-lg-12 align-items-center d-flex justify-content-between py-2 border-bottom item">
+                            <div class="py-2 w-100">
+                                <div class="d-flex gap-3 position-relative">
+                                    <div
+                                            class="bg-white img rounded-circle primary-color img-card overflow-hidden d-flex justify-content-center align-items-center"
+                                            style="width:40px;height:40px ">
+                                    </div>
+                                    <div class="fw-medium d-flex flex-column gap-2" style="flex: 1;">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h1 class="fs-18 fw-medium mb-2">{{$comment->user->name}}</h1>
+                                                <h6 class="mb-0">{{ $comment->created_at_human }}</h6>
+                                            </div>
+                                        </div>
+                                        <p class="text-secondary mb-2">{{$comment->content}}</p>
                                     </div>
                                 </div>
-                                <p class="text-secondary mb-2">I had the pleasure of driving the 2023 Mercedes-Benz GLC,
-                                    and it was a perfect experience. The car is very comfortable, with a luxurious interior.</p>
                             </div>
                         </div>
-
-                    </div>
-
-                </div>
-                <div class="col-12 d-flex align-items-center">
-                    <a type="submit" class=" fs-18 py-2 w-auto px-5 rounded-pill d-flex align-items-center gap-2 my-2 btn fw-medium">
-         <span>          View more reviews
-</span>
-                        <span>
-                <svg width="14" height="12" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.41 0L6 4.59L10.59 0L12 1.42L6 7.42L0 1.42L1.41 0Z" fill="#1A1A1A"/>
-</svg>
-          </span>
-
-
-
-                    </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -589,8 +574,7 @@
     <div class="row py-lg-5 py-2 justify-content-between align-items-center">
         <div class="col-9">
             <h3 class="fw-semibold py-2" data-aos="fade-down" data-aos-duration="1500">You May Also Like</h3>
-            <p class="text-secondary" data-aos="fade-up" data-aos-duration="1500">
-                Each item is thoughtfully designed to complement your space beautifully. </p>
+            <p class="text-secondary" data-aos="fade-up" data-aos-duration="1500">Each item is thoughtfully designed to complement your space beautifully. </p>
         </div>
     </div>
     <div class="row  py-lg-5 py-3  service-slider">
@@ -645,6 +629,7 @@
         });
     </script>
 
+    {{--Favorit--}}
     <script>
         document.querySelectorAll('.like-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -675,6 +660,7 @@
         });
     </script>
 
+    {{--Like--}}
     <script>
         $(document).ready(function(){
             // تفعيل الـ Slider الرئيسي
@@ -720,5 +706,64 @@
             });
         });
     </script>
+
+    {{--Comment--}}
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const textarea = document.getElementById('Notes');
+            const content = textarea.value.trim();
+            if(!content) return alert('Please write a comment.');
+
+            const lang = '{{ app()->getLocale() }}';
+            const adId = {{ $item->id }};
+
+            fetch(`/${lang}/ads/${adId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ content })
+            })
+                .then(res => {
+                    if(!res.ok) throw new Error('Failed to post comment');
+                    return res.json();
+                })
+                .then(data => {
+                    const commentHTML = `
+        <div class="col-lg-12 align-items-center d-flex justify-content-between py-2 border-bottom item">
+            <div class="py-2 w-100">
+                <div class="d-flex gap-3 position-relative">
+                    <div class="bg-white img rounded-circle primary-color img-card overflow-hidden d-flex justify-content-center align-items-center" style="width:40px;height:40px "></div>
+                    <div class="fw-medium d-flex flex-column gap-2" style="flex: 1;">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h1 class="fs-18 fw-medium mb-2">${data.user_name}</h1>
+                                <h6 class="mb-0">${data.created_at_human}</h6>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-2">${data.content}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+                    // استخدم insertAdjacentHTML بدل prepend
+                    document.querySelector('#commentsContainer .comments-list').insertAdjacentHTML('afterbegin', commentHTML);
+
+                    const countElem = document.getElementById('commentsCount');
+                    let currentCount = parseInt(countElem.textContent.match(/\d+/)[0]);
+                    countElem.textContent = `Reviews (${currentCount + 1})`;
+
+                    textarea.value = '';
+                })
+                .catch(err => console.error(err));
+        });
+    </script>
+
 @endpush
 @endsection

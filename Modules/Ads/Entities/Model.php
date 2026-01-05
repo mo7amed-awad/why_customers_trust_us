@@ -57,6 +57,10 @@ class Model extends  BaseModel
         return $this->hasMany(Like::class, 'ad_id');
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class, 'ad_id');
+    }
+
     public function getCreatedAtHumanAttribute()
     {
         return $this->created_at

@@ -144,5 +144,7 @@ return [
     'review' => 'المراجعة',
     'your_review' => 'اكتب مراجعتك',
     'send_review' => 'إرسال المراجعة',
+    'reviews' => 'المراجعات :count',
+    'view_more_reviews' => 'عرض المزيد من المراجعات',
 
 ];

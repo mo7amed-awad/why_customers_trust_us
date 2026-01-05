@@ -144,5 +144,7 @@ return [
     'review' => 'Review',
     'your_review' => 'Your review',
     'send_review' => 'Send Review',
+    'reviews' => 'Reviews (:count)',
+    'view_more_reviews' => 'View more reviews',
 
 ];

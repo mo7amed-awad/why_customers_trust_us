@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\AdsController;
 use App\Http\Controllers\Client\CategoryController;
+use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LikeController;
@@ -42,6 +43,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
         Route::post('ads/store/{subcategorySlug}', [AdsController::class, 'store'])->name('ads.store');
         Route::post('/favorites/toggle', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
         Route::post('/like/toggle', [LikeController::class, 'toggle'])->name('like.toggle');
+        Route::post('/ads/{ad}/comment', [CommentController::class, 'store'])->name('ads.comment');
 
     });
 });
