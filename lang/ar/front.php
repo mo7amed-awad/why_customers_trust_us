@@ -154,5 +154,11 @@ return [
     'may_also_like' => 'قد يعجبك أيضًا',
     'may_also_like_desc' => 'تم تصميم كل عنصر بعناية ليتناسب مع مساحتك بشكل جميل.',
     'notifications' => 'الإشعارات',
+    'my_profile' => 'ملفي الشخصي',
+    'favorite_items' => 'العناصر المفضلة',
+    'save_changes' => 'حفظ التغييرات',
+    'delete_account' => 'حذف الحساب',
+    'my_account' => 'حسابي',
+    'edit' => 'تعديل',
 
 ];

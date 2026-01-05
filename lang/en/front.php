@@ -154,5 +154,11 @@ return [
     'may_also_like' => 'You May Also Like',
     'may_also_like_desc' => 'Each item is thoughtfully designed to complement your space beautifully.',
     'notifications' => 'Notifications',
+    'my_profile' => 'My Profile',
+    'favorite_items' => 'Favorite Items',
+    'save_changes' => 'Save Changes',
+    'delete_account' => 'Delete Account',
+    'my_account' => 'My Account',
+    'edit' => 'Edit',
 
 ];

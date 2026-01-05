@@ -21,7 +21,10 @@
                         <div
                                 class="bg-white img rounded-circle border img-card overflow-hidden d-flex justify-content-center align-items-center"
                                 style="width:60px; height:60px;">
-                            <!-- svg هنا -->
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.375 22.5C19.375 24.9162 17.4162 26.875 15 26.875C12.5838 26.875 10.625 24.9162 10.625 22.5" stroke="#2240E7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24.0389 22.5H5.96109C4.73994 22.5 3.75 21.51 3.75 20.2889C3.75 19.7025 3.98295 19.1401 4.39761 18.7254L5.15165 17.9714C5.85491 17.2681 6.25 16.3143 6.25 15.3198V11.875C6.25 7.04251 10.1675 3.125 15 3.125C19.8325 3.125 23.75 7.0425 23.75 11.875V15.3198C23.75 16.3143 24.1451 17.2681 24.8484 17.9714L25.6024 18.7254C26.017 19.1401 26.25 19.7025 26.25 20.2889C26.25 21.51 25.26 22.5 24.0389 22.5Z" stroke="#2240E7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
                         <div class="fw-medium d-flex flex-column w-100">
                             <span class="fs-16 fw-semibold">{{ $notification->data['title'][app()->getLocale()] }}</span>

@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.10/build/js/utils.js",
     });
 
-    iti.setCountry("bh");
+    const userCountryCode = window.userPhoneCode || "bh";
+    iti.setCountry(userCountryCode);
 
     form.addEventListener("submit", function(e) {
         document.getElementById("country_code").value = iti.getSelectedCountryData().dialCode;
