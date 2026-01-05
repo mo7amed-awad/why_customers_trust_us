@@ -153,5 +153,6 @@ return [
     'whatsapp' => 'WhatsApp',
     'may_also_like' => 'You May Also Like',
     'may_also_like_desc' => 'Each item is thoughtfully designed to complement your space beautifully.',
+    'notifications' => 'Notifications',
 
 ];

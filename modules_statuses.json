@@ -27,5 +27,6 @@
     "OurMission": true,
     "OurVision": true,
     "Category": true,
-    "Ads": true
+    "Ads": true,
+    "Notification": true
 }

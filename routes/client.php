@@ -9,6 +9,7 @@ use App\Http\Controllers\Client\CommentController;
 use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LikeController;
+use App\Http\Controllers\Client\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::any('/', function () {
@@ -44,6 +45,10 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
         Route::post('/favorites/toggle', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
         Route::post('/like/toggle', [LikeController::class, 'toggle'])->name('like.toggle');
         Route::post('/ads/{ad}/comment', [CommentController::class, 'store'])->name('ads.comment');
+        Route::get('/notifications', [NotificationController::class, 'notifications'])->name('notifications');
+        Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+            ->where('id', '[0-9a-fA-F\-]+')
+            ->name('notifications.read');
 
     });
 });

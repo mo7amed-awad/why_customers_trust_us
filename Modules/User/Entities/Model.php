@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Ads\Entities\Favorite;
 use Modules\Ads\Entities\Model as Ad;
+use Modules\Notification\Entities\Model as Notification;
 
 
 class Model extends Authenticatable
@@ -29,5 +30,9 @@ class Model extends Authenticatable
         return $this->belongsToMany(Ad::class, 'favorites');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id');
+    }
 
 }
