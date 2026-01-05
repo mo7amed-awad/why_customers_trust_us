@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,5 +20,6 @@ class AppServiceProvider extends ServiceProvider
             session()->put('locale', $locale);
             URL::defaults(['lang' => $locale]);
         }
+        Carbon::setLocale(app()->getLocale());
     }
 }

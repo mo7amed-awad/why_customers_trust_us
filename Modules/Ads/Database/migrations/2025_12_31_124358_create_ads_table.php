@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number')->unique();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('subcategory_id')->nullable()->constrained('subcategories')->cascadeOnDelete();

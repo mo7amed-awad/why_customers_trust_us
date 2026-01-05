@@ -52,6 +52,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Responsive.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     @stack('css')
 
     <title>@hasSection('title') {{ $title }} - @yield('title') @else {{ $title }} @endif</title>
@@ -82,6 +84,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.10/build/js/intlTelInput.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="{{ asset('assets/js/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('assets/js/phone.js') }}"></script>
 <script src="{{asset('assets/js/multiple-image-video(MIV).js')}}"></script>

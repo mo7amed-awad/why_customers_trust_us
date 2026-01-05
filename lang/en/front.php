@@ -136,5 +136,13 @@ return [
     'new_cars' => 'New Cars',
     'used_cars' => 'Used Cars',
     'advanced_search' => 'Advanced Search',
+    'home' => 'Home',
+    'details' => 'Details',
+    'no_addons_for_car' => 'No addons for this car',
+    'details_and_addons' => 'Details & Addons',
+    'leave_review' => 'Leave a Review About This Ad',
+    'review' => 'Review',
+    'your_review' => 'Your review',
+    'send_review' => 'Send Review',
 
 ];

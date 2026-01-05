@@ -110,6 +110,12 @@ class AdsController extends Controller
         $query->orderBy($sort['field'], $sort['direction']);
     }
 
+    public function show($lang,$id){
+
+        $item = Ad::find($id);
+        return view('Client.details', compact('item'));
+    }
+
     public function adsCategories(){
         $categories = Category::where('slug','!=', 'car-services')->get();
         return view('client.ads.ads-categories', compact('categories'));
@@ -180,6 +186,9 @@ class AdsController extends Controller
             $spareRequest = app(StoreCarRequest::class);
             $validated = $spareRequest->validated();
 
+            $features = $validated['features'] ?? [];
+            unset($validated['features']);
+
             $car = new Car($validated);
             $car->ad_id = $ad->id;
             $car->save();
@@ -188,8 +197,8 @@ class AdsController extends Controller
                 'type' => AdTypesEnum::CAR
             ]);
 
-            if (!empty($validated['features'])) {
-                foreach ($validated['features'] as $featureId => $value) {
+            if (!empty($features)) {
+                foreach ($features as $featureId => $value) {
                     \DB::table('car_features')->insert([
                         'car_id' => $car->id,
                         'feature_id' => $featureId,

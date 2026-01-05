@@ -136,5 +136,13 @@ return [
     'new_cars' => 'السيارات الجديدة',
     'used_cars' => 'السيارات المستعملة',
     'advanced_search' => 'بحث متقدم',
+    'home' => 'الرئيسية',
+    'details' => 'التفاصيل',
+    'no_addons_for_car' => 'لا توجد إضافات لهذه السيارة',
+    'details_and_addons' => 'تفاصيل وإضافات',
+    'leave_review' => 'اترك مراجعة عن هذا الاعلان ',
+    'review' => 'المراجعة',
+    'your_review' => 'اكتب مراجعتك',
+    'send_review' => 'إرسال المراجعة',
 
 ];

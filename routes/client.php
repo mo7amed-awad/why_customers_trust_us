@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\AdsController;
 use App\Http\Controllers\Client\CategoryController;
+use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\LikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::any('/', function () {
@@ -14,7 +16,12 @@ Route::any('/', function () {
 
 Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'client.'], function () {
     Route::any('/', [HomeController::class, 'home'])->name('home');
-    Route::any('/ads/{slug}', [AdsController::class, 'index'])->name('ads');
+    Route::any('/ads/{id}', [AdsController::class, 'show'])
+        ->whereNumber('id')
+        ->name('ad');
+    Route::any('/ads/{slug}', [AdsController::class, 'index'])
+        ->where('slug', '[a-zA-Z\-]+')
+        ->name('ads');
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -33,5 +40,8 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
         Route::get('category/{slug}', [AdsController::class, 'showCategory'])->name('category.show');
         Route::get('ads/create/{subcategorySlug}', [AdsController::class, 'create'])->name('ads.create');
         Route::post('ads/store/{subcategorySlug}', [AdsController::class, 'store'])->name('ads.store');
+        Route::post('/favorites/toggle', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
+        Route::post('/like/toggle', [LikeController::class, 'toggle'])->name('like.toggle');
+
     });
 });
