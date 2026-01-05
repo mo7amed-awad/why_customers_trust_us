@@ -320,9 +320,8 @@
                 <div class="col-12 mb-3">
                     <p class="text-secondary">{{$item->description}}</p>
                 </div>
-                <div class="col-12 mb-3">
-                    <h6 class="fs-24 fw-bolder">BHD {{ number_format($item->price, 2) }}</h6>
-                </div>
+
+                @if($type == \App\Enums\AdTypesEnum::CAR)
                 <div class="  col-lg-3 col-6 text-center">
                     <h2 class="fw-semibold  fs-18 mb-0 "> <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                                                                xmlns="http://www.w3.org/2000/svg">
@@ -401,13 +400,35 @@
                           }}
                     </p>
                 </div>
+                @elseif($type == \App\Enums\AdTypesEnum::LICENSE_PLATE)
+                    <div class=" col-12 d-flex gap-2 flex-wrap justify-content-between">
+                        @php
+                            $digitTranslations = [
+                                1 => 'front.one_digit',
+                                2 => 'front.two_digits',
+                                3 => 'front.three_digits',
+                                4 => 'front.four_digits',
+                                5 => 'front.five_digits',
+                                6 => 'front.six_digits',
+                            ];
+                        @endphp
+
+                        <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">
+                {{ __($digitTranslations[$item->plateDetails->digit_count] ?? '') }}
+            </span>
+                        <span class="bg-Secondary-color p-2 rounded-2 text-dark price-badge text-muted fs-12">
+                {{ __('front.' . $item->plateDetails->usage_type) }}
+            </span>
+                    </div>
+                @endif
 
 
 
             </div>
 
             {{--Details--}}
-            <div class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
+            @if($type == \App\Enums\AdTypesEnum::CAR)
+                <div class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
 
                 <div class="col-lg-12 ">
                     <h6 class="fs-24 fw-bold mb-0 py-2">
@@ -441,6 +462,7 @@
 
                 </div>
             </div>
+            @endif
 
             {{--Comment--}}
             <form id="commentForm" class="row bg-white py-3 gap-3 px-2 rounded-3 border-color border mb-3">
@@ -574,19 +596,19 @@
         </div>
     </div>
     <div class="row  py-lg-5 py-3  service-slider">
-        @if($type == 'license_plate')
+        @if($type == \App\Enums\AdTypesEnum::LICENSE_PLATE)
             @foreach($items as $item)
                 <div class="col-lg-4 col-md-4 col-sm-6 ">
                     @include('Client.partials.plate-card',['item'=>$item])
                 </div>
             @endforeach
-        @elseif($type=='accessory')
+        @elseif($type==\App\Enums\AdTypesEnum::ACCESSORY)
             @foreach($items as $item)
                 <div class="col-lg-4 col-md-4 col-sm-6 ">
                     @include('Client.partials.accessory-card',['item'=>$item])
                 </div>
             @endforeach
-        @elseif($type=='spare_part')
+        @elseif($type==\App\Enums\AdTypesEnum::SPARE_PART)
             @foreach($items as $item)
                 <div class="col-lg-4 col-md-4 col-sm-6 ">
                     @include('Client.partials.spare-part-card',['item'=>$item])
