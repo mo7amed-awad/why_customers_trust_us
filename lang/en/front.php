@@ -146,5 +146,12 @@ return [
     'send_review' => 'Send Review',
     'reviews' => 'Reviews (:count)',
     'view_more_reviews' => 'View more reviews',
+    'price_currency' => 'BHD',
+    'contact_for_price' => 'Contact for price',
+    'ad_owner' => 'Ad Owner',
+    'call' => 'Call',
+    'whatsapp' => 'WhatsApp',
+    'may_also_like' => 'You May Also Like',
+    'may_also_like_desc' => 'Each item is thoughtfully designed to complement your space beautifully.',
 
 ];

@@ -146,5 +146,12 @@ return [
     'send_review' => 'إرسال المراجعة',
     'reviews' => 'المراجعات :count',
     'view_more_reviews' => 'عرض المزيد من المراجعات',
+    'price_currency' => 'دينار بحريني',
+    'contact_for_price' => 'السعر عند التواصل',
+    'ad_owner' => 'صاحب الإعلان',
+    'call' => 'اتصال',
+    'whatsapp' => 'واتساب',
+    'may_also_like' => 'قد يعجبك أيضًا',
+    'may_also_like_desc' => 'تم تصميم كل عنصر بعناية ليتناسب مع مساحتك بشكل جميل.',
 
 ];

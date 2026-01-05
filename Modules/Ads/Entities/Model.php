@@ -7,6 +7,7 @@ use App\Models\BaseModel;
 use Illuminate\Support\Facades\Auth;
 use Modules\Category\Entities\Subcategory;
 use Modules\Category\Entities\Model as Category;
+use Modules\User\Entities\Model as User;
 
 class Model extends  BaseModel
 {
@@ -59,6 +60,11 @@ class Model extends  BaseModel
 
     public function comments(){
         return $this->hasMany(Comment::class, 'ad_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getCreatedAtHumanAttribute()

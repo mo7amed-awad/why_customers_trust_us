@@ -112,8 +112,15 @@ class AdsController extends Controller
 
     public function show($lang,$id){
 
-        $item = Ad::find($id);
-        return view('Client.details', compact('item'));
+        $item = Ad::findOrFail($id);
+        $type = $item->type;
+
+        $items = Ad::where('type', $type)
+            ->where('id', '!=', $item->id)
+            ->inRandomOrder()
+            ->limit(6)
+            ->get();
+        return view('Client.details', compact('item', 'items','type'));
     }
 
     public function adsCategories(){

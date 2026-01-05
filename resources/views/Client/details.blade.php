@@ -498,67 +498,63 @@
 
             {{--side--}}
             <div class="row gap-3 ">
-                <div class="col-12 ">
-                    <div class="border rounded-3  h-100 bg-white py-4 gap-3 px-2  border-color border">
-                        <div class="d-flex justify-content-between align-items-center ">
+                <div class="col-12">
+                    <div class="border rounded-3 h-100 bg-white py-4 gap-3 px-2 border-color border">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h6 class="fs-24  mb-0 py-2">
-                                    السعر :قابل للتفاوض
+                                <h6 class="fs-24 mb-0 py-2">
+                                    {{ __('front.price') }}
+                                    @if($item->negotiable)
+                                        : {{ __('front.negotiable') }}
+                                    @endif
                                 </h6>
-                                <p class="primary-color"><span class="fw-bold">12000</span> <span>دينار بحريني</span></p></div>
-                            <div>
-                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1_11108)">
-                                        <path opacity="0.1" d="M7.56943 30.8637C4.41503 27.7073 2.83682 26.1311 2.25085 24.0833C1.66285 22.0355 2.1651 19.8611 3.16961 15.5144L3.7474 13.0072C4.59062 9.3485 5.01325 7.51916 6.26479 6.26557C7.51838 5.01402 9.34773 4.59139 13.0064 3.74818L15.5136 3.16834C19.8624 2.16588 22.0347 1.66362 24.0825 2.24959C26.1303 2.83759 27.7065 4.41581 30.8609 7.5702L34.5972 11.3065C40.0913 16.7986 42.8333 19.5426 42.8333 22.9522C42.8333 26.3639 40.0872 29.1079 34.5972 34.5979C29.1071 40.0921 26.3631 42.8341 22.9514 42.8341C19.5418 42.8341 16.7958 40.088 11.3057 34.5979L7.56943 30.8637Z" stroke="#212121" stroke-width="2.125"/>
-                                        <path d="M29.3385 29.3387C30.5329 28.1402 30.6942 26.364 29.6978 25.3656C28.7015 24.3692 26.9232 24.5305 25.7268 25.727C24.5324 26.9234 22.7541 27.0847 21.7577 26.0883C20.7614 25.092 20.9227 23.3137 22.1191 22.1193M22.1191 22.1193L21.3964 21.3966M22.1191 22.1193C22.7949 21.4415 23.6565 21.0985 24.4589 21.1046M30.0592 30.0594L29.3365 29.3366C28.5198 30.1554 27.4275 30.4902 26.5006 30.2983" stroke="#212121" stroke-width="2.125" stroke-linecap="round"/>
-                                        <path d="M18.376 18.9326C19.9706 17.3379 19.9706 14.7525 18.376 13.1579C16.7813 11.5632 14.1959 11.5632 12.6012 13.1579C11.0066 14.7525 11.0066 17.3379 12.6012 18.9326C14.1959 20.5272 16.7813 20.5272 18.376 18.9326Z" stroke="#212121" stroke-width="2.125"/>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_1_11108">
-                                            <rect width="44" height="44" fill="white"/>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
 
+                                <p class="primary-color">
+                                        <span class="fw-bold">{{ number_format($item->price) }}</span>
+                                        <span>{{ __('front.price_currency') }}</span>
+                                </p>
+                            </div>
+
+                            <div>
+                                {{-- SVG --}}
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
                 <div class="col-12 ">
+                    @php
+                        $phoneCode = $item->user->phone_code ?? '';
+                        $phone     = $item->user->phone ?? '';
+                        $fullPhone = $phoneCode . $phone;
+                    @endphp
                     <div class="border rounded-3  h-100 bg-white py-3 gap-3 px-2  border-color border mb-3">
-                        <h6 class="fs-24 fw-bold mb-0 py-2">
-                            صاحب الإعلان
-                        </h6>
+                        <h6 class="fs-24 fw-bold mb-0 py-2">{{ __('front.ad_owner') }}</h6>
                         <div class="d-flex py-2 align-items-center gap-2 flex-column">
-                            <h3 class="fw-medium text-dark mb-0">Provider Name</h3>
+                            <h3 class="fw-medium text-dark mb-0">{{$item->user->name}}</h3>
                         </div>
-                        <p class="text-secondary  lh-base py-2">
-                            A sleek and reliable sedan that combines comfort, performance....
-                        </p>
                         <div class="d-flex  gap-2">
                             <a class="fs-16 text-white text-center fw-semibold bg-primary-color w-100 d-flex gap-2 align-items-center justify-content-center py-2 rounded-3"
-                               href=""><span><i class="fa-solid fa-phone"></i></span><span>Call</span></a>
+                               href="tel:{{ $fullPhone }}" target="_blank"><span><i class="fa-solid fa-phone"></i></span><span>{{ __('front.call') }}</span></a>
                             <a class="fs-16 text-white text-center fw-semibold bg-whatsapp w-100 d-flex gap-2 align-items-center justify-content-center py-2 rounded-3"
-                               href=""><span><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp</span></a>
+                               href="https://wa.me/{{ ltrim($fullPhone, '+') }}" target="_blank"><span><i class="fa-brands fa-whatsapp"></i></span><span>{{ __('front.whatsapp') }}</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 ">
+                    @php
+                        $phoneCode = $item->phone_code ?? '';
+                        $phone     = $item->owner_phone ?? '';
+                        $fullPhone = $phoneCode . $phone;
+                    @endphp
                     <div class="border rounded-3  h-100 bg-white py-3 gap-3 px-2  border-color border mb-3">
                         <div class="d-flex py-2 align-items-center gap-2">
-                            <h3 class="fw-medium text-dark mb-0">Provider Name</h3>
+                            <h3 class="fw-medium text-dark mb-0">{{$item->owner_name}}</h3>
                         </div>
-                        <p class="text-secondary  lh-base py-2">
-                            A sleek and reliable sedan that combines comfort, performance....
-                        </p>
                         <div class="d-flex  gap-2">
                             <a class="fs-16 text-white text-center fw-semibold bg-primary-color w-100 d-flex gap-2 align-items-center justify-content-center py-2 rounded-3"
-                               href=""><span><i class="fa-solid fa-phone"></i></span><span>Call</span></a>
+                               href="tel:{{ $fullPhone }}" target="_blank"><span><i class="fa-solid fa-phone"></i></span><span>{{ __('front.call') }}</span></a>
                             <a class="fs-16 text-white text-center fw-semibold bg-whatsapp w-100 d-flex gap-2 align-items-center justify-content-center py-2 rounded-3"
-                               href=""><span><i class="fa-brands fa-whatsapp"></i></span><span>WhatsApp</span></a>
+                               href="https://wa.me/{{ ltrim($fullPhone, '+') }}" target="_blank"><span><i class="fa-brands fa-whatsapp"></i></span><span>{{ __('front.whatsapp') }}</span></a>
                         </div>
                     </div>
 
@@ -573,12 +569,36 @@
 <div class="container py-lg-5 py-md-4 py-3 section-top overflow-hidden position-relative">
     <div class="row py-lg-5 py-2 justify-content-between align-items-center">
         <div class="col-9">
-            <h3 class="fw-semibold py-2" data-aos="fade-down" data-aos-duration="1500">You May Also Like</h3>
-            <p class="text-secondary" data-aos="fade-up" data-aos-duration="1500">Each item is thoughtfully designed to complement your space beautifully. </p>
+            <h3 class="fw-semibold py-2" data-aos="fade-down" data-aos-duration="1500">{{ __('front.may_also_like') }}</h3>
+            <p class="text-secondary" data-aos="fade-up" data-aos-duration="1500">{{ __('front.may_also_like_desc') }} </p>
         </div>
     </div>
     <div class="row  py-lg-5 py-3  service-slider">
-        {{--Card--}}
+        @if($type == 'license_plate')
+            @foreach($items as $item)
+                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                    @include('Client.partials.plate-card',['item'=>$item])
+                </div>
+            @endforeach
+        @elseif($type=='accessory')
+            @foreach($items as $item)
+                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                    @include('Client.partials.accessory-card',['item'=>$item])
+                </div>
+            @endforeach
+        @elseif($type=='spare_part')
+            @foreach($items as $item)
+                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                    @include('Client.partials.spare-part-card',['item'=>$item])
+                </div>
+            @endforeach
+        @else
+            @foreach($items as $item)
+                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                    @include('Client.partials.car-card',['item'=>$item])
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
 
