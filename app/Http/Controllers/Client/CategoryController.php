@@ -10,6 +10,6 @@ class CategoryController extends Controller
     public function allCategories(){
         $categories = Category::all();
 
-        return view('client.all-categories', compact('categories'));
+        return view('Client.all-categories', compact('categories'));
     }
 }

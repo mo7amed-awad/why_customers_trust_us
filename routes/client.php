@@ -7,11 +7,14 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\AdsController;
 use App\Http\Controllers\Client\CategoryController;
 use App\Http\Controllers\Client\CommentController;
+use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LikeController;
 use App\Http\Controllers\Client\NotificationController;
+use App\Http\Controllers\Client\PrivacyPolicyController;
 use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
 
 Route::any('/', function () {
@@ -38,6 +41,9 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
     Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
     Route::get('about', [AboutController::class, 'index'])->name('about');
+    Route::get('contact', [ContactController::class, 'contact'])->name('contact');
+    Route::any('/terms-conditions', [TermsConditionsController::class, 'index'])->name('terms-conditions');
+    Route::any('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
 
     Route::middleware('auth:user')->group(function () {
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

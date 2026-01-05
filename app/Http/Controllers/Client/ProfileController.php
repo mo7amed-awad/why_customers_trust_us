@@ -17,7 +17,6 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        \Log::info($request->all());
         $request->validate([
             'name'  => 'sometimes|nullable|string|max:255',
             'phone' => 'sometimes|nullable|string|max:20',

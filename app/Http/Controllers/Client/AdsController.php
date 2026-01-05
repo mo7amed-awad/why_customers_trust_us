@@ -125,7 +125,7 @@ class AdsController extends Controller
 
     public function adsCategories(){
         $categories = Category::where('slug','!=', 'car-services')->get();
-        return view('client.ads.ads-categories', compact('categories'));
+        return view('Client.ads.ads-categories', compact('categories'));
     }
 
     public function showCategory($lang, $slug)
@@ -136,7 +136,7 @@ class AdsController extends Controller
 
         $categories = Category::where('slug','!=', 'car-services')->get();
 
-        return view('client.ads.category-details', compact('categories', 'category'));
+        return view('Client.ads.category-details', compact('categories', 'category'));
     }
 
     public function create($lang, $subcategorySlug)

@@ -31,7 +31,17 @@ const translations = {
         addAd: "اضف اعلانك",
         logout: "تسجيل الخروج",
         myAccount: "حسابي",
-        notifications: "الاشعارات"
+        notifications: "الاشعارات",
+        home: "الرئيسية",
+        about_us: "من نحن",
+        cars: "السيارات",
+        contact_us: "تواصل معنا",
+        follow_us: "تابعنا",
+        site_map: "خريطة الموقع",
+        terms_conditions: "الشروط والأحكام",
+        privacy_policy: "سياسة الخصوصية",
+        our_policies: "سياساتنا",
+        contact: "تواصل معنا"
     },
     en: {
         language: "ع",
@@ -40,7 +50,17 @@ const translations = {
         addAd: "Post Ad",
         logout: "Logout",
         myAccount: "My Account",
-        notifications: "Notifications"
+        notifications: "Notifications",
+        home: "Home",
+        about_us: "About Us",
+        cars: "Cars",
+        contact_us: "Contact Us",
+        follow_us: "Follow Us",
+        site_map: "Site Map",
+        terms_conditions: "Terms & Conditions",
+        privacy_policy: "Privacy Policy",
+        our_policies: "Our Policies",
+        contact: "Contact"
     }
 };
 
@@ -78,8 +98,8 @@ let navBarcontainer = `
             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                <a class="navbar-brand   text-center  m-0" href="index.html">
-<img class="logo m-0 img-fluid w-auto" style="max-width: 85px;" src="" />
+                <a class="navbar-brand   text-center  m-0" href="/${window.currentLang}/">
+                    <img class="logo m-0 img-fluid w-auto" style="max-width: 85px;" src="" />
                 </a>
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
@@ -91,19 +111,19 @@ let navBarcontainer = `
               <ul class="navbar-nav w-100  mb-2 mb-lg-0  align-items-lg-center text-black gap-lg-4 gap-1">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/${window.currentLang}">
-                    <span class="">Home</span>
+                    <span class="">${t('home')}</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="aboutUs.html">
-                    <span class="">About Us</span>
+                  <a class="nav-link" aria-current="page" href="/${window.currentLang}/about">
+                    <span class="">${t('about_us')}</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/ads/cars"><span class="">Cars</span></a>
+                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/ads/cars"><span class="">${t('cars')}</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="contactus.html"><span class="">Contact Us</span></a>
+                  <a class="nav-link " aria-current="page" href="/${window.currentLang}/contact"><span class="">${t('contact_us')}</span></a>
                 </li>
                 <li class="nav-item d-lg-none mobile-add-ad-link">
                   <a class="nav-link " aria-current="page"  href="/${window.currentLang}/ads-categories"><span class="">${t('addAd')}</span></a>
@@ -164,7 +184,7 @@ let navBarcontainer = `
                     stroke="#2969A8" stroke-width="1.5" />
                 </svg>
               </span>
-              <span class="px-1"><a class="text-black fs-16 text-decoration-none" href="myprofile.html">${t('myAccount')}</a></span>
+              <span class="px-1"><a class="text-black fs-16 text-decoration-none" href="/${window.currentLang}/profile">${t('myAccount')}</a></span>
             </li>
             <li class=" d-flex align-items-center dropdown-item fw-medium py-2">
               <span class="text-black fs-18"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -177,7 +197,7 @@ let navBarcontainer = `
                 </svg>
               </span>
               <span class="px-2"><a class="text-black fs-16 text-decoration-none"
-                  href="Notifications.html">${t('notifications')}</a></span>
+                  href="/${window.currentLang}/notifications">${t('notifications')}</a></span>
             </li>
             <li class=" d-flex align-items-center dropdown-item fw-medium py-2">
               <span class=" fs-18"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -290,50 +310,49 @@ let FooterContainer = `   <footer class=" ">
     <div class="container  py-lg-5 py-3">
       <div class="row justify-content-between" data-aos="fade-up">
         <div class="col-lg-3 col-sm-9 col-11 text-white  align-items-start gap-3 pb-md-1 pb-3">
-          <a class="navbar-brand1 py-3 text-center  m-0" href="index-ar.html">
+          <a class="navbar-brand1 py-3 text-center  m-0" href="/${window.currentLang}/">
             <img class="logo w-auto" src="" />
           </a>
-             <p class="py-lg-4 py-2">DRB Arabia – وجهتك الأولى لتجربة تخييم استثنائية تجمع بين الطبيعة والفخامة. نوفر مخيمات وخدمات متكاملة تجعل رحلتك ذكرى لا تُنسى.</p>
+             <p class="py-lg-4 py-2">${window.description}</p>
 
-          <h4 class="">follow us
-          </h4>
+          <h4 class="">${t('follow_us')}</h4>
           <ul class="social d-flex px-0">
 
             <li>
-              <a target="_blank" href="https://x.com/sat7aapp"><i class="fab fa-twitter icon"></i></a>
+              <a target="_blank" href="${window.x}"><i class="fab fa-twitter icon"></i></a>
             </li>
             <li>
-              <a target="_blank" href="https://www.tiktok.com/@sat7a.app"><i class="fa-brands fa-tiktok icon">
+              <a target="_blank" href="${window.tiktok}"><i class="fa-brands fa-tiktok icon">
                 </i></a>
             </li>
             <li>
-              <a target="_blank" href="https://www.instagram.com/sat7a.app"><i class="fa-brands fa-linkedin icon">
+              <a target="_blank" href="${window.linkedin}"><i class="fa-brands fa-linkedin icon">
                 </i></a>
             </li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 ">
-          <h4 class="">Site Map
+          <h4 class="">${t('site_map')}
           </h4>
                     <ul class="p-0 fs-6 mb-0">
             <li class="py-1 col-6">
               <a href="/${window.currentLang}">
-                Home
+                ${t('home')}
               </a>
             </li>
             <li class="py-1">
-              <a href="aboutUs.html">
-               About Us
+              <a href="/${window.currentLang}/about">
+               ${t('about_us')}
               </a>
             </li>
             <li class="py-1">
               <a  href="/${window.currentLang}/ads/cars">
-              Cars
+              ${t('cars')}
               </a>
             </li>
             <li class="py-1">
-              <a href="index.html">
-               Contact Us
+              <a href="/${window.currentLang}/contact">
+              ${t('contact_us')}
               </a>
             </li>
 
@@ -343,46 +362,41 @@ let FooterContainer = `   <footer class=" ">
         </div>
       
          <div class="col-lg-2 col-md-4 col-sm-6 ">
-          <h4 class="">Our Policies
+          <h4 class="">${t('our_policies')}
           </h4>
                     <ul class="p-0 fs-6 mb-0">
             <li class="py-1 ">
-              <a href="terms.html">
-                Terms & Condition
+              <a href="/${window.currentLang}/terms-conditions">
+               ${t('terms_conditions')}
               </a>
             </li>
             <li class="py-1">
-              <a href="Policy.html">
-              Privacy Policy
-              </a>
-            </li>
-            <li class="py-1">
-              <a href="faqs.html">
-              FAQs
+              <a href="/${window.currentLang}/privacy-policy">
+              ${t('privacy_policy')}
               </a>
             </li>
           </ul>
 
         </div>
          <div class="col-lg-3 col-md-12 ">
-      <h4 class="mb-0 fw-semibold"> Contact
+      <h4 class="mb-0 fw-semibold"> ${t('contact')}
       </h4>
 
 <ul class="p-0 fs-6 py-2">
 
         <li class="py-lg-1 py-2">
-          <a href="tel:+97302961700"  class="d-flex align-items-center gap-3" target="_blank">
+          <a href="tel:${window.phone}"  class="d-flex align-items-center gap-3" target="_blank">
             <span>
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.50246 4.25722C9.19873 3.4979 8.46332 3 7.64551 3H4.89474C3.8483 3 3 3.8481 3 4.89453C3 13.7892 10.2108 21 19.1055 21C20.1519 21 21 20.1516 21 19.1052L21.0005 16.354C21.0005 15.5361 20.5027 14.8009 19.7434 14.4971L17.1069 13.4429C16.4249 13.1701 15.6483 13.2929 15.0839 13.7632L14.4035 14.3307C13.6089 14.9929 12.4396 14.9402 11.7082 14.2088L9.79222 12.2911C9.06079 11.5596 9.00673 10.3913 9.66895 9.59668L10.2363 8.9163C10.7066 8.35195 10.8305 7.57516 10.5577 6.89309L9.50246 4.25722Z" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 
             </span>
-            <span class="text-black">+973 02961700</span>
+            <span class="text-black">${window.phone}</span>
           </a>
         </li>
         <li class="py-lg-1 py-2">
-          <a href="mailto:info@solutioners.com" class="d-flex align-items-center gap-3" target="_blank">
+          <a href="mailto:${window.email}" "class="d-flex align-items-center gap-3" target="_blank">
             <span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -395,18 +409,18 @@ let FooterContainer = `   <footer class=" ">
               </svg>
 
             </span>
-            <span class="text-black pt-1">info@solutioners.com</span>
+            <span class="text-black pt-1">${window.email}</span>
           </a>
         </li>
         <li class="py-lg-1 py-2">
-                <a href="https://maps.app.goo.gl/WBLB5w2nFc1kxicU9" class="d-flex gap-2 align-items-center" target="_blank">
+                <a href="${window.location_map_url}" class="d-flex gap-2 align-items-center" target="_blank">
                   <span>
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2.80518 1.55545L18.6143 6.4198C19.4766 6.68511 19.5746 7.86635 18.7677 8.26981L12.0673 11.6199C11.8738 11.7167 11.7168 11.8736 11.62 12.0672L8.27004 18.7671C7.86658 19.5741 6.68555 19.4762 6.42024 18.614L1.55544 2.80486C1.31935 2.03759 2.0379 1.31937 2.80518 1.55545Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
 
                   </span>
-                  <span class=""> Khobar, Saudi Arabia.</span>
+                  <span class=""> ${window.address}</span>
                 </a>
               </li>
       </ul>
@@ -420,7 +434,7 @@ let FooterContainer = `   <footer class=" ">
       <div class="row justify-content-center  text-black-50 py-2 gy-3 fw-medium border-top">
         <div class=" col-lg-8 col-md-6  col-12    emcan text-center">
             <span class="text-black fw-light">
-              Copyright © 2025 Scoop Car All rights reserved. Powered by 
+              Copyright © ${new Date().getFullYear()} Scoop Car All rights reserved. Powered by 
               <a style="color:black;opacity: 1; font-size:inherit" class='fw-semibold' target="_blank"
                 href="https://emcan-group.com/en">
                 Emcan Solutions</a>
