@@ -51,61 +51,76 @@
                 <div class="row justify-content-center w-100 py-5 gap-3">
                     <div class="col-lg-8">
                         <h4 class="h4-home py-2 fw-semibold welcome-text text-white fw-bold">
-                            Find the Perfect Car for You
+                            {{ __('front.find_perfect_car') }}
                         </h4>
                         <p class="text-white py-2" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
-                            Explore a wide range of new and used cars from trusted sellers. Compare features, view detailed specs,
-                            and drive away with confidence knowing you’ve made the right choice.
+                            {{ __('front.home_car_description') }}
                         </p>
                     </div>
                     <div class=" col-lg-10 ">
                         <div class="card h-100 rounded-3 overflow-hidden shadow-sm  position-relative" data-aos="zoom-in-up"
                              data-aos-duration="1500">
                             <div class="card-body  h-100 d-flex">
-                                <form class=" row d-flex flex-md-nowrap py-lg-4 py-2 gy-3 w-100 text-start align-items-end">
-                                    <div class="col-md-3 col-sm-6 ">
-                                        <label for="phonenumber" class="form-label fs-14 primary-color">Brand Name</label>
-                                        <div class="input-group  align-items-center">
-                                            <select class="form-select rounded-3" aria-label="Default select example">
-                                                <option selected>All Brands</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                <form class="row d-flex flex-md-nowrap py-lg-4 py-2 gy-3 w-100 text-start align-items-end"
+                                      method="GET"
+                                      action="{{ route('client.ads', ['slug' => 'cars']) }}">
+
+                                    {{--Brand--}}
+                                    <div class="col-md-3 col-sm-6">
+                                        <label class="form-label fs-14 primary-color">{{ __('front.brand') }}</label>
+                                        <div class="input-group align-items-center">
+                                            <select class="form-select rounded-3" name="brand" aria-label="Select Brand">
+                                                <option value="">{{ __('front.all_brands') }}</option>
+                                                @foreach($brands as $brand)
+                                                    <option value="{{ $brand->id }}" {{ request('brand') == $brand->id ? 'selected' : '' }}>
+                                                        {{ $brand->trans('title') }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-6 ">
-                                        <label for="phonenumber" class="form-label fs-14 primary-color">Model Car</label>
-                                        <div class="input-group  align-items-center">
-                                            <select class="form-select rounded-3" aria-label="Default select example">
-                                                <option selected>All Models</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+
+                                    {{--Model--}}
+                                    <div class="col-md-3 col-sm-6">
+                                        <label class="form-label fs-14 primary-color">{{ __('front.model') }}</label>
+                                        <div class="input-group align-items-center">
+                                            <select class="form-select rounded-3" name="model" aria-label="Select Model">
+                                                <option value="">{{ __('front.all_models') }}</option>
+                                                @foreach($models as $model)
+                                                    <option value="{{ $model->id }}" {{ request('model') == $model->id ? 'selected' : '' }}>
+                                                        {{ $model->trans('title') }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-6 ">
-                                        <label for="phonenumber" class="form-label fs-14 primary-color">Price</label>
-                                        <div class="input-group ">
-                                            <input type="text" class="form-control rounded-3  border  py-2  " placeholder="Price" id="Price"
-                                                   required>
+
+                                    {{--Price--}}
+                                    <div class="col-md-3 col-sm-6">
+                                        <label class="form-label fs-14 primary-color">{{ __('front.price')}}</label>
+                                        <div class="input-group">
+                                            <input type="number" name="price_max" class="form-control rounded-3 border py-2"
+                                                   placeholder=">{{ __('front.price')}}" value="{{ request('price_max') ?? '' }}" min="0" required>
+                                            <input type="hidden" name="price_min" value="0">
                                         </div>
                                     </div>
+
                                     <div class="col-md-3 col-sm-6 align-items-end">
-                                        <button type="submit" class="btn bg-primary-color  w-100 btn text-white rounded-2 gap-2">
-                        <span><svg width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.6018 17L21.6018 21" stroke="#F8F8F8" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round" />
-                            <path
-                                    d="M19.6018 11C19.6018 6.58172 16.0201 3 11.6018 3C7.18353 3 3.60181 6.58172 3.60181 11C3.60181 15.4183 7.18353 19 11.6018 19C16.0201 19 19.6018 15.4183 19.6018 11Z"
-                                    stroke="#F8F8F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                        </span>
-                                            <span>Find A Car</span>
+                                        <button type="submit" class="btn bg-primary-color w-100 text-white rounded-2 gap-2">
+            <span>
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.6018 17L21.6018 21" stroke="#F8F8F8" stroke-width="1.5"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19.6018 11C19.6018 6.58172 16.0201 3 11.6018 3C7.18353 3 3.60181 6.58172 3.60181 11C3.60181 15.4183 7.18353 19 11.6018 19C16.0201 19 19.6018 15.4183 19.6018 11Z"
+                          stroke="#F8F8F8" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </span>
+                                            <span>{{ __('front.find_a_car') }}</span>
                                         </button>
                                     </div>
+
                                 </form>
 
                             </div>

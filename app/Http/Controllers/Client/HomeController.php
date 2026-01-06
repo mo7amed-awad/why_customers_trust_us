@@ -7,6 +7,7 @@ use App\Http\Controllers\BasicController;
 use Modules\Ads\Entities\Model as Ad;
 use Modules\WhoWeAre\Entities\Model as WhoWeAre;
 use Modules\Brand\Entities\Model as Brand;
+use Modules\Model\Entities\Model as Model;
 use Modules\Service\Entities\Model as Service;
 use Modules\WhyChooseUs\Entities\Model as WhyChooseUs;
 use Modules\WhyCustomersTrustUs\Entities\Model as WhyCustomersTrustUs;
@@ -20,6 +21,7 @@ class HomeController extends BasicController
     {
         $whoWeAre = WhoWeAre::first();
         $brands = Brand::all();
+        $models = Model::all();
         $whyChooseUs = WhyChooseUs::all();
         $categories = Category::all();
 
@@ -61,7 +63,7 @@ class HomeController extends BasicController
             ->limit(7)
             ->get();
 
-        return view('Client.index', compact('whoWeAre', 'brands', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs','accessories', 'plates'));
+        return view('Client.index', compact('whoWeAre', 'brands','models', 'whyChooseUs', 'categories', 'cars', 'services', 'spareParts', 'WhyCustomersTrustUs','accessories', 'plates'));
     }
 
 }

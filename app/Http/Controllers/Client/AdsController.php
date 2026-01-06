@@ -61,10 +61,9 @@ class AdsController extends Controller
         $this->applySorting($query, $request);
 
         $items = $query->get();
-
+        
         $brands = Brand::with('models')->get();
         $models = Model::all();
-
         return view('Client.ads', compact('items', 'cardView', 'slug', 'brands', 'models','type'));
     }
 

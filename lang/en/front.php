@@ -204,5 +204,9 @@ return [
     'deleting' => 'Deleting...',
     'delete_error' => 'An error occurred while deleting the account',
     'connection_error' => 'A connection error occurred. Please try again later',
+    'home_car_description' => 'Explore a wide range of new and used cars from trusted sellers. Compare features, view detailed specs, and drive away with confidence knowing you’ve made the right choice.',
+    'find_perfect_car' => 'Find the Perfect Car for You',
+    'all_brands' => 'All Brands',
+    'all_models' => 'All Models',
 
 ];
