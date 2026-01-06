@@ -180,5 +180,13 @@ return [
     'form_message'      => 'Message',
     'form_message_ph'   => 'Write your message here',
     'form_send_btn'     => 'Send Message',
-
+    'favorites_items' => 'Favorites Items',
+    'current_password' => 'Current Password',
+    'password_placeholder' => 'Enter your current password',
+    'new_password' => 'New Password',
+    'new_password_ph' => 'Enter your new password',
+    'password_confirm' => 'Confirm Password',
+    'password_confirm_ph' => 'Re-enter your new password',
+    'password_incorrect' => 'Current password is incorrect',
+    'password_changed_success' => 'Password changed successfully',
 ];

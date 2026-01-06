@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\AboutController;
 use App\Http\Controllers\Client\AdsController;
@@ -61,6 +62,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
             ->name('notifications.read');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('password/update', [PasswordController::class, 'update'])->name('change_password');
 
     });
 });

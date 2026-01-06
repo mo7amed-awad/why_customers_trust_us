@@ -1,7 +1,10 @@
 <?php
 
 return [
-
+    'current_password_required' => 'الرجاء إدخال كلمة المرور الحالية',
+    'current_password_incorrect' => 'كلمة المرور الحالية غير صحيحة',
+    'new_password_required' => 'الرجاء إدخال كلمة المرور الجديدة',
+    'new_password_confirmed' => 'تأكيد كلمة المرور غير مطابق',
     'accepted' => 'يجب قبول :attribute.',
     'active_url' => ':attribute لا يُمثّل رابطًا صحيحًا.',
     'after' => 'يجب على :attribute أن يكون تاريخًا لاحقًا للتاريخ :date.',

@@ -9,6 +9,11 @@
 <div class="container py-lg-5 py-3 pt-50">
     <div class="row justify-content-between gap-lg-0 gap-3">
 
+
+        @php
+            $passwordError = $errors->hasAny(['current_password', 'new_password', 'new_password_confirmation']);
+        @endphp
+
         <div class="col-lg-4 ">
             <nav class="navbar navbar-expand-lg second-navbar py-0">
                 <div class=" nav-container w-100 px-lg-3">
@@ -29,9 +34,9 @@
                                     <img src="{{asset(setting('logo'))}}" alt="Logo" />
 
                                 </div>
-                                <button class="nav-link active my-1" id="v-pills-home-tab" data-bs-toggle="pill"
+                                <button class="nav-link {{ !$passwordError ? 'active' : '' }} my-1" id="v-pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                                        aria-selected="true">
+                                        aria-selected="{{ !$passwordError ? 'true' : 'false' }}">
                                     <div class="d-flex gap-3 align-items-center">
                                         <div class=" img  img-card overflow-hidden d-flex justify-content-center align-items-center"
                                              style="width:20px;height:30px ">
@@ -42,9 +47,9 @@
                                         </div>
                                     </div>
                                 </button>
-                                <button class="nav-link my-1" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                <button class="nav-link {{ $passwordError ? 'active' : '' }} my-1" id="v-pills-profile-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                                        aria-selected="false">
+                                        aria-selected="{{ $passwordError ? 'true' : 'false' }}">
                                     <div class="d-flex gap-3 align-items-center">
                                         <div class="img  img-card overflow-hidden d-flex justify-content-center align-items-center"
                                              style="width:20px;height:30px ">
@@ -87,10 +92,11 @@
         </div>
 
         <div class="col-lg-8">
+
             <div class="tab-content " id="v-pills-tabContent">
 
                  {{--Profile--}}
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
+                <div class="tab-pane fade {{ !$passwordError ? 'show active' : '' }}" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                      tabindex="0">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
@@ -144,60 +150,79 @@
                 </div>
 
                 {{--Change Password--}}
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                <div class="tab-pane fade {{ $passwordError ? 'show active' : '' }}" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
                      tabindex="0">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
-                            <h2 class="fw-semibold ">
-                                My Account
+                            <h2 class="fw-semibold">
+                                {{ __('front.change_password') }}
                             </h2>
                         </div>
                     </div>
-                    <form class="row form-img form-bg p-lg-3 rounded-3" style="background-image: url('{{asset('assets/imgs/home/bg-form.png')}}'); background-color: #E9ECFD;">
-                        <div class=" col-12  p-2 d-flex justify-content-end ">
-                            <a class=" btn  rounded-2 px-5 gap-2 d-flex align-items-center py-2 editProfile"><span><i
-                                            class="fa-solid fa-pen-to-square"></i></span><span class="text-decoration-underline">Edit</span>
-                            </a>
-                        </div>
-                        <div class=" col-md-12">
-                            <label for="exampleInputPassword1" class="form-label">
-                                <span> كلمة المرور</span>
-
+                    <form class="row form-img form-bg p-lg-3 rounded-3"
+                          style="background-image: url('{{asset('assets/imgs/home/bg-form.png')}}'); background-color: #E9ECFD;"
+                          method="POST"
+                          action="{{ route('client.change_password') }}">
+                        @csrf
+                        <!-- Current Password -->
+                        <div class="col-md-12 mb-3">
+                            <label for="current_password" class="form-label">
+                                <span>{{ __('front.current_password') }}</span>
                             </label>
-                            <div class="password-container ">
-                                <input type="password" class="form-control border rounded-2 py-2 " id="exampleInputPassword1"
-                                       placeholder="llllllllllllll" readonly>
-                                <button class="toggle-password TogglePasswordBtns" tabindex="-1"><i
-                                            class="fa-regular fa-eye"></i></button>
-
+                            <div class="password-container">
+                                <input type="password" name="current_password" class="form-control border rounded-2 py-2"
+                                       id="current_password"
+                                       placeholder="{{ __('front.password_placeholder') }}" required>
+                                <button type="button" class="toggle-password TogglePasswordBtns">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
                             </div>
+                            @error('current_password')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
-                        <div class=" col-md-12">
-                            <label for="exampleInputPassword2" class="form-label">
-                                <span>تاكيد كلمة المرور</span>
-
+                        <!-- New Password -->
+                        <div class="col-md-12 mb-3">
+                            <label for="new_password" class="form-label">
+                                <span>{{ __('front.new_password') }}</span>
                             </label>
-                            <div class="password-container ">
-                                <input type="password" class="form-control border rounded-2 py-2 " id="exampleInputPassword2"
-                                       placeholder="llllllllllllll" readonly>
-                                <button class="toggle-password TogglePasswordBtns" tabindex="-1"><i
-                                            class="fa-regular fa-eye"></i></button>
-
+                            <div class="password-container">
+                                <input type="password" name="new_password" class="form-control border rounded-2 py-2"
+                                       id="new_password"
+                                       placeholder="{{ __('front.new_password_ph') }}" required>
+                                <button type="button" class="toggle-password TogglePasswordBtns">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
                             </div>
+                            @error('new_password')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
+                        <!-- Confirm New Password -->
+                        <div class="col-md-12 mb-3">
+                            <label for="new_password_confirmation" class="form-label">
+                                <span>{{ __('front.password_confirm') }}</span>
+                            </label>
+                            <div class="password-container">
+                                <input type="password" name="new_password_confirmation" class="form-control border rounded-2 py-2"
+                                       id="new_password_confirmation"
+                                       placeholder="{{ __('front.password_confirm_ph') }}" required>
+                                <button type="button" class="toggle-password TogglePasswordBtns">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            @error('new_password_confirmation')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
                         <div class="col-12 d-flex justify-content-center">
-                            <a class=" btn  rounded-2 px-5 gap-2 d-flex align-items-center py-2 editProfile change d-none">save
-                                change</span>
-                            </a>
+                            <button type="submit" class="btn rounded-2 px-5 gap-2 d-flex align-items-center py-2">
+                                {{ __('front.save_changes') }}
+                            </button>
                         </div>
-                        <div class="col-12 d-flex justify-content-center py-2">
-                            <a class="text-danger text-decoration-underline fw-semibold" data-bs-toggle="modal"
-                               data-bs-target="#delete-account">
-                                <span class="d-flex align-items-center">حذف الحساب</span> </a>
 
-                        </div>
                     </form>
 
                 </div>
@@ -207,9 +232,10 @@
                      tabindex="0">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
-                            <h2 class="fw-semibold ">
-                                My Account
+                            <h2 class="fw-semibold">
+                                {{ __('front.favorites_items') }}
                             </h2>
+
                         </div>
                     </div>
                     <div class="row py-2 gy-4  overflow-hidden">

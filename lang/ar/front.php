@@ -180,5 +180,13 @@ return [
     'form_message'      => 'الرسالة',
     'form_message_ph'   => 'اكتب رسالتك هنا',
     'form_send_btn'     => 'إرسال الرسالة',
-
+    'favorites_items' => 'العناصر المفضلة',
+    'current_password' => 'كلمة المرور الحالية',
+    'password_placeholder' => 'ادخل كلمة المرور الحالية',
+    'new_password' => 'كلمة المرور الجديدة',
+    'new_password_ph' => 'ادخل كلمة المرور الجديدة',
+    'password_confirm' => 'تأكيد كلمة المرور',
+    'password_confirm_ph' => 'أعد إدخال كلمة المرور الجديدة',
+    'password_incorrect' => 'كلمة المرور الحالية غير صحيحة',
+    'password_changed_success' => 'تم تغيير كلمة المرور بنجاح',
 ];

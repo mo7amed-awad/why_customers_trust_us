@@ -1,7 +1,10 @@
 <?php
 
 return [
-
+    'current_password_required' => 'Please enter your current password',
+    'current_password_incorrect' => 'Current password is incorrect',
+    'new_password_required' => 'Please enter a new password',
+    'new_password_confirmed' => 'Password confirmation does not match',
     'accepted' => 'The :attribute must be accepted.',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
