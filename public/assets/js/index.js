@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function t(key) {
     return translations[window.currentLang][key] || key;
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const currentPath = window.location.pathname.replace(/\/$/, "");
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+        const linkPath = new URL(link.href).pathname.replace(/\/$/, "");
+
+        if (currentPath === linkPath) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+});
 
 let navBarcontainer = `
 <div class=" navContainer " style="z-index:11111">
@@ -110,7 +123,7 @@ let navBarcontainer = `
             <div class="offcanvas-body header ">
               <ul class="navbar-nav w-100  mb-2 mb-lg-0  align-items-lg-center text-black gap-lg-4 gap-1">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/${window.currentLang}">
+                  <a class="nav-link" aria-current="page" href="/${window.currentLang}">
                     <span class="">${t('home')}</span>
                   </a>
                 </li>

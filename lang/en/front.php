@@ -168,5 +168,17 @@ return [
     'terms_conditions_title' => 'Terms & Conditions',
     'terms_hint' => 'Your use of this site means you agree to these terms',
     'privacy_policy_title' => 'Privacy Policy',
+    'lets_connect_title' => 'Let’s Connect! Your Home Deserves the Best',
+    'lets_connect_desc'  => 'We’d love to hear from you! Whether it’s a question about our products or assistance with your order, we’re here for you.',
+    'follow_us' => 'Follow Us',
+    'form_full_name'    => 'Full Name',
+    'form_full_name_ph' => 'Enter your full name',
+    'form_email'        => 'Email',
+    'form_email_ph'     => 'Enter your email',
+    'form_phone'        => 'Phone Number',
+    'form_phone_ph'     => 'Enter your phone number',
+    'form_message'      => 'Message',
+    'form_message_ph'   => 'Write your message here',
+    'form_send_btn'     => 'Send Message',
 
 ];

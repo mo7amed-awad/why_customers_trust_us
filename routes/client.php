@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Client\AboutController;
 use App\Http\Controllers\Client\AdsController;
 use App\Http\Controllers\Client\CategoryController;
 use App\Http\Controllers\Client\CommentController;
@@ -42,6 +42,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
     Route::get('about', [AboutController::class, 'index'])->name('about');
     Route::get('contact', [ContactController::class, 'contact'])->name('contact');
+    Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.store');
     Route::any('/terms-conditions', [TermsConditionsController::class, 'index'])->name('terms-conditions');
     Route::any('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
 

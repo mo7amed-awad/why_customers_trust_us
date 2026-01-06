@@ -7,16 +7,16 @@
     <div class="row   align-items-center ">
         <div
                 class="col-12 d-flex  header-div services px-0 justify-content-center overflow-hidden align-items-cnter position-relative">
-            <img class="w-100 w-100 object-fit-cover" src="assets/imgs/home/about-cover.jpg" />
+            <img class="w-100 w-100 object-fit-cover" src="{{asset($about->image ?? 'assets/imgs/home/about-cover.jpg')}}" />
             <div
                     class="layer position-absolute  top-0 bottom-0 end-0 start-0 px-lg-5 px-2 d-flex align-items-center justify-content-center text-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <h3 class="text-white fw-semibold py-2" data-aos="fade-up" data-aos-duration="1500">
-                            Top Car Brands
+                            {{$about->trans('title')}}
                         </h3>
                         <p class="text-white" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
-                            Explore a variety of trusted car brands to find the one that fits your style and needs.
+                            {{$about->trans('desc')}}
                         </p>
 
                     </div>
@@ -32,40 +32,23 @@
     </div>
 
 </div>
-<div class="container py-lg-5 py-3">
-    <div class="row py-2">
-        <div class="col-12">
-            <h5 class="fs-20 fw-semibold mb-3" data-aos="fade-down" data-aos-duration="1500">We're always ready to assist you! If you have any questions, feedback, or need support, just drop us a message. </h5>
-            <p class="text-secondary">we'll get back to you promptly. Your questions matter to us, and we can't wait to hear from you! You can also reach us </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 overflow-hidden" >
-            <div class="rounded-4  "  style="border:0; height: 500px;">
-                <iframe class="h-100 w-100 rounded-4 "
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.014155615924!2d46.73502440000001!3d24.623197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f044bb22c04a5%3A0x9c6229404ccc4bd!2z2LTYp9ix2Lkg2KfZhNmB2LHYstiv2YLYjCDYutio2YrYsdip2Iwg2KfZhNix2YrYp9i2IDEyNjY02Iwg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1715511184439!5m2!1sar!2seg"
-                        style="border:0; " allowfullscreen=""  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class=" bg-img-section mb-5" style="background-image: url(assets/imgs/home/bg-contactus.jpg); background-position: center;">
+<div class=" bg-img-section mb-5" style="background-image: url('{{asset('assets/imgs/home/bg-contactus.jpg')}}'); background-position: center;">
     <div class="layer  py-lg-5 py-md-4 py-3">
         <div class="container    py-lg-5 py-3 overflow-hidden" id="contactus" >
-            <div
-                    class="row gap-md-0 gap-5  rounded-3 justify-content-center py-lg-5 py-3 pe-lg-5 align-items-center ">
+            <div class="row gap-md-0 gap-5  rounded-3 justify-content-center py-lg-5 py-3 pe-lg-5 align-items-center ">
                 <div class="col-lg-5 col-md-6 col-12 overflow-hidden">
                     <div class="col-12 overflow-hidden" >
                         <h4 class="fw-bold fs-38 text-white">
-                            Let’s Connect! Your Home Deserves the Best
+                            {{ __('front.lets_connect_title') }}
                         </h4>
-                        <p class="text-white">We’d love to hear from you! Whether it’s a question about our products or assistance with
-                            your
-                            order, we’re here for you.</p>
+
+                        <p class="text-white">
+                            {{ __('front.lets_connect_desc') }}
+                        </p>
                         <ul class="p-0 fs-6 py-lg-4 py-2">
                             <li class=" py-2">
-                                <a href="mailto:ScoobCar@gmail.com" target="_blank" class="d-flex gap-2 align-items-center">
+                                <a href="mailto:{{setting('email')}}" target="_blank" class="d-flex gap-2 align-items-center">
                       <span class="bg-white d-flex justify-content-center align-items-center rounded-circle"
                             style="height: 40px; width: 40px;">
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +63,7 @@
                                   stroke="#891625" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                       </span>
-                                    <span class="text-white">ScoobCar@gmail.com</span>
+                                    <span class="text-white">{{setting('email')}}</span>
                                 </a>
                             </li>
                             <li class=" py-2 d-flex gap-2 align-items-center text-white">
@@ -94,17 +77,14 @@
                       </svg>
 
                     </span>
-                                <a href="tel:(+973) 12345678" target="_blank" class="d-flex gap-2 align-items-center text-white">
-                                    (+973)-12345678
+                                <a href="tel:{{setting('phone')}}" target="_blank" class="d-flex gap-2 align-items-center text-white">
+                                    {{setting('phone')}}
                                 </a>
-                                -
-                                <a href="tel:(+973) 12345678" target="_blank" class="d-flex gap-2 align-items-center text-white">
-                                    (+973)-12345678
-                                </a>
+
                             </li>
 
                             <li class=" py-2">
-                                <a href="https://maps.app.goo.gl/WBLB5w2nFc1kxicU9" target="_blank"
+                                <a href="{{setting('location_map_url')}}" target="_blank"
                                    class="d-flex gap-2 align-items-center">
                       <span class="bg-white d-flex justify-content-center align-items-center rounded-circle"
                             style="height: 40px; width: 40px;">
@@ -121,28 +101,34 @@
                         </svg>
 
                       </span>
-                                    <span class="text-white">PO. Box 23215, Sharjah, Behind Al Futtaim</span>
+                                    <span class="text-white">
+                                        {{ setting('location_' . app()->getLocale()) }}
+                                    </span>
                                 </a>
                             </li>
                         </ul>
                         <div class="">
-                            <h4 class="fs-20 text-white">Follow Us</h4>
+                            <h4 class="fs-20 text-white">
+                                {{ __('front.follow_us') }}
+                            </h4>
                             <ul class="social d-flex px-0 mb-0 social-form gap-4">
                                 <li>
-                                    <a target="_blank" href="#">
+                                    <a target="_blank" href="{{setting('facebook')}}">
                                         <i class="fab fa-facebook-f icon"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="#"><i class="fa-brands fa-x-twitter icon">
+                                    <a target="_blank" href=href="{{setting('x')}}""><i class="fa-brands fa-x-twitter icon">
                                         </i></a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="#"><i class="fa-brands fa-instagram icon">
+                                    <a target="_blank" href="{{setting('instagram')}}"><i class="fa-brands fa-instagram icon">
                                         </i></a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="#"><i class="fa-brands fa-whatsapp icon"></i></a>
+                                    <a target="_blank" href="https://wa.me/{{ setting('whatsapp') }}">
+                                        <i class="fa-brands fa-whatsapp icon"></i>
+                                    </a>
 
                                 </li>
 
@@ -153,43 +139,63 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 " data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500">
-                    <form class="row p-4 bg-white border  bg-opacity-10 rounded-4 gy-3 text-white" action="sucess-en.html">
+                    <form action="{{route('client.contact.store')}}" method="POST" class="row p-4 bg-white border  bg-opacity-10 rounded-4 gy-3 text-white">
+                        @CSRF
                         <div class="col-12 overflow-hidden" data-aos="fade-up" data-aos-duration="1500">
                         </div>
-                        <div class=" col-lg-6">
-                            <label for="email" class="form-label fw-semibold ">Full Name</label>
-                            <div class="input-group ">
-                                <input type="text" placeholder="Enter your full name" class="form-control rounded-3  border  py-2  bg-white"
-                                       id="name" required>
-                            </div>
-                        </div>
                         <div class="col-lg-6">
-                            <label for="email" class="form-label fw-semibold ">Email</label>
-                            <div class="input-group ">
-                                <input type="text" placeholder="Enter your email" class="form-control rounded-3  border py-2 bg-white" id="email"
-                                       required>
-                            </div>
-                        </div>
-                        <div class=" col-lg-12">
-                            <label for="phonenumber" class="form-label fw-semibold ">Phone Number</label>
-                            <div class="input-group  w-100">
-                                <input type="tel" placeholder="Enter your phone number" name="phone" id="phone"
-                                       class="form-control phone rounded-3 py-2   border bg-white" />
+                            <label for="name" class="form-label fw-semibold">{{ __('front.form_full_name') }}</label>
+                            <div class="input-group">
+                                <input type="text" placeholder="{{ __('front.form_full_name_ph') }}"
+                                       name= "name" class="form-control rounded-3 border py-2 bg-white"
+                                       id="name" required maxlength="25">
+                                @error('name')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
+                        <div class="col-lg-6">
+                            <label for="email" class="form-label fw-semibold">{{ __('front.form_email') }}</label>
+                            <div class="input-group">
+                                <input type="text" placeholder="{{ __('front.form_email_ph') }}" name="email"
+                                       class="form-control rounded-3 border py-2 bg-white" id="email" required maxlength="25">
+                                @error('email')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="col-lg-12">
-                            <label for="Notes" class="form-label fw-semibold ">Message</label>
-                            <div class="input-group ">
-              <textarea style="resize: none;" class="form-control rounded-3  border p- bg-white" id="Notes" rows="3"
-                        placeholder="Write your message here"></textarea>
+                            <label for="phonenumber" class="form-label fw-semibold">{{ __('front.form_phone') }}</label>
+                            <div class="input-group w-100">
+                                <input type="tel" placeholder="{{ __('front.form_phone_ph') }}" name="phone" id="phone"
+                                       class="form-control phone rounded-3 py-2 border bg-white" required maxlength="10" />
+                                <input type="hidden" name="country_code" id="country_code" value="{{ old('country_code', '973') }}">
+
+                                @error('phone')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
-                        <div class="col-12 d-flex justify-content-center align-items-center">
-                            <button type="submit" class="bg-primary-color text-white py-2 w-100 rounded-4 my-2 btn fw-medium">Send
-                                Message</button>
+
+                        <div class="col-lg-12">
+                            <label for="Notes" class="form-label fw-semibold">{{ __('front.form_message') }}</label>
+                            <div class="input-group">
+        <textarea style="resize: none;" class="form-control rounded-3 border p-2 bg-white" id="Notes" rows="3" name="message"
+                  placeholder="{{ __('front.form_message_ph') }}" required maxlength="255"></textarea>
+                                @error('message')
+                                <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
+
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <button type="submit" class="bg-primary-color text-white py-2 w-100 rounded-4 my-2 btn fw-medium">
+                                {{ __('front.form_send_btn') }}
+                            </button>
+                        </div>
+
                     </form>
                 </div>
             </div>
