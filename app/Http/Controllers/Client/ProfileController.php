@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -42,4 +44,70 @@ class ProfileController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function deleteAccount(Request $request)
+    {
+        try {
+            $request->validate([
+                'password' => 'required|string',
+            ], [
+                'password.required' => __('front.password_required'),
+            ]);
+
+            $user = Auth::guard('user')->user();
+
+            if (!Hash::check($request->password, $user->password)) {
+                $message = __('front.password_incorrect');
+
+                if ($request->ajax() || $request->wantsJson()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => $message
+                    ], 422);
+                }
+
+                return back()->withErrors([
+                    'password' => $message
+                ])->with('error',$message);
+            }
+
+            DB::beginTransaction();
+
+            try {
+
+                Auth::guard('user')->logout();
+
+                $user->delete();
+
+                DB::commit();
+
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                if ($request->ajax() || $request->wantsJson()) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'تم حذف حسابك بنجاح',
+                        'redirect' => url('/')
+                    ]);
+                }
+
+                return redirect('/')->with('success', 'تم حذف حسابك بنجاح');
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                throw $e;
+            }
+
+        } catch (\Exception $e) {
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'حدث خطأ أثناء حذف الحساب. يرجى المحاولة لاحقاً'
+                ], 500);
+            }
+
+            return back()->with('error', 'حدث خطأ أثناء حذف الحساب. يرجى المحاولة لاحقاً');
+        }
+    }
 }

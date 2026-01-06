@@ -63,6 +63,8 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('password/update', [PasswordController::class, 'update'])->name('change_password');
+        Route::delete('/profile/delete', [ProfileController::class, 'deleteAccount'])
+            ->name('profile.delete');
 
     });
 });

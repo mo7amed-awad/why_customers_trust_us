@@ -1,4 +1,31 @@
 @extends('Client.layouts.layout')
+@push('css')
+    <style>
+        #confirm_password.is-invalid {
+            border-color: #dc3545;
+            background-image: none;
+        }
+
+        #deleteAccountError {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-body .alert {
+            margin-bottom: 1rem;
+        }
+    </style>
+@endpush
 @section('content')
 
 
@@ -143,8 +170,7 @@
                         <div class="col-12 d-flex justify-content-center py-2">
                             <a class="text-danger text-decoration-underline fw-semibold" data-bs-toggle="modal"
                                data-bs-target="#delete-account">
-                                <span class="d-flex align-items-center">حذف الحساب</span> </a>
-
+                                <span class="d-flex align-items-center">{{ __('front.delete_account') }}</span> </a>
                         </div>
                     </form>
                 </div>
@@ -254,6 +280,71 @@
 
 
 </div>
+{{-- Modal حذف الحساب --}}
+<div class="modal fade" id="delete-account" tabindex="-1" aria-labelledby="deleteAccountLabel" aria-hidden="true"
+     data-confirm-delete="{{ __('front.confirm_delete_account') }}"
+     data-enter-password="{{ __('front.enter_password') }}"
+     data-confirm-final="{{ __('front.confirm_delete_final') }}"
+     data-deleting="{{ __('front.deleting') }}"
+     data-delete-error="{{ __('front.delete_error') }}"
+     data-connection-error="{{ __('front.connection_error') }}"
+     >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold text-danger" id="deleteAccountLabel">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                    {{ __('front.delete_account_confirm') }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="deleteAccountError" class="alert alert-danger d-none" role="alert">
+                    <i class="fa-solid fa-exclamation-circle me-2"></i>
+                    <span id="deleteAccountErrorMessage"></span>
+                </div>
+
+                <div class="alert alert-warning" role="alert">
+                    <i class="fa-solid fa-exclamation-circle me-2"></i>
+                    <strong>{{ __('front.delete_warning') }}</strong>
+                </div>
+                <p class="mb-3">{{ __('front.will_delete') }}</p>
+                <ul class="text-end">
+                    <li>{{ __('front.personal_data') }}</li>
+                    <li>{{ __('front.associated_info') }}</li>
+                </ul>
+                <form id="deleteAccountForm" action="{{ route('client.profile.delete') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label fw-medium">
+                            {{ __('front.enter_password_to_confirm') }}
+                        </label>
+                        <input type="password" class="form-control" id="confirm_password"
+                               name="password" required placeholder="{{ __('front.password') }}">
+                        <div class="invalid-feedback">
+                            {{ __('front.password_required') }}
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="confirmDelete" required>
+                        <label class="form-check-label" for="confirmDelete">
+                            {{ __('front.confirm_delete_checkbox') }}
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-times me-2"></i>{{ __('front.cancel') }}
+                </button>
+                <button type="button" class="btn btn-danger px-4" id="confirmDeleteBtn">
+                    <i class="fa-solid fa-trash me-2"></i>{{ __('front.delete_account_permanently') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @push('scripts')
@@ -339,5 +430,115 @@
 <script>
     window.userPhoneCode = "{{ $countryCode }}";
 </script>
-@endpush
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteForm = document.getElementById('deleteAccountForm');
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        const confirmCheckbox = document.getElementById('confirmDelete');
+        const passwordInput = document.getElementById('confirm_password');
+        const errorDiv = document.getElementById('deleteAccountError');
+        const errorMessage = document.getElementById('deleteAccountErrorMessage');
+        const modal = document.getElementById('delete-account');
+
+        // الترجمات من Laravel
+        const translations = {
+            confirmDeleteAccount: "{{ __('front.confirm_delete_account') }}",
+            enterPassword: "{{ __('front.enter_password') }}",
+            confirmDeleteFinal: "{{ __('front.confirm_delete_final') }}",
+            deleting: "{{ __('front.deleting') }}",
+            deleteError: "{{ __('front.delete_error') }}",
+            connectionError: "{{ __('front.connection_error') }}"
+        };
+
+        if (modal) {
+            modal.addEventListener('show.bs.modal', function() {
+                errorDiv.classList.add('d-none');
+                passwordInput.value = '';
+                confirmCheckbox.checked = false;
+                passwordInput.classList.remove('is-invalid');
+            });
+        }
+
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function() {
+                errorDiv.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            });
+        }
+
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                errorDiv.classList.add('d-none');
+                passwordInput.classList.remove('is-invalid');
+
+                if (!confirmCheckbox.checked) {
+                    errorMessage.textContent = translations.confirmDeleteAccount;
+                    errorDiv.classList.remove('d-none');
+                    return;
+                }
+
+                if (!passwordInput.value) {
+                    passwordInput.classList.add('is-invalid');
+                    errorMessage.textContent = translations.enterPassword;
+                    errorDiv.classList.remove('d-none');
+                    return;
+                }
+
+                if (!confirm(translations.confirmDeleteFinal)) {
+                    return;
+                }
+
+                confirmBtn.disabled = true;
+                const originalContent = confirmBtn.innerHTML;
+                confirmBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>' + translations.deleting;
+
+                const formData = new FormData(deleteForm);
+
+                fetch(deleteForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                    credentials: 'same-origin'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => {
+                                throw data;
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = data.redirect || '/';
+                        } else {
+                            errorMessage.textContent = data.message || translations.deleteError;
+                            errorDiv.classList.remove('d-none');
+                            passwordInput.classList.add('is-invalid');
+                            passwordInput.focus();
+
+                            confirmBtn.disabled = false;
+                            confirmBtn.innerHTML = originalContent;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+
+                        errorMessage.textContent = error.message || translations.connectionError;
+                        errorDiv.classList.remove('d-none');
+                        passwordInput.classList.add('is-invalid');
+                        passwordInput.focus();
+
+                        confirmBtn.disabled = false;
+                        confirmBtn.innerHTML = originalContent;
+                    });
+            });
+        }
+    });
+</script>@endpush
 @endsection
