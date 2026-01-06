@@ -163,5 +163,10 @@ return [
     'top_car_brands_desc' => 'Explore a variety of trusted car brands to find the one that fits your style and needs.',
     'our_mission' => 'Our Mission',
     'our_vision' => 'Our Vision',
+    'terms_conditions' => 'Terms & Conditions',
+    'terms_conditions_desc' => 'Your use of this site means you agree to these terms',
+    'terms_conditions_title' => 'Terms & Conditions',
+    'terms_hint' => 'Your use of this site means you agree to these terms',
+    'privacy_policy_title' => 'Privacy Policy',
 
 ];
