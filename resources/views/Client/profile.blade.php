@@ -25,6 +25,31 @@
             margin-bottom: 1rem;
         }
     </style>
+    <style>
+        .heart-icon {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .heart-icon .heart-path {
+            transition: all 0.3s ease;
+            fill: none !important;
+            stroke: #4B5563 !important;
+        }
+
+        .heart-icon.favorited {
+            background-color: #d3d3d3  !important;
+        }
+
+        .heart-icon.favorited .heart-path {
+            fill: #EF4444 !important;
+            stroke: #EF4444 !important;
+        }
+
+        .heart-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
 @endpush
 @section('content')
 
@@ -266,7 +291,26 @@
                     </div>
                     <div class="row py-2 gy-4  overflow-hidden">
 
-                    {{--Card--}}
+                    @foreach($favorites as $item)
+                        @if($item->type == \App\Enums\AdTypesEnum::SPARE_PART)
+                                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                                    @include('Client.partials.spare-part-card', ['item' => $item])
+                                </div>
+                            @elseif($item->type == \App\Enums\AdTypesEnum::ACCESSORY)
+                                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                                    @include('Client.partials.accessory-card', ['item' => $item])
+                                </div>
+                            @elseif($item->type == \App\Enums\AdTypesEnum::LICENSE_PLATE)
+                                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                                    @include('Client.partials.plate-card', ['item' => $item])
+                                </div>
+                            @else()
+                                <div class="col-lg-4 col-md-4 col-sm-6 ">
+                                    @include('Client.partials.car-card', ['item' => $item])
+                                </div>
+                            @endif
+                    @endforeach
+
                     </div>
                 </div>
             </div>
@@ -410,6 +454,49 @@
                     console.error('Error:', error);
                     alert('حدث خطأ ما!');
                 });
+        });
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.addtosave').click(function(e) {
+            e.preventDefault();
+
+            var link = $(this);
+            var heartIcon = link.find('.heart-icon');
+            var heartPath = link.find('.heart-path');
+            var adId = link.data('id');
+
+            $.ajax({
+                url: "{{ route('client.favorites.toggle') }}",
+                method: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    ad_id: adId
+                },
+                success: function(response) {
+                    if(response.status == 'added') {
+                        heartIcon.addClass('favorited');
+                        heartPath.attr('fill', '#EF4444');
+                        heartPath.attr('stroke', '#EF4444');
+                    } else {
+                        heartIcon.removeClass('favorited');
+                        heartPath.attr('fill', 'none');
+                        heartPath.attr('stroke', '#4B5563');
+                    }
+                },
+                error: function(xhr) {
+                    if (xhr.status === 401) {
+                        window.location.href = "{{ route('client.login') }}";
+                    } else {
+                        alert('حدث خطأ، الرجاء المحاولة مرة أخرى');
+                    }
+                }
+
+            });
         });
     });
 </script>

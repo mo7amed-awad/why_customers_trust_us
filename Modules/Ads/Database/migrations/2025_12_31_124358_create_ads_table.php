@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('is_new')->default(true);
             $table->string('type');
             $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
         });
     }

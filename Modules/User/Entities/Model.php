@@ -22,7 +22,8 @@ class Model extends Authenticatable
 
     public function favorites()
     {
-        return $this->hasMany(Favorite::class, 'user_id');
+        return $this->belongsToMany(Ad::class, 'favorites', 'user_id', 'ad_id')
+            ->withTimestamps();
     }
 
     public function favoriteAds()

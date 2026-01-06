@@ -100,7 +100,7 @@
                                         <label class="form-label fs-14 primary-color">{{ __('front.price')}}</label>
                                         <div class="input-group">
                                             <input type="number" name="price_max" class="form-control rounded-3 border py-2"
-                                                   placeholder=">{{ __('front.price')}}" value="{{ request('price_max') ?? '' }}" min="0" required>
+                                                   placeholder="{{ __('front.price')}}" value="{{ request('price_max') ?? '' }}" min="0" required>
                                             <input type="hidden" name="price_min" value="0">
                                         </div>
                                     </div>

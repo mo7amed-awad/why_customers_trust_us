@@ -13,8 +13,8 @@ class ProfileController extends Controller
     public function index(){
 
         $user = auth('user')->user();
-
-        return view('Client.profile', compact('user'));
+        $favorites = $user->favorites;
+        return view('Client.profile', compact('user', 'favorites'));
     }
 
     public function update(Request $request)

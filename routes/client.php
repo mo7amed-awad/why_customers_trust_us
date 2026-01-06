@@ -19,7 +19,7 @@ use App\Http\Controllers\Client\TermsConditionsController;
 use Illuminate\Support\Facades\Route;
 
 Route::any('/', function () {
-    return redirect()->route('client.home', ['lang' => 'en']);
+    return redirect()->route('client.home', ['lang' => 'ar']);
 });
 
 Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'client.'], function () {
