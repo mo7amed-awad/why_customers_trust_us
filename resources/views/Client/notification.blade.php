@@ -12,7 +12,7 @@
 
     </div>
     <div class="row gap-2">
-        @foreach($notifications as $notification)
+        @forelse($notifications as $notification)
             <div class="col-12 d-flex justify-content-between py-2 bg-Secondary-color item opectity rounded-2"
                  data-id="{{ $notification->id }}"
                  data-url="{{ route('client.notifications.read', ['lang' => app()->getLocale(), 'id' => $notification->id]) }}">
@@ -41,7 +41,9 @@
                     <a class="delete text-black-50 fs-6"><span><i class="fa-solid fa-xmark"></i></span></a>
                 </div>
             </div>
-        @endforeach
+        @empty
+            @include('components.empty-state')
+        @endforelse
     </div>
 
 </div>

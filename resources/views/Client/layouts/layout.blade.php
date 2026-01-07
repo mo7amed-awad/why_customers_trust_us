@@ -100,6 +100,7 @@
     window.linkedin = "{{ setting('linkedin') }}";
     window.phone = "{{ setting('phone') }}";
     window.email = "{{ setting('email') }}";
+    window.whatsapp = "{{ setting('whatsapp') }}";
     window.location_map_url = "{{ setting('location_map_url') }}";
     window.address = "{{ setting(app()->getLocale() == 'ar' ? 'location_ar' : 'location_en') }}";
 </script>

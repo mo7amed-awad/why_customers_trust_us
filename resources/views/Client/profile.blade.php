@@ -149,7 +149,6 @@
 
                  {{--Profile--}}
                 <div class="tab-pane fade {{ !$passwordError ? 'show active' : '' }}" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
-                     tabindex="0">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
                             <h2 class="fw-semibold">
@@ -202,7 +201,6 @@
 
                 {{--Change Password--}}
                 <div class="tab-pane fade {{ $passwordError ? 'show active' : '' }}" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-                     tabindex="0">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
                             <h2 class="fw-semibold">
@@ -279,8 +277,7 @@
                 </div>
 
                 {{--Favorites Items--}}
-                <div class="tab-pane fade " id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab"
-                     tabindex="0">
+                <div class="tab-pane fade " id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab">
                     <div class="row py-2">
                         <div class="col-12 justify-content-center">
                             <h2 class="fw-semibold">
@@ -291,7 +288,7 @@
                     </div>
                     <div class="row py-2 gy-4  overflow-hidden">
 
-                    @foreach($favorites as $item)
+                    @forelse($favorites as $item)
                         @if($item->type == \App\Enums\AdTypesEnum::SPARE_PART)
                                 <div class="col-lg-4 col-md-4 col-sm-6 ">
                                     @include('Client.partials.spare-part-card', ['item' => $item])
@@ -309,7 +306,10 @@
                                     @include('Client.partials.car-card', ['item' => $item])
                                 </div>
                             @endif
-                    @endforeach
+                    @empty
+                            @include('components.empty-state')
+
+                    @endforelse
 
                     </div>
                 </div>

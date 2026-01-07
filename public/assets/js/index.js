@@ -237,9 +237,15 @@ let navBarcontainer = `
   </nav>
 
 </div>
-<div class="floatwhatsapp ">
-  <i class="fa-brands fa-whatsapp "></i>
-</div>
+<a
+    href="https://wa.me/${window.whatsapp}"
+    target="_blank"
+    class="floatwhatsapp"
+    aria-label="Chat on WhatsApp"
+>
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <div class="back-to-top" id="backTop">
   <i class="fa-solid fa-chevron-up"></i>
 </div>

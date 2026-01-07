@@ -2429,4 +2429,8 @@ return [
     'text' => 'نص',
     'number' => 'رقم',
     'checkbox' => 'اختيار',
+    'location_map_url' => 'Location Map Url',
+    'keywords_ar' => 'Keywords in Arabic',
+    'keywords_en' => 'Keywords in English',
+
 ];
