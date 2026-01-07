@@ -447,11 +447,7 @@ let FooterContainer = `   <footer class=" ">
       <div class="row justify-content-center  text-black-50 py-2 gy-3 fw-medium border-top">
         <div class=" col-lg-8 col-md-6  col-12    emcan text-center">
             <span class="text-black fw-light">
-              Copyright © ${new Date().getFullYear()} Scoop Car All rights reserved. Powered by 
-              <a style="color:black;opacity: 1; font-size:inherit" class='fw-semibold' target="_blank"
-                href="https://emcan-group.com/en">
-                Emcan Solutions</a>
-  
+              Copyright © ${new Date().getFullYear()} Scoop Car All rights reserved
             </span>
   
   

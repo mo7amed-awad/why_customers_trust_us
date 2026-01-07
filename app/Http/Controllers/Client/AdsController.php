@@ -124,7 +124,7 @@ class AdsController extends Controller
 
     public function adsCategories(){
         $categories = Category::where('slug','!=', 'car-services')->get();
-        return view('Client.ads.ads-categories', compact('categories'));
+        return view('Client.Ads.ads-categories', compact('categories'));
     }
 
     public function showCategory($lang, $slug)
@@ -135,7 +135,7 @@ class AdsController extends Controller
 
         $categories = Category::where('slug','!=', 'car-services')->get();
 
-        return view('Client.ads.category-details', compact('categories', 'category'));
+        return view('Client.Ads.category-details', compact('categories', 'category'));
     }
 
     public function create($lang, $subcategorySlug)
@@ -147,7 +147,7 @@ class AdsController extends Controller
         $models = Model::all();
         $sparePartsTypes = SparePartType::all();
         $features = Feature::all();
-        return view('Client.ads.create', compact('category', 'subcategory', 'brands', 'models', 'sparePartsTypes', 'features'));
+        return view('Client.Ads.create', compact('category', 'subcategory', 'brands', 'models', 'sparePartsTypes', 'features'));
     }
 
     public function store(StoreAdRequest $request, $lang, $subcategorySlug)

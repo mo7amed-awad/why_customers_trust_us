@@ -33,12 +33,12 @@
                 </td>
 
                 <td>
-                    @if (hasPermission('show_vision'))
+                    @if (hasPermission('show_ourvision'))
                         <a href="{{ route(activeGuard() . '.ourvision.show', $Model) }}">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     @endif
-                    @if (hasPermission('edit_vision'))
+                    @if (hasPermission('edit_ourvision'))
                         <a href="{{ route(activeGuard() . '.ourvision.edit', $Model) }}">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>

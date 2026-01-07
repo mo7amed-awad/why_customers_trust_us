@@ -77,7 +77,8 @@
                     }
                 }
             },
-            columns: [{
+            columns: [
+                {
                     data: 'DT_RowIndex',
                     orderable: false,
                     searchable: false
@@ -89,14 +90,14 @@
                 {
                     data: 'title_en',
                     name: 'title_en'
-                }, @append =-09
-                @if (hasPermission('edit_whychooseus'))
-                    {
-                        data: 'status',
-                        orderable: false,
-                        searchable: false
-                    },
-                @endif
+                },
+                    @if (hasPermission('edit_whychooseus'))
+                {
+                    data: 'status',
+                    orderable: false,
+                    searchable: false
+                },
+                    @endif
                 {
                     data: 'actions',
                     orderable: false,
