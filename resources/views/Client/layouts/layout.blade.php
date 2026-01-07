@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="{{ url()->full() }}">
     <link rel="sitemap" href="/sitemap.xml" title="Sitemap" type="application/xml">
-    <link href="{{ asset($title) }}" rel="shortcut icon">
+    <link href="{{ asset($logo) }}" rel="shortcut icon">
     <meta name="robots" content="max-snippet:-1,max-image-preview:large,max-video-preview:-1">
     <meta name="description" content="{{ strip_tags($desc) }}">
     <meta name="keywords" content="{{ strip_tags(setting('keywords_'.lang())) }}">

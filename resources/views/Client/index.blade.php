@@ -200,18 +200,26 @@
         </div>
     </div>
 
-    <div class="row py-5  slider-adv overflow-hidden">
+    <div class="row py-5 slider-adv overflow-hidden">
         @foreach($categories as $category)
             <div class="col-5ths">
-                <div class="rounded-3 overflow-hidden bg-linear-gradient">
-                    <div class="d-flex align-items-center justify-content-center img-card overflow-hidden">
-                        <img src="{{asset($category->image)}}">
-                    </div>
-                    <h3 class="text-center py-2 text-white">{{$category->trans('title')}}</h3>
-                </div>
+                @if($category->slug === 'car-services')
+                    <!-- رابط داخلي لنفس الصفحة -->
+                    <a href="#services" class="text-decoration-none">
+                        @else
+                            <a href="{{ route('client.ads', $category->slug) }}" class="text-decoration-none">
+                                @endif
+                                <div class="rounded-3 overflow-hidden bg-linear-gradient">
+                                    <div class="d-flex align-items-center justify-content-center img-card overflow-hidden">
+                                        <img src="{{ asset($category->image) }}" alt="{{ $category->trans('title') }}">
+                                    </div>
+                                    <h3 class="text-center py-2 text-white">{{ $category->trans('title') }}</h3>
+                                </div>
+                            </a>
             </div>
         @endforeach
     </div>
+
 </div>
 
 {{--Cars--}}
@@ -348,7 +356,7 @@
 </div>
 
 {{--Services--}}
-<div class="container py-lg-5 py-md-4 py-3 ">
+<div class="container py-lg-5 py-md-4 py-3" id="services">
     <div class="row    py-2 align-items-center gy-3 justify-content-between">
         <div class="col-md-8 col-sm-7 overflow-hidden">
             <h2 class="fw-semibold">{{ __('front.services') }}</h2>
