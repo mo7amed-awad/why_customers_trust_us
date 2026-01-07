@@ -197,6 +197,12 @@
                 let maxVal = parseInt(rangeMax.value);
 
                 const gap = 50000;
+
+                if (maxVal < gap) {
+                    maxVal = gap;
+                    rangeMax.value = maxVal;
+                }
+
                 if (minVal > maxVal - gap) {
                     minVal = maxVal - gap;
                     rangeMin.value = minVal;

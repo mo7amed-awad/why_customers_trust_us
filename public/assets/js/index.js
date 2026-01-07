@@ -453,7 +453,7 @@ let FooterContainer = `   <footer class=" ">
       <div class="row justify-content-center  text-black-50 py-2 gy-3 fw-medium border-top">
         <div class=" col-lg-8 col-md-6  col-12    emcan text-center">
             <span class="text-black fw-light">
-              Copyright © ${new Date().getFullYear()} Scoop Car All rights reserved
+              Copyright © ${new Date().getFullYear()} Shamla All rights reserved
             </span>
   
   
