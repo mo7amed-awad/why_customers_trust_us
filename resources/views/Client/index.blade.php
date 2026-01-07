@@ -25,6 +25,18 @@
         .heart-icon:hover {
             transform: scale(1.1);
         }
+        .empty-state-wrapper {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .empty-state-wrapper .text-center {
+            max-width: 400px;
+            margin: 0 auto;
+        }
     </style>
 @endpush
 @section('content')
@@ -237,34 +249,40 @@
             <!-- All Cars -->
             <div class="tab-pane fade show active" id="all-cars">
                 <div class="row gy-4">
-                    @foreach($cars as $car)
+                    @forelse($cars as $car)
                         <div class="col-lg-4 col-md-4 col-sm-6 ">
                             @include('Client.partials.car-card', ['item' => $car])
                         </div>
-                    @endforeach
+                    @empty
+                        @include('components.empty-state')
+                    @endforelse
                 </div>
             </div>
 
             <!-- New Cars -->
             <div class="tab-pane fade" id="new-cars">
                 <div class="row gy-4">
-                    @foreach($cars->where('is_new', 1) as $car)
+                    @forelse($cars->where('is_new', 1) as $car)
                         <div class="col-lg-4 col-md-4 col-sm-6 ">
                             @include('Client.partials.car-card', ['item' => $car])
                         </div>
-                    @endforeach
+                    @empty
+                        @include('components.empty-state')
+                    @endforelse
                 </div>
             </div>
 
             <!-- Used Cars -->
             <div class="tab-pane fade" id="used-cars">
                 <div class="row gy-4">
-                    @foreach($cars->where('is_new', 0) as $car)
+                    @forelse($cars->where('is_new', 0) as $car)
                         <div class="col-lg-4 col-md-4 col-sm-6 ">
                             @include('Client.partials.car-card', ['item' => $car])
                         </div>
-                    @endforeach
-                </div>
+                    @empty
+                        @include('components.empty-state')
+                    @endforelse
+                 </div>
             </div>
         </div>
 
@@ -281,7 +299,7 @@
         </div>
     </div>
     <div class="row   brands regular py-5 ">
-        @foreach($brands as $brand)
+        @forelse($brands as $brand)
             <div class="">
                 <div class=" overflow-hidden">
                     <div class=" d-flex align-items-center justify-content-center img-slider overflow-hidden">
@@ -289,8 +307,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
-
+        @empty
+            @include('components.empty-state')
+        @endforelse
     </div>
 </div>
 
@@ -304,7 +323,7 @@
                     {{ __('front.who_we_are_desc') }}
                 </p>
                 <ul class="package px-0 row pt-4 gy-3">
-                    @foreach($whyChooseUs as $item)
+                    @forelse($whyChooseUs as $item)
                         <li class="py-1  col-sm-6">
                             <div class="d-flex gap-2">
                                 <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -319,7 +338,9 @@
                             <p>{{$item->trans('desc')}}</p>
 
                         </li>
-                    @endforeach
+                    @empty
+                        @include('components.empty-state')
+                    @endforelse
                 </ul>
             </div>
         </div>
@@ -340,7 +361,7 @@
 
     <div class="row py-5 slider-services overflow-hidden">
 
-        @foreach($services as $service)
+        @forelse($services as $service)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 <div class="img-card flex-column p-3 d-flex align-items-start shadow-sm rounded-4 h-auto gap-2  bg-white">
                     <div class="overflow-hidden p-1 rounded-2 bg-Secondary-color" style="height: 40px;width: 40px;">
@@ -356,7 +377,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+                @include('components.empty-state')
+        @endforelse
     </div>
 </div>
 
@@ -378,11 +401,13 @@
     </div>
 
     <div class="row py-5  slider-main overflow-hidden">
-        @foreach($spareParts as $sparePart)
+        @forelse($spareParts as $sparePart)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.spare-part-card', ['item' => $sparePart])
             </div>
-        @endforeach
+        @empty
+                @include('components.empty-state')
+        @endforelse
     </div>
   </div>
 
@@ -409,11 +434,13 @@
 
 
     <div class="row py-5  slider-main overflow-hidden">
-        @foreach($accessories as $accessory)
+        @forelse($accessories as $accessory)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.accessory-card', ['item' => $accessory])
             </div>
-        @endforeach
+        @empty
+            @include('components.empty-state')
+        @endforelse
     </div>
   </div>
 
@@ -439,11 +466,13 @@
     </div>
 
     <div class="row py-5  slider-main overflow-hidden">
-        @foreach($plates as $plate)
+        @forelse($plates as $plate)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.plate-card', ['item' => $plate])
             </div>
-        @endforeach
+        @empty
+            @include('components.empty-state')
+        @endforelse
     </div>
   </div>
 
@@ -463,7 +492,7 @@
         <div class="row justify-content-center py-5 ">
           <div class="col-11 overflow-hidden">
             <div class="row    slider-scoop   py-5">
-                @foreach($WhyCustomersTrustUs as $item)
+                @forelse($WhyCustomersTrustUs as $item)
                     <div class=" col-md-4 col-sm-6 ">
                         <div class="card bg-secondary border-0 rounded-3 position-relative overflow-hidden">
                             <div class="img-card  d-flex align-items-center justify-content-center rounded-0 overflow-hidden ">
@@ -478,7 +507,9 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    @include('components.empty-state')
+                @endforelse
             </div>
           </div>
         </div>

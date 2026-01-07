@@ -208,5 +208,6 @@ return [
     'find_perfect_car' => 'Find the Perfect Car for You',
     'all_brands' => 'All Brands',
     'all_models' => 'All Models',
-
+    'no_data' => 'No data available',
+    'try_again_later' => 'Please try again later',
 ];
