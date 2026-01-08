@@ -48,10 +48,6 @@ class ForgetPasswordController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
 
         $user = User::findOrFail($request->user_id);
         $user->password = Hash::make($request->password);
