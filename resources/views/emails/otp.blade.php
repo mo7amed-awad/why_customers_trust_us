@@ -21,9 +21,6 @@
     <table align="center" cellpadding="0" cellspacing="0" width="95%%" style="padding:15px;">
         <h1>{{ env("APP_NAME") }}</h1>
         <p>Your Verification Code Is {{ $otp }}, </p>
-        <p>
-            Powered By Emcan Solutions
-        </p>
     </table>
 </body>
 

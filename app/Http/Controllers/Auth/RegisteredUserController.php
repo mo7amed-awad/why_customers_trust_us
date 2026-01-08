@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Functions\WhatsApp;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Mail\SendOTP;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Modules\User\Entities\TempUser;
 use Modules\User\Entities\Model as User;
@@ -24,9 +26,10 @@ class RegisteredUserController extends Controller
     public function otp(RegisterRequest $request){
 
         $country_code = '+'.$request->country_code;
-        $phone = $country_code.$request->phone;
 
-        $otp = WhatsApp::SendOTP($phone);
+        $otp = rand(100000, 999999);
+
+        Mail::to($request->email)->send(new SendOTP($otp));
 
         $tempUser = TempUser::updateOrCreate(
             [
@@ -55,11 +58,9 @@ class RegisteredUserController extends Controller
 
         $temp_user = TempUser::find($request->temp_user_id);
 
-        $phone = $temp_user->phone_code.$temp_user->phone;
+        $otp = rand(100000, 999999);
 
-        $otp = WhatsApp::SendOTP($phone);
-
-
+        Mail::to($temp_user->email)->send(new SendOTP($otp));
 
         $temp_user->update([
             'otp' => $otp,
