@@ -162,81 +162,84 @@ class AdsController extends Controller
         $data = $request->validated();
         unset($data['country_code'], $data['images']);
 
-        $ad = new Ad($data);
-        $ad->user_id = Auth::id();
-        $ad->category_id = $category->id;
-        $ad->subcategory_id = $subcategory->id;
-        $ad->phone_code = $request->country_code;
-        $ad->save();
+        DB::transaction(function () use ($data, $request, $category, $subcategory) {
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = Upload::UploadFile($image, 'Ads');
-                $ad->images()->create([
-                    'image' => $path
-                ]);
-            }
-        }
+            $ad = new Ad($data);
+            $ad->user_id = Auth::id();
+            $ad->category_id = $category->id;
+            $ad->subcategory_id = $subcategory->id;
+            $ad->phone_code = $request->country_code;
+            $ad->save();
 
-        if($category->slug == 'spare-parts'){
-            $spareRequest = app(StoreSparePartRequest::class);
-            $sparePart = new SparePart($spareRequest->validated());
-            $sparePart->ad_id = $ad->id;
-            $sparePart->save();
-            $ad->update([
-               'type' => AdTypesEnum::SPARE_PART
-            ]);
-        }
-
-        if($category->slug == 'cars'){
-            $spareRequest = app(StoreCarRequest::class);
-            $validated = $spareRequest->validated();
-
-            $features = $validated['features'] ?? [];
-            unset($validated['features']);
-
-            $car = new Car($validated);
-            $car->ad_id = $ad->id;
-            $car->save();
-
-            $ad->update([
-                'type' => AdTypesEnum::CAR
-            ]);
-
-            if (!empty($features)) {
-                foreach ($features as $featureId => $value) {
-                    \DB::table('car_features')->insert([
-                        'car_id' => $car->id,
-                        'feature_id' => $featureId,
-                        'value' => $value ?? 0,
-                        'created_at' => now(),
-                        'updated_at' => now(),
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = Upload::UploadFile($image, 'Ads');
+                    $ad->images()->create([
+                        'image' => $path
                     ]);
                 }
             }
 
-        }
+            if($category->slug == 'spare-parts'){
+                $spareRequest = app(StoreSparePartRequest::class);
+                $sparePart = new SparePart($spareRequest->validated());
+                $sparePart->ad_id = $ad->id;
+                $sparePart->save();
+                $ad->update([
+                   'type' => AdTypesEnum::SPARE_PART
+                ]);
+            }
 
-        if($category->slug == 'accessories'){
-            $accessories = new Accessory();
-            $accessories->ad_id = $ad->id;
-            $accessories->save();
+            if($category->slug == 'cars'){
+                $spareRequest = app(StoreCarRequest::class);
+                $validated = $spareRequest->validated();
 
-            $ad->update([
-                'type' => AdTypesEnum::ACCESSORY
-            ]);
-        }
+                $features = $validated['features'] ?? [];
+                unset($validated['features']);
 
-        if($category->slug == 'license-plates'){
-            $spareRequest = app(StoreLicensePlatesRequest::class);
-            $sparePart = new Plate($spareRequest->validated());
-            $sparePart->ad_id = $ad->id;
-            $sparePart->save();
-            $ad->update([
-                'type' => AdTypesEnum::LICENSE_PLATE
-            ]);
-        }
+                $car = new Car($validated);
+                $car->ad_id = $ad->id;
+                $car->save();
 
+                $ad->update([
+                    'type' => AdTypesEnum::CAR
+                ]);
+
+                if (!empty($features)) {
+                    foreach ($features as $featureId => $value) {
+                        \DB::table('car_features')->insert([
+                            'car_id' => $car->id,
+                            'feature_id' => $featureId,
+                            'value' => $value ?? 0,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    }
+                }
+
+            }
+
+            if($category->slug == 'accessories'){
+                $accessories = new Accessory();
+                $accessories->ad_id = $ad->id;
+                $accessories->save();
+
+                $ad->update([
+                    'type' => AdTypesEnum::ACCESSORY
+                ]);
+            }
+
+            if($category->slug == 'license-plates'){
+                $spareRequest = app(StoreLicensePlatesRequest::class);
+                $sparePart = new Plate($spareRequest->validated());
+                $sparePart->ad_id = $ad->id;
+                $sparePart->save();
+                $ad->update([
+                    'type' => AdTypesEnum::LICENSE_PLATE
+                ]);
+            }
+
+        });
 
         return redirect()->route('client.home')->with('success', 'تم إضافة الإعلان بنجاح!');
     }
