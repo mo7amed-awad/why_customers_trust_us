@@ -46,6 +46,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.store');
     Route::any('/terms-conditions', [TermsConditionsController::class, 'index'])->name('terms-conditions');
     Route::any('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
+    Route::post('/password/change', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
 
     Route::middleware('auth:user')->group(function () {
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

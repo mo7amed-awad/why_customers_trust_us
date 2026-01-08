@@ -108,7 +108,7 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
-                                <button type="button" class="toggle-password TogglePasswordBtns" tabindex="-1">
+                                <button type="button" class="toggle-password TogglePasswordBtns" style="z-index: 11" tabindex="-1">
                                     <i class="fa-regular fa-eye"></i>
                                 </button>
                                 <div class="invalid-feedback"></div>

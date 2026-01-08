@@ -222,5 +222,6 @@ return [
     'subject_max'         => 'Subject is too long.',
     'message_max'         => 'Message is too long.',
     'message_sent_success' => 'Message sent successfully!',
+    'please_login_again' => 'Please log in again to continue managing your bookings easily',
 
 ];

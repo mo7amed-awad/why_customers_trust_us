@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Functions\WhatsApp;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgetPasswordRequest;
+use App\Mail\SendOTP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Modules\User\Entities\Model as User;
 
@@ -20,20 +22,17 @@ class ForgetPasswordController extends Controller
 
     public function otp(ForgetPasswordRequest $request){
 
-        $country_code = '+'.$request->country_code;
-        $phone = $country_code.$request->phone;
-
-        $user = User::where('phone', $request->phone)
-            ->where('phone_code', $country_code)
+        $user = User::where('email', $request->email)
             ->first();
 
         if (!$user) {
             return back()->withErrors(['phone' => __('front.user_not_found')]);
         }
 
-        $otp = WhatsApp::SendOTP($phone);
+        $otp = rand(100000, 999999);
 
-        \Log::info($otp);
+        Mail::to($user->email)->send(new SendOTP($otp));
+
         return view('auth.forget-password-otp', [
             'user_id' => $user->id,
             'otp' => $otp,
@@ -45,5 +44,19 @@ class ForgetPasswordController extends Controller
         return view('auth.new-password',[
             'user_id' => $request->user_id,
         ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::findOrFail($request->user_id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')->with('success', __('front.password_changed_success'));
     }
 }
