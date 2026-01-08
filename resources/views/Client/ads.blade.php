@@ -69,56 +69,59 @@
 
         {{--Result--}}
         <div class="col-lg-9">
-            <!-- Results Header with Sort and Active Filters -->
-            <div class="mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary form-select dropdown-toggle rounded-3 px-5" type="button"
-                                id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ __('front.sort_by') }}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end overflow-hidden">
-                            <li>
-                                <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'latest']) }}">
-                                    {{ __('front.latest') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}">
-                                    {{ __('front.oldest') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'price_asc']) }}">
-                                    {{ __('front.price_low_high') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'price_desc']) }}">
-                                    {{ __('front.price_high_low') }}
-                                </a>
-                            </li>
-                        </ul>
+            <!-- Results Header with Sort -->
+            @if($items->count() > 0)
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary form-select dropdown-toggle rounded-3 px-5" type="button"
+                                    id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ __('front.sort_by') }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end overflow-hidden">
+                                <li>
+                                    <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'latest']) }}">
+                                        {{ __('front.latest') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}">
+                                        {{ __('front.oldest') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'price_asc']) }}">
+                                        {{ __('front.price_low_high') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ request()->fullUrlWithQuery(['sort' => 'price_desc']) }}">
+                                        {{ __('front.price_high_low') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
+            @if($items->count() > 0)
+                @php
+                    $half = ceil($items->count() / 2);
+                    $itemsFirstHalf = $items->slice(0, $half);
+                    $itemsSecondHalf = $items->slice($half);
+                @endphp
 
-            @php
-                $half = ceil($items->count() / 2);
-                $itemsFirstHalf = $items->slice(0, $half);
-                $itemsSecondHalf = $items->slice($half);
-            @endphp
+                <div class="row gy-3 slider2 slider-title regular">
+                    @foreach($itemsFirstHalf as $item)
+                        <div class="col-lg-4 col-md-4 col-sm-6 ">
+                            @include($cardView, ['item' => $item])
+                        </div>
+                    @endforeach
+                </div>
+            @endif
 
-            <div class="row gy-3 slider2 slider-title regular">
-                @foreach($itemsFirstHalf as $item)
-                    <div class="col-lg-4 col-md-4 col-sm-6 ">
-                        @include($cardView, ['item' => $item])
-                    </div>
-                @endforeach
-            </div>
-
-
+            <!-- Banner Section - بيظهر دايماً -->
             <div class="row align-items-center py-2">
                 <div class="col-12">
                     <div class="d-flex header-div services px-0 justify-content-center overflow-hidden align-items-center position-relative bg-primary-color rounded-3">
@@ -144,12 +147,12 @@
                                                class="btn bg-black bg-opacity-25 py-2 px-5 text-white rounded-pill gap-2">
                                                 <span>{{ __('front.become_member') }}</span>
                                                 <span>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M19 17.59L17.59 19L7 8.41V15H5V5H15V7H8.41L19 17.59Z"
-                                                  fill="white"/>
-                                        </svg>
-                                    </span>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19 17.59L17.59 19L7 8.41V15H5V5H15V7H8.41L19 17.59Z"
+                                                      fill="white"/>
+                                            </svg>
+                                        </span>
                                             </a>
                                         @endif
                                     </div>
@@ -160,17 +163,19 @@
                 </div>
             </div>
 
-            <div class="row gy-3 slider2 slider-title regular">
-                @foreach($itemsSecondHalf as $item)
-                    <div class="col-lg-4 col-md-4 col-sm-6 ">
-                        @include($cardView, ['item' => $item])
-                    </div>
-                @endforeach
-            </div>
-
-
+            @if($items->count() > 0)
+                <div class="row gy-3 slider2 slider-title regular">
+                    @foreach($itemsSecondHalf as $item)
+                        <div class="col-lg-4 col-md-4 col-sm-6 ">
+                            @include($cardView, ['item' => $item])
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <!-- Empty State - بيظهر بس لو مفيش داتا خالص -->
+                @include('components.empty-state')
+            @endif
         </div>
-
     </div>
 </form>
 

@@ -264,52 +264,6 @@
                 </div>
 
                 {{--Images--}}
-{{--                <div class="col-12">--}}
-
-{{--                    @php--}}
-{{--                        $images = $item->images;--}}
-{{--                        $totalImages = $images->count();--}}
-{{--                    @endphp--}}
-
-{{--                    --}}{{-- الصورة الرئيسية (Slider كبير) --}}
-{{--                    <div class="position-relative">--}}
-{{--                        <div class="slider-for py-2" dir="ltr">--}}
-{{--                            @foreach($images as $image)--}}
-{{--                                <div class="slide-item">--}}
-{{--                                    <div class="img-container d-flex justify-content-center align-items-center rounded-3 position-relative bg-Secondary-color">--}}
-{{--                                        <img--}}
-{{--                                                data-fancybox="gallery"--}}
-{{--                                                src="{{ asset($image->image) }}"--}}
-{{--                                                class="w-100 h-100 object-fit-contain">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-
-{{--                        --}}{{-- العداد برة الـ slider (واحد لكل الصور) --}}
-{{--                        <div class="position-absolute start-0 py-2 d-flex gap-2 align-items-center justify-content-between p-2 bottom-0 end-0" style="z-index: 1111;">--}}
-{{--                            <div class="fs-14 text-white py-2 px-5 bg-black bg-opacity-25 rounded-pill fw-bold d-flex align-items-center justify-content-center addtosave" style="height:40px">--}}
-{{--                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <path d="M16.751 16.752H4.40784V4.40881H16.751M16.751 2.64551H4.40784C3.94018 2.64551 3.49168 2.83128 3.16099 3.16197C2.83031 3.49265 2.64453 3.94116 2.64453 4.40881V16.752C2.64453 17.2196 2.83031 17.6681 3.16099 17.9988C3.49168 18.3295 3.94018 18.5153 4.40784 18.5153H16.751C17.2186 18.5153 17.6671 18.3295 17.9978 17.9988C18.3285 17.6681 18.5143 17.2196 18.5143 16.752V4.40881C18.5143 3.94116 18.3285 3.49265 17.9978 3.16197C17.6671 2.83128 17.2186 2.64551 16.751 2.64551ZM12.3074 10.8361L9.8829 13.9571L8.15486 11.8764L5.73032 14.9886H15.4285L12.3074 10.8361Z" fill="white" />--}}
-{{--                                </svg>--}}
-{{--                                <span class="current-slide">1</span>/{{ $totalImages }}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    --}}{{-- الصور المصغرة (Thumbnails جنب بعض) --}}
-{{--                    <div class="row slider-nav py-2 overflow-hidden" dir="ltr">--}}
-{{--                        @foreach($images as $image)--}}
-{{--                            <div class="">--}}
-{{--                            <div class="img-slider  rounded-1 bg-Secondary-color">--}}
-{{--                                <img src="{{asset($image->image)}}" class="w-100 h-100 object-fit-cover">--}}
-
-{{--                            </div>--}}
-
-{{--                        </div>--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <div class="row gy-3 justify-content-between py-2 overflow-hidden">
 
 
@@ -674,140 +628,140 @@
 </footer>
 
 @push('scripts')
-{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready(function() {--}}
-{{--            $('.addtosave').click(function(e) {--}}
-{{--                e.preventDefault();--}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.addtosave').click(function(e) {
+                e.preventDefault();
 
-{{--                var link = $(this);--}}
-{{--                var heartIcon = link.find('.heart-icon');--}}
-{{--                var heartPath = link.find('.heart-path');--}}
-{{--                var adId = link.data('id');--}}
+                var link = $(this);
+                var heartIcon = link.find('.heart-icon');
+                var heartPath = link.find('.heart-path');
+                var adId = link.data('id');
 
-{{--                $.ajax({--}}
-{{--                    url: "{{ route('client.favorites.toggle') }}",--}}
-{{--                    method: 'POST',--}}
-{{--                    data: {--}}
-{{--                        _token: "{{ csrf_token() }}",--}}
-{{--                        ad_id: adId--}}
-{{--                    },--}}
-{{--                    success: function(response) {--}}
-{{--                        if(response.status == 'added') {--}}
-{{--                            heartIcon.addClass('favorited');--}}
-{{--                            heartPath.attr('fill', '#EF4444');--}}
-{{--                            heartPath.attr('stroke', '#EF4444');--}}
-{{--                        } else {--}}
-{{--                            heartIcon.removeClass('favorited');--}}
-{{--                            heartPath.attr('fill', 'none');--}}
-{{--                            heartPath.attr('stroke', '#4B5563');--}}
-{{--                        }--}}
-{{--                    },--}}
-{{--                    error: function(xhr) {--}}
-{{--                        if (xhr.status === 401) {--}}
-{{--                            window.location.href = "{{ route('login') }}";--}}
-{{--                        } else {--}}
-{{--                            alert('حدث خطأ، الرجاء المحاولة مرة أخرى');--}}
-{{--                        }--}}
-{{--                    }--}}
+                $.ajax({
+                    url: "{{ route('client.favorites.toggle') }}",
+                    method: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        ad_id: adId
+                    },
+                    success: function(response) {
+                        if(response.status == 'added') {
+                            heartIcon.addClass('favorited');
+                            heartPath.attr('fill', '#EF4444');
+                            heartPath.attr('stroke', '#EF4444');
+                        } else {
+                            heartIcon.removeClass('favorited');
+                            heartPath.attr('fill', 'none');
+                            heartPath.attr('stroke', '#4B5563');
+                        }
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 401) {
+                            window.location.href = "{{ route('login') }}";
+                        } else {
+                            alert('حدث خطأ، الرجاء المحاولة مرة أخرى');
+                        }
+                    }
 
-{{--                });--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+                });
+            });
+        });
+    </script>
 
-{{--    --}}{{--Favorit--}}
-{{--    <script>--}}
-{{--        document.querySelectorAll('.like-btn').forEach(button => {--}}
-{{--            button.addEventListener('click', function() {--}}
-{{--                const adId = this.dataset.adId;--}}
-{{--                const icon = this.querySelector('i');--}}
+    Favorit
+    <script>
+        document.querySelectorAll('.like-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const adId = this.dataset.adId;
+                const icon = this.querySelector('i');
 
-{{--                fetch(`{{ route('client.like.toggle') }}`, {--}}
-{{--                    method: 'POST',--}}
-{{--                    headers: {--}}
-{{--                        'X-CSRF-TOKEN': '{{ csrf_token() }}',--}}
-{{--                        'Content-Type': 'application/json',--}}
-{{--                        'Accept': 'application/json'--}}
-{{--                    },--}}
-{{--                    body: JSON.stringify({ ad_id: adId })--}}
-{{--                })--}}
-{{--                    .then(response => response.json())--}}
-{{--                    .then(data => {--}}
-{{--                        if (data.liked) {--}}
-{{--                            icon.classList.remove('far');--}}
-{{--                            icon.classList.add('fas');--}}
-{{--                        } else {--}}
-{{--                            icon.classList.remove('fas');--}}
-{{--                            icon.classList.add('far');--}}
-{{--                        }--}}
-{{--                    })--}}
-{{--                    .catch(err => console.error(err));--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+                fetch(`{{ route('client.like.toggle') }}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ ad_id: adId })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.liked) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                        } else {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    </script>
 
-{{--    --}}{{--Like--}}
-{{--    <script>--}}
-{{--    </script>--}}
+    Like
+    <script>
+    </script>
 
-{{--    --}}{{--Comment--}}
-{{--    <script>--}}
-{{--        document.getElementById('commentForm').addEventListener('submit', function(e) {--}}
-{{--            e.preventDefault();--}}
+    Comment
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-{{--            const textarea = document.getElementById('Notes');--}}
-{{--            const content = textarea.value.trim();--}}
-{{--            if(!content) return alert('Please write a comment.');--}}
+            const textarea = document.getElementById('Notes');
+            const content = textarea.value.trim();
+            if(!content) return alert('Please write a comment.');
 
-{{--            const lang = '{{ app()->getLocale() }}';--}}
-{{--            const adId = {{ $item->id }};--}}
+            const lang = '{{ app()->getLocale() }}';
+            const adId = {{ $item->id }};
 
-{{--            fetch(`/${lang}/ads/${adId}/comment`, {--}}
-{{--                method: 'POST',--}}
-{{--                headers: {--}}
-{{--                    'Content-Type': 'application/json',--}}
-{{--                    'X-CSRF-TOKEN': '{{ csrf_token() }}',--}}
-{{--                    'Accept': 'application/json'--}}
-{{--                },--}}
-{{--                body: JSON.stringify({ content })--}}
-{{--            })--}}
-{{--                .then(res => {--}}
-{{--                    if(!res.ok) throw new Error('Failed to post comment');--}}
-{{--                    return res.json();--}}
-{{--                })--}}
-{{--                .then(data => {--}}
-{{--                    const commentHTML = `--}}
-{{--        <div class="col-lg-12 align-items-center d-flex justify-content-between py-2 border-bottom item">--}}
-{{--            <div class="py-2 w-100">--}}
-{{--                <div class="d-flex gap-3 position-relative">--}}
-{{--                    <div class="bg-white img rounded-circle primary-color img-card overflow-hidden d-flex justify-content-center align-items-center" style="width:40px;height:40px "></div>--}}
-{{--                    <div class="fw-medium d-flex flex-column gap-2" style="flex: 1;">--}}
-{{--                        <div class="d-flex justify-content-between align-items-start">--}}
-{{--                            <div>--}}
-{{--                                <h1 class="fs-18 fw-medium mb-2">${data.user_name}</h1>--}}
-{{--                                <h6 class="mb-0">${data.created_at_human}</h6>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <p class="text-secondary mb-2">${data.content}</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    `;--}}
+            fetch(`/${lang}/ads/${adId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ content })
+            })
+                .then(res => {
+                    if(!res.ok) throw new Error('Failed to post comment');
+                    return res.json();
+                })
+                .then(data => {
+                    const commentHTML = `
+        <div class="col-lg-12 align-items-center d-flex justify-content-between py-2 border-bottom item">
+            <div class="py-2 w-100">
+                <div class="d-flex gap-3 position-relative">
+                    <div class="bg-white img rounded-circle primary-color img-card overflow-hidden d-flex justify-content-center align-items-center" style="width:40px;height:40px "></div>
+                    <div class="fw-medium d-flex flex-column gap-2" style="flex: 1;">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h1 class="fs-18 fw-medium mb-2">${data.user_name}</h1>
+                                <h6 class="mb-0">${data.created_at_human}</h6>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-2">${data.content}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 
-{{--                    // استخدم insertAdjacentHTML بدل prepend--}}
-{{--                    document.querySelector('#commentsContainer .comments-list').insertAdjacentHTML('afterbegin', commentHTML);--}}
+                    // استخدم insertAdjacentHTML بدل prepend
+                    document.querySelector('#commentsContainer .comments-list').insertAdjacentHTML('afterbegin', commentHTML);
 
-{{--                    const countElem = document.getElementById('commentsCount');--}}
-{{--                    let currentCount = parseInt(countElem.textContent.match(/\d+/)[0]);--}}
-{{--                    countElem.textContent = `Reviews (${currentCount + 1})`;--}}
+                    const countElem = document.getElementById('commentsCount');
+                    let currentCount = parseInt(countElem.textContent.match(/\d+/)[0]);
+                    countElem.textContent = `Reviews (${currentCount + 1})`;
 
-{{--                    textarea.value = '';--}}
-{{--                })--}}
-{{--                .catch(err => console.error(err));--}}
-{{--        });--}}
-{{--    </script>--}}
+                    textarea.value = '';
+                })
+                .catch(err => console.error(err));
+        });
+    </script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
     <script>
