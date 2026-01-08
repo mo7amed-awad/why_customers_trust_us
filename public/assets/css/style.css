@@ -3164,3 +3164,7 @@ html[lang=ar] .page-item:last-child .page-link {
 .products .nav-item button {
   width: 100%;
 }/*# sourceMappingURL=style.css.map */
+
+.object-fit-contain{
+    object-fit: contain;
+}

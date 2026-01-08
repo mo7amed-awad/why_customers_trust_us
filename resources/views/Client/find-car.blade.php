@@ -22,7 +22,7 @@
                                         {{ __('front.home_platform_description') }}
                                     </p>
                                 </div>
-                                <div class="col-md-3 col-sm-6 align-items-end">
+                                <div class="col-lg-4 col-sm-6 align-items-end">
                                     <a href="{{ route('client.ads', ['slug' => 'cars']) }}"
                                        class="btn bg-white bg-opacity-25 py-2 px-5 text-white rounded-pill gap-2 d-inline-flex align-items-center">
         <span>

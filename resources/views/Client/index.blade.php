@@ -310,8 +310,8 @@
         @forelse($brands as $brand)
             <div class="">
                 <div class=" overflow-hidden">
-                    <div class=" d-flex align-items-center justify-content-center img-slider overflow-hidden">
-                        <img src="{{asset($brand->image)}}">
+                    <div class=" d-flex align-items-center justify-content-center img-slider overflow-hidden bg-white">
+                        <img class="w-auto" src="{{asset($brand->image)}}">
                     </div>
                 </div>
             </div>
@@ -367,8 +367,7 @@
 
     </div>
 
-    <div class="row py-5 slider-services overflow-hidden">
-
+    <div class="row py-5 {{ $services->isNotEmpty() ? 'slider-services' : '' }} overflow-hidden">
         @forelse($services as $service)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 <div class="img-card flex-column p-3 d-flex align-items-start shadow-sm rounded-4 h-auto gap-2  bg-white">
@@ -408,13 +407,13 @@
         </div>
     </div>
 
-    <div class="row py-5  slider-main overflow-hidden">
+    <div class="row py-5 {{ $spareParts->isNotEmpty() ? 'slider-main' : '' }} overflow-hidden">
         @forelse($spareParts as $sparePart)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.spare-part-card', ['item' => $sparePart])
             </div>
         @empty
-                @include('components.empty-state')
+            @include('components.empty-state')
         @endforelse
     </div>
   </div>
@@ -441,7 +440,7 @@
     </div>
 
 
-    <div class="row py-5  slider-main overflow-hidden">
+    <div class="row py-5 {{ $accessories->isNotEmpty() ? 'slider-main' : '' }} overflow-hidden">
         @forelse($accessories as $accessory)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.accessory-card', ['item' => $accessory])
@@ -473,7 +472,7 @@
         </div>
     </div>
 
-    <div class="row py-5  slider-main overflow-hidden">
+    <div class="row py-5 {{ $plates->isNotEmpty() ? 'slider-main' : '' }} overflow-hidden">
         @forelse($plates as $plate)
             <div class="col-lg-4 col-md-4 col-sm-6 ">
                 @include('Client.partials.plate-card', ['item' => $plate])
