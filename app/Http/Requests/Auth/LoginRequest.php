@@ -22,8 +22,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required', 'string'],
-            'country_code' => ['nullable', 'string'],
+            'email' => 'required|email|exists:users,email|max:30',
             'password' => ['required', 'string'],
         ];
     }
@@ -33,20 +32,16 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $phone = $this->string('phone')->toString();
-        $phoneCode = '+' . $this->string('country_code')->toString();
-        $password = $this->string('password')->toString();
+        $email = $this->string('email');
+        $password = $this->string('password');
 
-        $user = User::where('phone', $phone)
-            ->where('phone_code', $phoneCode)
-            ->where('is_active', true)
-            ->first();
+        $user = User::where('email', $email)->first();
 
         if (!$user || !\Hash::check($password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'phone' => trans('auth.failed'),
+                'email' => trans('auth.failed'),
             ]);
         }
 
@@ -76,7 +71,7 @@ class LoginRequest extends FormRequest
 
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('phone')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
     }
 
 }

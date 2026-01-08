@@ -21,15 +21,22 @@
                 <form method="POST" action="{{ route('client.login.store') }}" class="w-100 d-flex flex-column justify-content-center my-auto p-lg-5 p-3 rounded-4 text-black bg-white">
                     @csrf
 
-                    <div class="col-12">
-                        <label for="exampleInputEmail1" class="form-label">{{ __('front.phone') }}</label>
-                        <div class="input-group mb-1">
-                            <input type="tel" id="phone" name="phone" class="form-control rounded-0 border rounded-2 w-100 phone" value="{{ old('phone') }}">
-                            <input type="hidden" name="country_code" id="country_code" value="{{ old('country_code', '973') }}">
+                    <div class="col-md-12">
+                        <label for="email" class="form-label">{{ __('front.email') }}</label>
+                        <div class="input-group mb-3">
+                            <input type="email"
+                                   name="email"
+                                   class="form-control border rounded-2 w-100"
+                                   placeholder="{{ __('front.enter_email') }}"
+                                   maxlength="30"
+                                   value="{{ old('email') }}">
+                            @error('email')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                            <div class="invalid-feedback"></div>
                         </div>
-                        @error('phone')
-                        <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
-                        @enderror
                     </div>
 
                     <div class="col-12">
