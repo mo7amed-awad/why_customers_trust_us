@@ -210,4 +210,17 @@ return [
     'all_models' => 'All Models',
     'no_data' => 'No data available',
     'try_again_later' => 'Please try again later',
+    'name_required'       => 'Name is required.',
+    'name_max'            => 'Name must not exceed 25 characters.',
+    'phone_code_required' => 'Phone code is required.',
+    'phone_code_max'      => 'Phone code is too long.',
+    'phone_required'      => 'Phone number is required.',
+    'phone_max'           => 'Phone number is too long.',
+    'email_required'      => 'Email is required.',
+    'email_invalid'       => 'Email is invalid.',
+    'email_max'           => 'Email is too long.',
+    'subject_max'         => 'Subject is too long.',
+    'message_max'         => 'Message is too long.',
+    'message_sent_success' => 'Message sent successfully!',
+
 ];

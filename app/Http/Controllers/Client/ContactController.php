@@ -20,12 +20,12 @@ class ContactController extends Controller
     {
         Contact::create([
             'name' => $request->name,
-            'phone_code' => $request->phone_code,
+            'phone_code' => $request->country_code,
             'phone' => $request->phone,
             'email' => $request->email,
             'message' => $request->message,
         ]);
 
-        return back()->with('success', 'Message sent successfully!');
+        return back()->with('success', __('front.message_sent_success'));
     }
 }

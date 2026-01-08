@@ -36,6 +36,12 @@
 <div class=" bg-img-section mb-5" style="background-image: url('{{asset('assets/imgs/home/bg-contactus.jpg')}}'); background-position: center;">
     <div class="layer  py-lg-5 py-md-4 py-3">
         <div class="container    py-lg-5 py-3 overflow-hidden" id="contactus" >
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
             <div class="row gap-md-0 gap-5  rounded-3 justify-content-center py-lg-5 py-3 pe-lg-5 align-items-center ">
                 <div class="col-lg-5 col-md-6 col-12 overflow-hidden">
                     <div class="col-12 overflow-hidden" >
@@ -139,6 +145,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 " data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500">
+
                     <form action="{{route('client.contact.store')}}" method="POST" class="row p-4 bg-white border  bg-opacity-10 rounded-4 gy-3 text-white">
                         @CSRF
                         <div class="col-12 overflow-hidden" data-aos="fade-up" data-aos-duration="1500">
@@ -148,6 +155,7 @@
                             <div class="input-group">
                                 <input type="text" placeholder="{{ __('front.form_full_name_ph') }}"
                                        name= "name" class="form-control rounded-3 border py-2 bg-white"
+                                       value="{{ old('name') }}"
                                        id="name" required maxlength="25">
                                 @error('name')
                                 <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
@@ -159,6 +167,7 @@
                             <label for="email" class="form-label fw-semibold">{{ __('front.form_email') }}</label>
                             <div class="input-group">
                                 <input type="text" placeholder="{{ __('front.form_email_ph') }}" name="email"
+                                       value="{{ old('email') }}"
                                        class="form-control rounded-3 border py-2 bg-white" id="email" required maxlength="25">
                                 @error('email')
                                 <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
@@ -170,6 +179,7 @@
                             <label for="phonenumber" class="form-label fw-semibold">{{ __('front.form_phone') }}</label>
                             <div class="input-group w-100">
                                 <input type="tel" placeholder="{{ __('front.form_phone_ph') }}" name="phone" id="phone"
+                                       value="{{ old('phone') }}"
                                        class="form-control phone rounded-3 py-2 border bg-white" required maxlength="10" />
                                 <input type="hidden" name="country_code" id="country_code" value="{{ old('country_code', '973') }}">
 
@@ -183,7 +193,7 @@
                             <label for="Notes" class="form-label fw-semibold">{{ __('front.form_message') }}</label>
                             <div class="input-group">
         <textarea style="resize: none;" class="form-control rounded-3 border p-2 bg-white" id="Notes" rows="3" name="message"
-                  placeholder="{{ __('front.form_message_ph') }}" required maxlength="255"></textarea>
+                  placeholder="{{ __('front.form_message_ph') }}" required maxlength="255">{{ old('message') }}</textarea>
                                 @error('message')
                                 <div class="text-danger" style="font-size: 14px;">{{ $message }}</div>
                                 @enderror

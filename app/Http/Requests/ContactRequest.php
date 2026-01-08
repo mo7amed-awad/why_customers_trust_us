@@ -19,7 +19,7 @@ class ContactRequest extends FormRequest
             'phone_code' => 'nullable|string|max:5',
             'phone'      => 'required|string|max:10',
             'email'      => 'required|email|max:25',
-            'message'    => 'nullable|string|max:255',
+            'message'    => 'required|string|max:255',
         ];
     }
 

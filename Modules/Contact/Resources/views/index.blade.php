@@ -23,6 +23,7 @@
                 <th>@lang('trans.name')</th>
                 <th>@lang('trans.email')</th>
                 <th>@lang('trans.phone')</th>
+                <th>@lang('trans.phone_code')</th>
                 <th>@lang('trans.subject')</th>
                 <th></th>
             </tr>
@@ -40,6 +41,7 @@
                     <td>{{ $Model->name }}</td>
                     <td>{{ $Model->email }}</td>
                     <td>{{ $Model->phone }}</td>
+                    <td>{{ $Model->phone_code }}</td>
                     <td>{{ $Model->subject }}</td>
                     <td>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#ContactModal-{{ $Model->id }}"><i
