@@ -18,7 +18,7 @@
         <div class="col-lg-6 col-md-8 col-12 h-100 form-scroll" style="overflow: auto;">
 
             <div class="w-100 d-flex justify-content-center align-items-start h-100" >
-                <form action="{{ route('client.password.phone') }}" method="POST" class="w-100 d-flex flex-column justify-content-center  my-auto p-lg-5 p-3 rounded-4  p-lg-5 p-3 rounded-2 text-black bg-white" >
+                <form action="{{ route('client.password.otp') }}" method="POST" class="w-100 d-flex flex-column justify-content-center  my-auto p-lg-5 p-3 rounded-4  p-lg-5 p-3 rounded-2 text-black bg-white" >
                     @csrf
                     <div class="col-md-12">
                         <label for="email" class="form-label">{{ __('front.email') }}</label>

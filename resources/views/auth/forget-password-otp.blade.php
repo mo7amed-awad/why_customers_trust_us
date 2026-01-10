@@ -19,12 +19,14 @@
             <div class="col-lg-6 col-md-8 col-12 h-100 form-scroll" style="overflow: auto;">
 
                 <div class="w-100 d-flex justify-content-center align-items-start h-100">
-                    <form method="POST" action="{{ route('client.create.password') }}" method="POST" class="w-100 d-flex flex-column justify-content-center  my-auto p-lg-5 p-3 rounded-4 text-black bg-white">
+                    <form method="POST" action="{{ route('client.create.password') }}" class="w-100 d-flex flex-column justify-content-center  my-auto p-lg-5 p-3 rounded-4 text-black bg-white">
                         @csrf
 
                         <input type="hidden" name="user_id" value="{{ $user_id }}">
+                        <input type="hidden" name="email" value="{{ $email }}">
                         <input type="hidden" name="code" id="finalCode">
                         <input type="hidden" id="sentOtp" value="{{ $otp }}">
+
                         <div class="col-md-12">
                             <div class="mb-3 d-flex gap-2" dir="ltr">
                                 @for($i=1; $i<=6; $i++)
@@ -39,7 +41,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center my-md-3">
-                                <a type="button" class="text-secondary fw-medium text-decoration-underline resend">
+                                <a type="button" class="text-secondary fw-medium text-decoration-underline resend" style="cursor: pointer;">
                 <span>
                     <svg width="17" height="19" viewBox="0 0 17 19" fill="none">
                         <path d="M7.9751 18.95C5.95843 18.7 4.2876 17.8208 2.9626 16.3125C1.6376 14.8042 0.975098 13.0333 0.975098 11C0.975098 9.9 1.19176 8.84583 1.6251 7.8375C2.05843 6.82917 2.6751 5.95 3.4751 5.2L4.9001 6.625C4.26676 7.19167 3.7876 7.85 3.4626 8.6C3.1376 9.35 2.9751 10.15 2.9751 11C2.9751 12.4667 3.44176 13.7625 4.3751 14.8875C5.30843 16.0125 6.50843 16.7 7.9751 16.95V18.95ZM9.9751 18.95V16.95C11.4251 16.6833 12.6209 15.9917 13.5626 14.875C14.5043 13.7583 14.9751 12.4667 14.9751 11C14.9751 9.33333 14.3918 7.91667 13.2251 6.75C12.0584 5.58333 10.6418 5 8.9751 5H8.9001L10.0001 6.1L8.6001 7.5L5.1001 4L8.6001 0.5L10.0001 1.9L8.9001 3H8.9751C11.2084 3 13.1001 3.775 14.6501 5.325C16.2001 6.875 16.9751 8.76667 16.9751 11C16.9751 13.0167 16.3126 14.7792 14.9876 16.2875C13.6626 17.7958 11.9918 18.6833 9.9751 18.95Z"
@@ -64,43 +66,11 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
-
-
-
-
-
         </div>
-
     </div>
-
-
 
     <div class="d-none" id="footer">
-    </div>
-    <div class="modal fade" id="confirm" tabindex="-1" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content py-4">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex justify-content-center flex-column align-items-center ">
-                    <div class="w-50 d-flex justify-content-center py-2"><img style="width: 50px;" class="img-fluid" src="{{asset('assets/imgs/home/sucess.gif')}}" />
-                    </div>
-
-                    <div class=" w-75 d-flex flex-column align-items-center">
-                        <h5 class="py-2 mb-0">تم تسجيلك بنجاح!</h5>
-                        <p class="fs-6 text-center py-2">تم إرسال رابط التأكيد إلى بريدك الإلكتروني يرجى التحقق من صندوق
-                            الوارد واضغط على الرابط لتغيير كلمة المرور!</p>
-                        <a href="index.html"
-                           class="btn bg-primary-color  px-5 btn m-auto text-white rounded-2 gap-2 my-2 py-2 w-100"> ابدا الان </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     @push('scripts')
@@ -108,7 +78,6 @@
             let countdownRunning = false;
             const resendBtn = document.querySelector('.resend');
 
-            // دالة التحكم في تفعيل وتعطيل الزر
             function toggleResendButton(enable) {
                 if (enable) {
                     resendBtn.style.pointerEvents = 'auto';
@@ -119,7 +88,6 @@
                 }
             }
 
-            // دالة العد التنازلي
             function startCountdown() {
                 if (countdownRunning) return;
                 countdownRunning = true;
@@ -144,40 +112,33 @@
                 }, 1000);
             }
 
-            // ✅ دالة الانتقال التلقائي بين المربعات
             function setupOTPInputs() {
                 const inputs = document.querySelectorAll('.verify');
                 const confirmBtn = document.getElementById('ConfirmCreation');
                 const finalCodeInput = document.getElementById('finalCode');
 
                 inputs.forEach((input, index) => {
-                    // عند الكتابة في المربع
                     input.addEventListener('input', function(e) {
                         const value = this.value;
 
-                        // السماح فقط بالأرقام
                         if (!/^\d*$/.test(value)) {
                             this.value = '';
                             return;
                         }
 
-                        // الانتقال للمربع التالي تلقائياً
                         if (value.length === 1 && index < inputs.length - 1) {
                             inputs[index + 1].focus();
                         }
 
-                        // تحديث الكود النهائي
                         updateFinalCode();
                     });
 
-                    // عند الضغط على Backspace
                     input.addEventListener('keydown', function(e) {
                         if (e.key === 'Backspace' && !this.value && index > 0) {
                             inputs[index - 1].focus();
                         }
                     });
 
-                    // عند اللصق
                     input.addEventListener('paste', function(e) {
                         e.preventDefault();
                         const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
@@ -190,7 +151,6 @@
                                 }
                             });
 
-                            // الانتقال للمربع الأخير أو التالي الفارغ
                             const lastFilledIndex = Math.min(digits.length - 1, inputs.length - 1);
                             inputs[lastFilledIndex].focus();
 
@@ -207,16 +167,13 @@
 
                     finalCodeInput.value = code;
 
-                    // التحقق من الكود
                     const sentOtp = document.getElementById('sentOtp').value;
 
                     if (code.length === 6) {
-                        // تحقق من تطابق الكود
                         if (code === sentOtp) {
                             confirmBtn.classList.remove('disabled');
                             confirmBtn.disabled = false;
 
-                            // إزالة أي رسالة خطأ سابقة
                             document.querySelectorAll('.verify').forEach(input => {
                                 input.classList.remove('border-danger');
                             });
@@ -224,7 +181,6 @@
                             confirmBtn.classList.add('disabled');
                             confirmBtn.disabled = true;
 
-                            // عرض رسالة خطأ
                             document.querySelectorAll('.verify').forEach(input => {
                                 input.classList.add('border-danger');
                             });
@@ -236,29 +192,36 @@
                 }
             }
 
-            // --- تشغيل العد أول مرة عند تحميل الصفحة ---
             startCountdown();
             setupOTPInputs();
 
-            // --- عند الضغط على زر إعادة الإرسال ---
             resendBtn.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                const tempUserId = document.querySelector('input[name="temp_user_id"]').value;
+                if (countdownRunning) return;
 
-                fetch("{{ route('client.resend-otp') }}", {
+                const email = document.querySelector('input[name="email"]').value;
+
+                fetch("{{ route('client.password.otp') }}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    body: JSON.stringify({ temp_user_id: tempUserId })
+                    body: JSON.stringify({ email: email })
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.success && data.otp) {
+                            // تحديث الـ OTP المخزن
+                            document.getElementById('sentOtp').value = data.otp;
+
+                            // مسح المدخلات
                             document.getElementById('finalCode').value = '';
-                            document.querySelectorAll('.verify').forEach(input => input.value = '');
+                            document.querySelectorAll('.verify').forEach(input => {
+                                input.value = '';
+                                input.classList.remove('border-danger');
+                            });
                             document.querySelector('[data-id="1"]').focus();
 
                             // تعطيل الزر

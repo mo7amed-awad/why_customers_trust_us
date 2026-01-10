@@ -32,7 +32,7 @@ return [
     'dont_have_account' => 'Don’t have an account?',
     'forget_password_title' => 'Reset your password',
     'forget_password_description' =>
-        'Enter your registered email and we will send you a link to reset your password to access your account easily.',
+        'Enter your registered email and we will send you a verification code (OTP) to reset your password and access your account easily.',
     'change_password' => 'Change Password',
     'user_not_found' => 'User not found',
     'who_we_are' => 'Who We Are',

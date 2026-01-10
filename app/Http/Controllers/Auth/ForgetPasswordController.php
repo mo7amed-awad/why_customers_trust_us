@@ -21,21 +21,34 @@ class ForgetPasswordController extends Controller
 
 
     public function otp(ForgetPasswordRequest $request){
-
-        $user = User::where('email', $request->email)
-            ->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-            return back()->withErrors(['phone' => __('front.user_not_found')]);
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('front.user_not_found')
+                ], 404);
+            }
+
+            return back()->withErrors(['email' => __('front.user_not_found')]);
         }
 
         $otp = rand(100000, 999999);
-
         Mail::to($user->email)->send(new SendOTP($otp));
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'otp' => $otp,
+                'message' => __('front.otp_sent_successfully')
+            ]);
+        }
 
         return view('auth.forget-password-otp', [
             'user_id' => $user->id,
             'otp' => $otp,
+            'email' => $user->email,
         ]);
     }
 

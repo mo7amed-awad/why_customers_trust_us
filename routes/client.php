@@ -37,8 +37,9 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('otp', [RegisteredUserController::class, 'otp'])->name('otp');
     Route::post('resend-otp', [RegisteredUserController::class, 'reSendOtp'])->name('resend-otp');
     Route::get('forgot-password', [ForgetPasswordController::class, 'create'])->name('password.request');
-    Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.phone');
+    Route::post('forgot-password', [ForgetPasswordController::class, 'otp'])->name('password.otp');
     Route::post('create-password', [ForgetPasswordController::class, 'createNewPassword'])->name('create.password');
+    Route::post('/password/change', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
     Route::get('all-categories', [CategoryController::class, 'allCategories'])->name('all-categories');
     Route::get('ads-categories', [AdsController::class, 'adsCategories'])->name('ads-categories');
     Route::get('about', [AboutController::class, 'index'])->name('about');
@@ -46,7 +47,7 @@ Route::group(['prefix' => '{lang?}', 'where' => ['lang' => 'ar|en'], 'as' => 'cl
     Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.store');
     Route::any('/terms-conditions', [TermsConditionsController::class, 'index'])->name('terms-conditions');
     Route::any('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
-    Route::post('/password/change', [ForgetPasswordController::class, 'updatePassword'])->name('password.update');
+
 
     Route::middleware('auth:user')->group(function () {
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
