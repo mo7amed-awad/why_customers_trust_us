@@ -198,20 +198,40 @@
             resendBtn.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                if (countdownRunning) return;
+                if (countdownRunning) {
+                    alert('يرجى الانتظار حتى انتهاء العد التنازلي');
+                    return;
+                }
 
                 const email = document.querySelector('input[name="email"]').value;
+
+                console.log('Email:', email);
+                console.log('Route:', "{{ route('client.password.otp') }}");
 
                 fetch("{{ route('client.password.otp') }}", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({ email: email })
                 })
-                    .then(res => res.json())
+                    .then(res => {
+                        console.log('Response status:', res.status);
+                        console.log('Response headers:', res.headers);
+
+                        if (!res.ok) {
+                            return res.json().then(errorData => {
+                                throw new Error(errorData.message || 'خطأ في السيرفر');
+                            });
+                        }
+
+                        return res.json();
+                    })
                     .then(data => {
+                        console.log('Response data:', data);
+
                         if (data.success && data.otp) {
                             // تحديث الـ OTP المخزن
                             document.getElementById('sentOtp').value = data.otp;
@@ -232,10 +252,13 @@
                             alert('تم إرسال رمز التحقق الجديد بنجاح!');
                             startCountdown();
                         } else {
-                            alert('حدث خطأ، يرجى المحاولة مرة أخرى');
+                            alert('حدث خطأ: ' + (data.message || 'يرجى المحاولة مرة أخرى'));
                         }
                     })
-                    .catch(() => alert('حدث خطأ في الاتصال'));
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        alert('حدث خطأ في الاتصال' );
+                    });
             });
 
         </script>
