@@ -28,44 +28,20 @@ class AdsController  extends BasicController
     }
 
 
-    public function create()
-    {
-        return view('ads::create');
-    }
-
-    public function store(Request $request)
-    {
-        $Model = Model::create($request->all());
-        alert()->success(__('trans.addedSuccessfully'));
-
-        return redirect()->back();
-    }
-
     public function show($id)
     {
-        $Model = Model::where('id', $id)->firstorfail();
+        $ad = Model::with([
+            'images',
+            'carDetails.features',
+            'sparePartDetails',
+            'plateDetails',
+            'accessoryDetails',
+            'category',
+            'subcategory',
+            'user'
+        ])->findOrFail($id);
 
-        return view('ads::show', compact('Model'));
+        return view('ads::show', compact('ad'));
     }
 
-    public function edit($id)
-    {
-        $Model = Model::where('id', $id)->firstorfail();
-
-        return view('ads::edit', compact('Model'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $Model = Model::where('id', $id)->firstorfail();
-        $Model->update($request->all());
-        alert()->success(__('trans.updatedSuccessfully'));
-
-        return redirect()->back();
-    }
-
-    public function destroy($id)
-    {
-        $Model = Model::where('id', $id)->delete();
-    }
 }

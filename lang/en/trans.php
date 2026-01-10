@@ -2432,5 +2432,27 @@ return [
     'location_map_url' => 'Location Map Url',
     'keywords_ar' => 'Keywords in Arabic',
     'keywords_en' => 'Keywords in English',
+    'ads' => 'Ads',
+    'new' => 'New',
+    'image' => 'Image',
+    'no_image' => 'No image available',
 
+    'ad_number' => 'Ad Number',
+    'views' => 'Views',
+    'description' => 'Description',
+
+    'price_currency' => 'BHD',
+    'negotiable' => 'Negotiable',
+
+    'seller' => 'Ad Owner',
+    'seller_info' => 'Seller Information',
+    'name' => 'Name',
+    'address' => 'Address',
+
+    'call_now' => 'Call Now',
+    'whatsapp' => 'WhatsApp',
+
+    'category' => 'Category',
+    'subcategory' => 'Subcategory',
+    'published_at' => 'Published',
 ];

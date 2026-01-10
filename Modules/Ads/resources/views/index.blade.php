@@ -14,7 +14,8 @@
                 <th>@lang('trans.title')</th>
                 <th>@lang('trans.description')</th>
                 <th>@lang('trans.is_active')</th>
-=            </tr>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
             @foreach ($Models as $Model)
@@ -35,6 +36,13 @@
                         >
                             {{ $Model->is_active ? __('trans.active') : __('trans.inactive') }}
                         </span>
+                    </td>
+                    <td>
+                        @if (hasPermission('show_ads'))
+                            <a href="{{ route(activeGuard() . '.ads.show', $Model) }}">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        @endif
                     </td>
 
                 </tr>
