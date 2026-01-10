@@ -10,8 +10,6 @@
             <div class="input-group bg-transparent border rounded-3 flex-grow-1">
                 <select name="digit_count" id="digit_count" class="form-select bg-transparent border-0" required>
                     <option value="">-- {{ __('front.select_digit_count') }} --</option>
-                    <option value="1" @selected(old('digit_count') == '1')>{{ __('front.one_digit') }}</option>
-                    <option value="2" @selected(old('digit_count') == '2')>{{ __('front.two_digits') }}</option>
                     <option value="3" @selected(old('digit_count') == '3')>{{ __('front.three_digits') }}</option>
                     <option value="4" @selected(old('digit_count') == '4')>{{ __('front.four_digits') }}</option>
                     <option value="5" @selected(old('digit_count') == '5')>{{ __('front.five_digits') }}</option>

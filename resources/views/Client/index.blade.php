@@ -146,39 +146,39 @@
 </div>
 
 {{--Who We Are--}}
-<div class="container   py-lg-5 py-3 ">
-    <div class="row  justify-content-lg-between   justify-content-center  gap-md-0 gap-3">
-        <div class="col-lg-6 col-md-4 d-flex justify-content-center">
-            <div
-                    class=" img-container bg-img  w-100 rounded-4  position-relative d-flex justify-content-center align-items-start overflow-hidden"
-                    data-aos="zoom-in" data-aos-duration="2500">
-                <img class="w-100 h-100 object-fit-cover rounded-4" src="{{asset($whoWeAre->image ?? setting('logo'))}}">
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1500">
-            <h2 class="lh-base fs-32 fw-bold mb-0">
-                {{ __('front.who_we_are') }}
-            </h2>
+{{--<div class="container   py-lg-5 py-3 ">--}}
+{{--    <div class="row  justify-content-lg-between   justify-content-center  gap-md-0 gap-3">--}}
+{{--        <div class="col-lg-6 col-md-4 d-flex justify-content-center">--}}
+{{--            <div--}}
+{{--                    class=" img-container bg-img  w-100 rounded-4  position-relative d-flex justify-content-center align-items-start overflow-hidden"--}}
+{{--                    data-aos="zoom-in" data-aos-duration="2500">--}}
+{{--                <img class="w-100 h-100 object-fit-cover rounded-4" src="{{asset($whoWeAre->image ?? setting('logo'))}}">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-lg-5 col-md-6 col-12" data-aos="fade-up" data-aos-duration="1500">--}}
+{{--            <h2 class="lh-base fs-32 fw-bold mb-0">--}}
+{{--                {{ __('front.who_we_are') }}--}}
+{{--            </h2>--}}
 
-            @php
-                $descriptions = $whoWeAre ? explode("\n", $whoWeAre->trans('desc')) : [];
-            @endphp
+{{--            @php--}}
+{{--                $descriptions = $whoWeAre ? explode("\n", $whoWeAre->trans('desc')) : [];--}}
+{{--            @endphp--}}
 
-            @foreach($descriptions as $desc)
-            <p class="text-secondary py-2 fs-18" style="max-width: 90%;">{{ $desc }}</p>
-            @endforeach
+{{--            @foreach($descriptions as $desc)--}}
+{{--            <p class="text-secondary py-2 fs-18" style="max-width: 90%;">{{ $desc }}</p>--}}
+{{--            @endforeach--}}
 
-            <div class="w-100 py-2 " data-aos="fade-up" data-aos-duration="2500" data-aos-delay="500">
-                <a class="text-white px-5 py-2  rounded-2 btn bg-primary-color fw-bold" href="aboutUs.html">
-                    Learn More
-                </a>
-            </div>
-        </div>
+{{--            <div class="w-100 py-2 " data-aos="fade-up" data-aos-duration="2500" data-aos-delay="500">--}}
+{{--                <a class="text-white px-5 py-2  rounded-2 btn bg-primary-color fw-bold" href="aboutUs.html">--}}
+{{--                    Learn More--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
-    </div>
+{{--    </div>--}}
 
-</div>
+{{--</div>--}}
 
 {{--Find A Car--}}
 @include('Client.find-car')

@@ -63,12 +63,13 @@
             @include('Client.Ads.partials.license-plates-fields')
         @endif
 
-
         <div class="col-md-11 d-flex align-items-center justify-content-end">
-            <button type="submit" class="btn rounded-3 px-5 py-2 bg-primary-color justify-content-center text-white fw-medium">
-                Post Now
+            <button type="submit"
+                    class="btn rounded-3 px-5 py-2 bg-primary-color justify-content-center text-white fw-medium">
+                {{ __('front.post_now') }}
             </button>
         </div>
+
     </form>
 
 </div>

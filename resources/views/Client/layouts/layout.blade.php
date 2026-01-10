@@ -93,8 +93,9 @@
 <script>
     window.csrfToken = "{{ csrf_token() }}";
     window.logo = "{{ asset(setting('logo'))}}";
+    window.langua = "{{app()->getLocale()}}";
     window.isAuthenticated = {{ auth('user')->check() ? 'true' : 'false' }};
-    window.description = "{{ setting(app()->getLocale() == 'ar' ? 'desc_ar' : 'desc_en') }}";
+    window.description = {!! json_encode(setting(app()->getLocale() == 'ar' ? 'desc_ar' : 'desc_en')) !!};
     window.x = "{{ setting('x') }}";
     window.tiktok = "{{ setting('tiktok') }}";
     window.linkedin = "{{ setting('linkedin') }}";
@@ -102,7 +103,8 @@
     window.email = "{{ setting('email') }}";
     window.whatsapp = "{{ setting('whatsapp') }}";
     window.location_map_url = "{{ setting('location_map_url') }}";
-    window.address = "{{ setting(app()->getLocale() == 'ar' ? 'location_ar' : 'location_en') }}";
+    window.address = {!! json_encode(setting(app()->getLocale() == 'ar' ? 'location_ar' : 'location_en')) !!};
+
 </script>
 <script src="{{ asset('assets/js/index.js') }}"></script>
 

@@ -224,5 +224,6 @@ return [
     'message_sent_success' => 'Message sent successfully!',
     'please_login_again' => 'Please log in again to continue managing your bookings easily',
     'passwords_do_not_match' => 'Passwords do not match',
+    'post_now' => 'Post Now',
 
 ];

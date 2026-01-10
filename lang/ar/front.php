@@ -224,5 +224,6 @@ return [
     'message_sent_success' => 'تم إرسال رسالتك بنجاح',
     'please_login_again' => 'يرجى تسجيل الدخول مجددًا لمتابعة حجوزاتك بسهولة',
     'passwords_do_not_match' => 'كلمتا المرور غير متطابقتين',
+    'post_now' => 'انشر الآن',
 
 ];
