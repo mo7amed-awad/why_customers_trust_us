@@ -3168,3 +3168,11 @@ html[lang=ar] .page-item:last-child .page-link {
 .object-fit-contain{
     object-fit: contain;
 }
+
+.section-details{
+    transition: transform 0.2s ease-in-out;
+}
+
+.section-details:hover{
+    background: rgba(128, 128, 128, 0.15);
+}
