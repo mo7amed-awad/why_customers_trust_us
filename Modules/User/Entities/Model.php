@@ -13,7 +13,7 @@ use Modules\Notification\Entities\Model as Notification;
 
 class Model extends Authenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable;
 
     protected $guarded = [];
     protected $table = 'users';
