@@ -183,53 +183,68 @@
 </footer>
 
 @push('scripts')
-    <script>
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const rangeMin = document.querySelector('.range-min-price');
+                const rangeMax = document.querySelector('.range-max-price');
+                const priceMinValue = document.querySelector('.price-min-value');
+                const priceMaxValue = document.querySelector('.price-max-value');
+                const progress = document.querySelector('.progress-price');
+                const filterForm = document.getElementById('filter-form');
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const rangeMin = document.querySelector('.range-min-price');
-            const rangeMax = document.querySelector('.range-max-price');
-            const priceMinValue = document.querySelector('.price-min-value');
-            const priceMaxValue = document.querySelector('.price-max-value');
-            const progress = document.querySelector('.progress-price');
-
-            function formatPrice(value) {
-                const millions = value / 1000000;
-                return millions.toFixed(1);
-            }
-
-            function updateSlider() {
-                let minVal = parseInt(rangeMin.value);
-                let maxVal = parseInt(rangeMax.value);
-
-                const gap = 50000;
-
-                if (maxVal < gap) {
-                    maxVal = gap;
-                    rangeMax.value = maxVal;
+                function formatPrice(value) {
+                    // Format with thousands separator
+                    return parseInt(value).toLocaleString('en-US');
                 }
 
-                if (minVal > maxVal - gap) {
-                    minVal = maxVal - gap;
-                    rangeMin.value = minVal;
+                function updateSlider() {
+                    let minVal = parseInt(rangeMin.value);
+                    let maxVal = parseInt(rangeMax.value);
+
+                    const gap = 5000;
+
+                    if (maxVal - minVal < gap) {
+                        if (this === rangeMin) {
+                            minVal = maxVal - gap;
+                            rangeMin.value = minVal;
+                        } else {
+                            maxVal = minVal + gap;
+                            rangeMax.value = maxVal;
+                        }
+                    }
+
+                    priceMinValue.textContent = formatPrice(minVal);
+                    priceMaxValue.textContent = formatPrice(maxVal);
+
+                    const minPercent = ((minVal - rangeMin.min) / (rangeMin.max - rangeMin.min)) * 100;
+                    const maxPercent = ((maxVal - rangeMax.min) / (rangeMax.max - rangeMax.min)) * 100;
+
+                    progress.style.left = minPercent + '%';
+                    progress.style.right = (100 - maxPercent) + '%';
                 }
 
-                priceMinValue.textContent = formatPrice(minVal);
-                priceMaxValue.textContent = formatPrice(maxVal);
+                // Auto-submit form when slider changes (with debounce)
+                let priceTimeout;
+                function submitFormDebounced() {
+                    clearTimeout(priceTimeout);
+                    priceTimeout = setTimeout(() => {
+                        filterForm.submit();
+                    }, 800); // Wait 800ms after user stops dragging
+                }
 
-                const minPercent = (minVal / rangeMin.max) * 100;
-                const maxPercent = (maxVal / rangeMax.max) * 100;
+                rangeMin.addEventListener('input', updateSlider);
+                rangeMax.addEventListener('input', updateSlider);
 
-                progress.style.left = minPercent + '%';
-                progress.style.right = (100 - maxPercent) + '%';
-            }
+                rangeMin.addEventListener('change', submitFormDebounced);
+                rangeMax.addEventListener('change', submitFormDebounced);
 
-            rangeMin.addEventListener('input', updateSlider);
-            rangeMax.addEventListener('input', updateSlider);
+                updateSlider();
+            });
+        </script>
 
-            updateSlider();
-        });
-
-    </script>
+        <!-- باقي الـ scripts -->
+    @endpush
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const brandRadios = document.querySelectorAll('.brand-radio');

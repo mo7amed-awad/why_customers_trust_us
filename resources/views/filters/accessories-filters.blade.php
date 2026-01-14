@@ -13,18 +13,18 @@
                 <input type="range"
                        name="price_min"
                        class="range-min-price position-absolute w-100"
-                       min="0"
-                       max="10000000"
-                       value="{{ request('price_min', 0) }}"
-                       step="50000"
+                       min="100000"
+                       max="200000"
+                       value="{{ request('price_min', 100000) }}"
+                       step="5000"
                        style="pointer-events: all; -webkit-appearance: none; appearance: none; background: transparent; height: 5px;">
                 <input type="range"
                        name="price_max"
                        class="range-max-price position-absolute w-100"
-                       min="0"
-                       max="10000000"
-                       value="{{ request('price_max', 10000000) }}"
-                       step="50000"
+                       min="100000"
+                       max="200000"
+                       value="{{ request('price_max', 200000) }}"
+                       step="5000"
                        style="pointer-events: all; -webkit-appearance: none; appearance: none; background: transparent; height: 5px;">
             </div>
         </div>
@@ -32,11 +32,10 @@
             <div class="d-flex gap-1">
                 <span class="text-muted small d-block mb-1">{{ __('front.price') }}</span>
                 <span class="fs-6">
-                    <span class="price-min-value">{{ number_format(request('price_min', 0) / 1000000, 1) }}</span>
-                    <span> : </span>
-                    <span class="price-max-value">{{ number_format(request('price_max', 10000000) / 1000000, 1) }}</span>
-                    <span> {{ __('front.million') }}</span>
-                </span>
+                        <span class="price-min-value">{{ number_format(request('price_min', 100000)) }}</span>
+                        <span> : </span>
+                        <span class="price-max-value">{{ number_format(request('price_max', 200000)) }}</span>
+                    </span>
             </div>
         </div>
     </div>

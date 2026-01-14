@@ -38,7 +38,7 @@ class AdsController extends Controller
                 return $this->handleAds($request, AdTypesEnum::SPARE_PART, 'sparePartDetails', 'Client.partials.spare-part-card', $slug);
             case 'accessories':
                 return $this->handleAds($request, AdTypesEnum::ACCESSORY, 'accessoryDetails', 'Client.partials.accessory-card', $slug);
-            case 'plates':
+            case 'license-plates':
                 return $this->handleAds($request, AdTypesEnum::LICENSE_PLATE, 'plateDetails', 'Client.partials.plate-card', $slug);
             default:
                 abort(404);
