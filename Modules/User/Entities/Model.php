@@ -2,11 +2,9 @@
 
 namespace Modules\User\Entities;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Modules\Ads\Entities\Favorite;
 use Modules\Ads\Entities\Model as Ad;
 use Modules\Notification\Entities\Model as Notification;
 

@@ -19,7 +19,6 @@ class UserController extends Controller
     {
         $query = Model::query()
             ->latest()
-            ->withTrashed()
             ->when(request()->sort_column && request()->sort_direction, function ($query) {
                 return $query->orderBy(request()->sort_column, request()->sort_direction);
             });
